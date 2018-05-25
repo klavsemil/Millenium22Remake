@@ -37,7 +37,7 @@ public class HangarManager : MonoBehaviour {
 
         if (ship.InProduction == true)//if the object in hangar i in production it i informed to the player here
         {
-            Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = "SpaceCraft in production! Finish in: "; // This Sees to that this bay is just reserved to be in production
+            Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = "SpaceCraft in production! Finish in        turns"; // This Sees to that this bay is just reserved to be in production
             Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ship.TurnsUntillFinished + ""; // setting the number of turns until build is finish
         }
 

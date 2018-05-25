@@ -32,7 +32,7 @@ public class BuildItem : MonoBehaviour {
         if (HangarManager.Instance().HasEmptySpot()) //Is there an empty spot in the hangar?
         {//If yes
 
-            Debug.Log(ResourceManager.instance == null);
+            //Debug.Log(ResourceManager.instance == null);
             if (ResourceManager.instance.HasResourcesFor(newObject)) //If there is enough resources // is instance with lower caser or uppercase start letter!
             {
 
@@ -63,6 +63,9 @@ public class BuildItem : MonoBehaviour {
         else //If no:
         {
             //fortæl spilleren at der ikke er plads.
+
+
+
         }
 
     }
