@@ -1,0 +1,417 @@
+fileFormatVersion: 2
+guid: 28da54fce27a36f42833b03d6ba49d24
+timeCreated: 1525183163
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f000000600000006100000062000000630000006400000065000000660000006700000068000000690000006a0000006b0000006c0000006d0000006e0000006f000000700000007100000072000000730000007400000075000000760000007700000078000000790000007a0000007b0000007c0000007d0000007e0000007f0000008000000081000000820000008300000084000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 34a06c00ba32eea5217a0d64f0ce6a65
+  longitude: -105.242139
+  latitude: 40.018309
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: -191.44, y: 232.90408, z: 293.40536}
+      lookAt: {x: -108.732956, y: 43.93761, z: 98.69854}
+      up: {x: 0.26045707, y: 0.745785, z: -0.6131614}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Component#50_Fighter_Catapult
+    100002: Component#50_Fighter_Catapult 1
+    100004: Component#54_Fighter
+    100006: Component#54_Fighter 1
+    100008: Component#54_Fighter 2
+    100010: Component#54_Fighter 3
+    100012: Component#58_Occupied_Fighter_bay
+    100014: Component#58_Occupied_Fighter_bay 1
+    100016: Component#69_Fighter_Crane
+    100018: Component#72_Empty_FighterBay_MK2
+    100020: Component#72_Empty_FighterBay_MK2 1
+    100022: Component#72_Fighter_Crane_Xarm
+    100024: Component#82_Radar_Dome
+    100026: //RootNode
+    100028: Group 1
+    100030: Group 100
+    100032: Group 102
+    100034: Group 104
+    100036: Group 108
+    100038: Group 11
+    100040: Group 110
+    100042: Group 111
+    100044: Group 113
+    100046: Group 115
+    100048: Group 117
+    100050: Group 119
+    100052: Group 121
+    100054: Group 123
+    100056: Group 125
+    100058: Group 127
+    100060: Group 129
+    100062: Group 13
+    100064: Group 25
+    100066: Group 26
+    100068: Group 28
+    100070: Group 3
+    100072: Group 30
+    100074: Group 32
+    100076: Group 34
+    100078: Group 36
+    100080: Group 38
+    100082: Group 4
+    100084: Group 40
+    100086: Group 42
+    100088: Group 44
+    100090: Group 46
+    100092: Group 52
+    100094: Group 53
+    100096: Group 55
+    100098: Group 57
+    100100: Group 59
+    100102: Group 6
+    100104: Group 61
+    100106: Group 63
+    100108: Group 65
+    100110: Group 67
+    100112: Group 69
+    100114: Group 7
+    100116: Group 71
+    100118: Group 73
+    100120: Group 83
+    100122: Group 85
+    100124: Group 86
+    100126: Group 88
+    100128: Group 9
+    100130: Group 90
+    100132: Group 92
+    100134: Group 94
+    100136: Group 96
+    100138: Group 98
+    400000: Component#50_Fighter_Catapult
+    400002: Component#50_Fighter_Catapult 1
+    400004: Component#54_Fighter
+    400006: Component#54_Fighter 1
+    400008: Component#54_Fighter 2
+    400010: Component#54_Fighter 3
+    400012: Component#58_Occupied_Fighter_bay
+    400014: Component#58_Occupied_Fighter_bay 1
+    400016: Component#69_Fighter_Crane
+    400018: Component#72_Empty_FighterBay_MK2
+    400020: Component#72_Empty_FighterBay_MK2 1
+    400022: Component#72_Fighter_Crane_Xarm
+    400024: Component#82_Radar_Dome
+    400026: //RootNode
+    400028: Group 1
+    400030: Group 100
+    400032: Group 102
+    400034: Group 104
+    400036: Group 108
+    400038: Group 11
+    400040: Group 110
+    400042: Group 111
+    400044: Group 113
+    400046: Group 115
+    400048: Group 117
+    400050: Group 119
+    400052: Group 121
+    400054: Group 123
+    400056: Group 125
+    400058: Group 127
+    400060: Group 129
+    400062: Group 13
+    400064: Group 25
+    400066: Group 26
+    400068: Group 28
+    400070: Group 3
+    400072: Group 30
+    400074: Group 32
+    400076: Group 34
+    400078: Group 36
+    400080: Group 38
+    400082: Group 4
+    400084: Group 40
+    400086: Group 42
+    400088: Group 44
+    400090: Group 46
+    400092: Group 52
+    400094: Group 53
+    400096: Group 55
+    400098: Group 57
+    400100: Group 59
+    400102: Group 6
+    400104: Group 61
+    400106: Group 63
+    400108: Group 65
+    400110: Group 67
+    400112: Group 69
+    400114: Group 7
+    400116: Group 71
+    400118: Group 73
+    400120: Group 83
+    400122: Group 85
+    400124: Group 86
+    400126: Group 88
+    400128: Group 9
+    400130: Group 90
+    400132: Group 92
+    400134: Group 94
+    400136: Group 96
+    400138: Group 98
+    2100000: _defaultMat
+    2100002: '[Color M00]'
+    2100004: _auto_1
+    2100006: '[0020_Red]'
+    2100008: '[Color M04]'
+    2100010: '[Translucent Glass Dark Green]'
+    2100012: '[Color_004]'
+    2100014: '[Color_003]1'
+    2100016: '[Fencing_Mesh_Blue]'
+    2100018: '[Color_003]'
+    2100020: _LightSteelBlue_
+    2100022: _Gray_
+    2100024: _CoolGray8_
+    2100026: Color_D01
+    2100028: Color_006
+    2100030: Color_A06
+    2100032: '[0046_Gold]'
+    2100034: _auto_16
+    2100036: _auto_20
+    2100038: _auto_3
+    2300000: Component#50_Fighter_Catapult
+    2300002: Component#50_Fighter_Catapult 1
+    2300004: Component#54_Fighter
+    2300006: Component#54_Fighter 1
+    2300008: Component#54_Fighter 2
+    2300010: Component#54_Fighter 3
+    2300012: Component#58_Occupied_Fighter_bay
+    2300014: Component#58_Occupied_Fighter_bay 1
+    2300016: Component#69_Fighter_Crane
+    2300018: Component#72_Empty_FighterBay_MK2
+    2300020: Component#72_Empty_FighterBay_MK2 1
+    2300022: Component#72_Fighter_Crane_Xarm
+    2300024: Component#82_Radar_Dome
+    2300026: Group 1
+    2300028: Group 100
+    2300030: Group 102
+    2300032: Group 104
+    2300034: Group 108
+    2300036: Group 11
+    2300038: Group 111
+    2300040: Group 113
+    2300042: Group 115
+    2300044: Group 117
+    2300046: Group 119
+    2300048: Group 121
+    2300050: Group 123
+    2300052: Group 125
+    2300054: Group 127
+    2300056: Group 129
+    2300058: Group 13
+    2300060: Group 26
+    2300062: Group 28
+    2300064: Group 30
+    2300066: Group 32
+    2300068: Group 34
+    2300070: Group 36
+    2300072: Group 38
+    2300074: Group 4
+    2300076: Group 40
+    2300078: Group 42
+    2300080: Group 44
+    2300082: Group 46
+    2300084: Group 53
+    2300086: Group 55
+    2300088: Group 57
+    2300090: Group 59
+    2300092: Group 61
+    2300094: Group 63
+    2300096: Group 65
+    2300098: Group 67
+    2300100: Group 69
+    2300102: Group 7
+    2300104: Group 71
+    2300106: Group 73
+    2300108: Group 83
+    2300110: Group 86
+    2300112: Group 88
+    2300114: Group 9
+    2300116: Group 90
+    2300118: Group 92
+    2300120: Group 94
+    2300122: Group 96
+    2300124: Group 98
+    3300000: Component#50_Fighter_Catapult
+    3300002: Component#50_Fighter_Catapult 1
+    3300004: Component#54_Fighter
+    3300006: Component#54_Fighter 1
+    3300008: Component#54_Fighter 2
+    3300010: Component#54_Fighter 3
+    3300012: Component#58_Occupied_Fighter_bay
+    3300014: Component#58_Occupied_Fighter_bay 1
+    3300016: Component#69_Fighter_Crane
+    3300018: Component#72_Empty_FighterBay_MK2
+    3300020: Component#72_Empty_FighterBay_MK2 1
+    3300022: Component#72_Fighter_Crane_Xarm
+    3300024: Component#82_Radar_Dome
+    3300026: Group 1
+    3300028: Group 100
+    3300030: Group 102
+    3300032: Group 104
+    3300034: Group 108
+    3300036: Group 11
+    3300038: Group 111
+    3300040: Group 113
+    3300042: Group 115
+    3300044: Group 117
+    3300046: Group 119
+    3300048: Group 121
+    3300050: Group 123
+    3300052: Group 125
+    3300054: Group 127
+    3300056: Group 129
+    3300058: Group 13
+    3300060: Group 26
+    3300062: Group 28
+    3300064: Group 30
+    3300066: Group 32
+    3300068: Group 34
+    3300070: Group 36
+    3300072: Group 38
+    3300074: Group 4
+    3300076: Group 40
+    3300078: Group 42
+    3300080: Group 44
+    3300082: Group 46
+    3300084: Group 53
+    3300086: Group 55
+    3300088: Group 57
+    3300090: Group 59
+    3300092: Group 61
+    3300094: Group 63
+    3300096: Group 65
+    3300098: Group 67
+    3300100: Group 69
+    3300102: Group 7
+    3300104: Group 71
+    3300106: Group 73
+    3300108: Group 83
+    3300110: Group 86
+    3300112: Group 88
+    3300114: Group 9
+    3300116: Group 90
+    3300118: Group 92
+    3300120: Group 94
+    3300122: Group 96
+    3300124: Group 98
+    4300000: Mesh Group 1
+    4300002: Mesh Group 4
+    4300004: Mesh Group 7
+    4300006: Mesh Group 9
+    4300008: Mesh Group 11
+    4300010: Mesh Group 13
+    4300012: Mesh Component#54_Fighter
+    4300014: Mesh Component#50_Fighter_Catapult
+    4300016: Mesh Component#58_Occupied_Fighter_bay
+    4300018: Mesh Group 26
+    4300020: Mesh Group 28
+    4300022: Mesh Group 30
+    4300024: Mesh Group 32
+    4300026: Mesh Group 34
+    4300028: Mesh Group 36
+    4300030: Mesh Group 38
+    4300032: Mesh Group 40
+    4300034: Mesh Group 42
+    4300036: Mesh Group 44
+    4300038: Mesh Group 46
+    4300040: Mesh Component#72_Fighter_Crane_Xarm
+    4300042: Mesh Component#69_Fighter_Crane
+    4300044: Mesh Component#72_Empty_FighterBay_MK2
+    4300046: Mesh Component#82_Radar_Dome
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,164 @@
+fileFormatVersion: 2
+guid: 375cf4b1699b85b4d830ddd74369b935
+timeCreated: 1525184912
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000
+  assetHash:
+    serializedVersion: 2
+    Hash: eb3bdb85a01d2cc1b23074a4011cd8d5
+  longitude: -105.242139
+  latitude: 40.018309
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: -317.24106, y: 197.46306, z: -6.821029}
+      lookAt: {x: -145.98918, y: 11.94863, z: 186.126}
+      up: {x: 0.38754407, y: 0.8118835, z: 0.43664032}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Component#32B
+    100002: Component#32B 1
+    100004: Component#36a
+    100006: Component#36a 1
+    100008: Component#Module_3
+    100010: Component#Module_3 1
+    100012: Group 2
+    100014: //RootNode
+    400000: Component#32B
+    400002: Component#32B 1
+    400004: Component#36a
+    400006: Component#36a 1
+    400008: Component#Module_3
+    400010: Component#Module_3 1
+    400012: Group 2
+    400014: //RootNode
+    2100000: _defaultMat
+    2100002: '[Color M00]'
+    2100004: _auto_1
+    2100006: '[Translucent Glass Blue]'
+    2100008: '[0095_LightBlue]'
+    2100010: '[Translucent Glass Dark Green]'
+    2100012: '[Color M07]'
+    2100014: '[0129_WhiteSmoke]'
+    2100016: '[0128_White]'
+    2100018: '[0135_DarkGray]'
+    2100020: _auto_3
+    2100022: _auto_25
+    2100024: _auto_22
+    2100026: _auto_16
+    2100028: '[0056_Yellow]'
+    2100030: _auto_32
+    2100032: _auto_26
+    2100034: _auto_31
+    2100036: '[Color D05]'
+    2100038: '[0110_LightSlateGray]'
+    2300000: Component#32B
+    2300002: Component#32B 1
+    2300004: Component#36a
+    2300006: Component#36a 1
+    2300008: Component#Module_3
+    2300010: Component#Module_3 1
+    2300012: Group 2
+    2300014: //RootNode
+    3300000: Component#32B
+    3300002: Component#32B 1
+    3300004: Component#36a
+    3300006: Component#36a 1
+    3300008: Component#Module_3
+    3300010: Component#Module_3 1
+    3300012: Group 2
+    3300014: //RootNode
+    4300000: Mesh Research_moon_Module_with_mount_Mk_3
+    4300002: Mesh Group 2
+    4300004: Mesh Component#Module_3
+    4300006: Mesh Component#32B
+    4300008: Mesh Component#36a
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

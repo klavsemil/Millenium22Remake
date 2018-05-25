@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99cfc17f459844458ced6b386b846b0, type: 3}
+  m_Name: Probe
+  m_EditorClassIdentifier: 
+  ItemID: 0
+  ItemEntryNumber: 0
+  ItemName: Probe
+  ItemTypeNr: 1
+  ItemDecription: Sattelite
+  InProduction: 0
+  TurnsUntillFinished: 3
+  PowerNeeded: 50
+  WaterNeeded: 0
+  TitanNeeded: 2
+  AluNeeded: 2
+  CopperNeeded: 0
+  SiliconNeeded: 1
+  IronNeeded: 1
+  SilverNeeded: 0
+  PlatinumNeeded: 0
+  UraniumNeeded: 0
+  Researched: 1
+  TurnsUntillResearched: 0
+  Weight: 6
+  LoadableItem: 0
+  MaxLoad: 0
+  LoadValue: 0
+  IsCrewed: 1
+  Crew: 0
+  ShipName: 
+  AsteroidMiningCapabillity: 0
+  AsteroidFound: 0
+  OnMoon: 0
+  OnShip: 0
+  InTransitAsteroidField: 0
+  InTransitMoon: 0
+  InTransitComet: 0
+  InAsteroidField: 0
+  OnComet: 0
+  DaysUntilArrival: 0
+  ShipIdentifier: 0
+  WaterCarried: 0
+  TitanCarried: 0
+  AluCarried: 0
+  CopperCarried: 0
+  SilicaCarried: 0
+  IronCarried: 0
+  SilverCarried: 0
+  PlatinumCarried: 0
+  UraniumCarried: 0

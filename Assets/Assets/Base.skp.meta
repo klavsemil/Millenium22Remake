@@ -1,0 +1,148 @@
+fileFormatVersion: 2
+guid: fcae9b55b6f29dd4685fa659ea27c62f
+timeCreated: 1525184639
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 00000000010000000200000003000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 029e7aa1e25a3bec6ac298333add59ec
+  longitude: -105.242139
+  latitude: 40.018309
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: 371.23563, y: 465.09805, z: 639.14044}
+      lookAt: {x: 137.80322, y: 187.43726, z: 194.96916}
+      up: {x: -0.22524291, y: 0.87497294, z: -0.42858842}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Lisanne
+    400000: //RootNode
+    400002: Lisanne
+    2100000: _auto_
+    2100002: _auto_1
+    2100004: _auto_3
+    2100006: _auto_7
+    2100008: _auto_4
+    2100010: _auto_5
+    2100012: _auto_6
+    2100014: _auto_2
+    2100016: Lisanne_Tools
+    2100018: Lisanne_Caulk
+    2100020: Lisanne_Bandana
+    2100022: Lisanne_Skin
+    2100024: Lisanne_Hair
+    2100026: Lisanne_Metal
+    2100028: Lisanne_Boots
+    2100030: Lisanne_Overalls
+    2100032: Lisanne_Bracelet
+    2100034: Lisanne_Boot_Sole_01
+    2100036: Lisanne_Tool_Bag_01
+    2100038: Lisanne_Tool_Bag_03
+    2100040: Lisanne_Eraser
+    2100042: Lisanne_Caulkgun
+    2100044: Lisanne_Brush_Metal
+    2100046: Lisanne_Brush
+    2100048: Lisanne_Shirt_Blue
+    2100050: Lisanne_Hammer
+    2100052: Lisanne_Boot_Sole_02
+    2100054: Lisanne_Tool_Bag_02
+    2100056: Lisanne_Watch
+    2100058: Lisanne_Brush_Handle
+    2100060: Lisanne_Necklace
+    2300000: //RootNode
+    2300002: Lisanne
+    3300000: //RootNode
+    3300002: Lisanne
+    4300000: Mesh Base
+    4300002: Mesh Lisanne
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
