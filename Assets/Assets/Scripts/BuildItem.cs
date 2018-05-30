@@ -14,12 +14,11 @@ public class BuildItem : MonoBehaviour {
     public GameObject NotenoughResourcesPanel; // this is for telling the player that there is not resources enough
 
     //TEST TEST
-    public GameObject FillInHangarPanel; // this is for setting the information of this vehicle into the hanagar bay panel
-    public GameObject TypeTextObject; //For transfering text
+    //public GameObject FillInHangarPanel; // this is for setting the information of this vehicle into the hanagar bay panel
+    //public GameObject TypeTextObject; //For transfering text
 
-    //maybe an array to save stuff that is overriden by new production so that the production keeps memory of partially finished stuff for later completion 
+    //maybe an array to save stuff that is overriden by new production so that the production keeps memory of partially finished stuff for later completion - DONE!
 
-    //maybe I need a BaseItem object instantiation for the object being builded !?!?
 
     public int DaysUntilFinished;
     public string TypeName; //TEST TEST THIS is for sending info to the panel corresponding to the hangarbay which holds this
@@ -28,19 +27,21 @@ public class BuildItem : MonoBehaviour {
     {
 
         BaseItem newObject = BaseItemDatabase.GetItem(BuildNumber); //NOTE: THIS HAS BEEN MOVED OUTSIDE THE IF condition BELOW!!!
+        HangarManager.Instance().InProductionItems.Add(newObject);
+        
+            if (ResourceManager.instance.HasResourcesFor(newObject)) // Do we have the required resources
+            {//If yes
 
-        if (HangarManager.Instance().HasEmptySpot()) //Is there an empty spot in the hangar?
-        {//If yes
+           
+            
+                if (newObject.ItemTypeNr==1 && HangarManager.Instance().HasEmptySpot()) //Is there an empty spot in the hangar?
+                {
 
-            //Debug.Log(ResourceManager.instance == null);
-            if (ResourceManager.instance.HasResourcesFor(newObject)) //If there is enough resources // is instance with lower caser or uppercase start letter!
-            {
-
-                //ResourceManager.instance.HasResourcesFor(newObject); //
+                
                 newObject.InProduction = true;
                 HangarManager.Instance().InsertShip(newObject); //Insert Item BuildNumber (e.g. 0 = probe)
                 DaysUntilFinished = newObject.TurnsUntillFinished;
-                //newObject.InProduction = true;
+               
 
                 Debug.Log(newObject.PowerNeeded + " PowerNeeded ");
 
@@ -49,36 +50,48 @@ public class BuildItem : MonoBehaviour {
                 TypeName = newObject.ItemName; 
                 //HangarManager.
 
-            }
-            else
-            {
+                }
+                //All other non SpaceCraftObjects handled here 
+                if (newObject.ItemTypeNr == 2) // if this is an energyitem
+                {
+                newObject.InProduction = true; // set the item to be in production
+                HangarManager.Instance().InsertEquipment(newObject);
+                DaysUntilFinished = newObject.TurnsUntillFinished; // not sure if this is used....                
+                }
+                if (newObject.ItemTypeNr == 3) // if this is an energyitem
+                {
+                 newObject.InProduction = true; // set the item to be in production
+                 HangarManager.Instance().InsertEquipment(newObject);
+                 DaysUntilFinished = newObject.TurnsUntillFinished; // not sure if this is used....                
+                }
+                if (newObject.ItemTypeNr == 4) // if this is an energyitem
+                {
+                newObject.InProduction = true; // set the item to be in production
+                HangarManager.Instance().InsertEquipment(newObject);
+                DaysUntilFinished = newObject.TurnsUntillFinished; // not sure if this is used....                
+                }
+               /* else // if the type = 1 and there is no space it should be destroyed 
+                {
                 Destroy(newObject); //Ødelæg objectet
+                NotenoughResourcesPanel.SetActive(true);
+                } */
 
-                NotenoughResourcesPanel.SetActive(true); // This sees to it that the chosen object (which in Unity Editor is set to the NoteEnoughResourcesPanel) is displayed 
 
-                //Fortæl spilleren at der ikke er resourcer nok.
+        }
+            else //If no:
+            {
+            //fortæl spilleren at der ikke er resourcer nok
+            Destroy(newObject); //Ødelæg objectet
+
+            NotenoughResourcesPanel.SetActive(true);
+
+
             }
-            
-        }
-        else //If no:
-        {
-            //fortæl spilleren at der ikke er plads.
-
-
-
-        }
 
     }
 
-    public void FillInfoInPanel(int BayNumber) // this method is for filling the Hangar form with the info on the actual object. NOTE This method should be in hanagarmanager 
-    {
-        
-        //?????
-
-
-    }
-
-    public void FinishBuild() // when 0 days left for production is reached this method sees to change status of object to finished 
+ //This one below here is not used..
+    public void FinishBuild() // when 0 days left for production is reached this method sees to change status of object to finished // THIS SHOULD NOT BE HERE I think!!!!!
     {                         // Removes the InProduction == trueand increments the equipment list etc..
         if (DaysUntilFinished == 0)
         {

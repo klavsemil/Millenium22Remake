@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
     // as there is not so many things in game i keep all in here, Which is not correct, 'I KNOW!!'.
 public class BaseItem : ScriptableObject {
 
@@ -47,6 +48,8 @@ public class BaseItem : ScriptableObject {
     public bool InTransitAsteroidField; // This is true if vehicle is in transit
     public bool InTransitMoon;
     public bool InTransitComet;
+    public bool InTransitCallisto;
+    public bool InTransitMars;
     public bool InAsteroidField; // if true this vehicle is in asteroid field - NOTE for this prototype we only have this other location 
     public bool OnComet; // near comet
     public int DaysUntilArrival; 
@@ -64,6 +67,8 @@ public class BaseItem : ScriptableObject {
     public int SilverCarried;
     public int PlatinumCarried;
     public int UraniumCarried;
+
+    //public GameObject TurnCounterForProductionText; // TEST TEST TEST *************** for deducting turns in GUI *********************************************************
    
     //Other functions here: like install, load on ship, destroy, etc..??
 
@@ -125,5 +130,52 @@ public class BaseItem : ScriptableObject {
 
         return 0;// if it was not possible to load the item return 0 to avoid increment the load on the ship
     }
+
+    public void ProgressBuild()
+    {
+
+        //var TextComponent3 = TurnCounterForProductionText.GetComponent<Text>();
+
+        if (this.TurnsUntillFinished > 0 && this.InProduction == true)
+        {
+            this.TurnsUntillFinished--;
+            Debug.Log("Turns untill finished for this object: " + this.TurnsUntillFinished);
+         // TextComponent3.text = "" + this.TurnsUntillFinished; // this is for displaying the number of turns left for this object to be finished **********************************************
+
+
+        }
+          
+        else
+        {
+            Debug.Log("Production is finished for this object Finished method call here");
+            //this.InProduction = false;   // We also need to remove this object from the inbuild progress list and into the finished stuff list
+            FinishBuild(); // call the finish build function
+        }
+
+
+    }
+
+    private int count; // for counting up eleements in the finished list
+
+    public void FinishBuild()
+    {
+        HangarManager.Instance().FinishedItems.Add(this); // take this object and put it into the list of finished items
+                                                          /*HangarManager.Instance().InProductionItems.Remove(this);*/ // take this object and remove it from the list of items which is in production
+        this.InProduction = false; // As this item is finished we set it to false 
+        
+
+        foreach (var FinishedItem in HangarManager.Instance().FinishedItems) // trying to read out the list of build things
+        {
+            Debug.Log("Finished Item nr " + count +" is:" + HangarManager.Instance().FinishedItems + FinishedItem);// Show in the log whats on this list to show iterate through
+            count++;
+
+
+        }
+
+    } 
+
+
+
+
 
 }

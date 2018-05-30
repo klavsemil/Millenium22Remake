@@ -36,7 +36,7 @@ public class ResourceManager : MonoBehaviour {
 
 
             //call text update
-            Debug.Log("polse");
+           
             UpdateResourceText();
 
 
