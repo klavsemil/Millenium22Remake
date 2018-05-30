@@ -10,6 +10,7 @@ public class BuildItem : MonoBehaviour {
     public bool EnergySufficient; // NOTE: THESE HAS BEEN SET TO TRUE IN THE UNITY EDITOR !!
     public bool ResourceSufficient;
     public bool PeopleSufficient;
+    public int ItemCounter;
 
     public GameObject NotenoughResourcesPanel; // this is for telling the player that there is not resources enough
 
@@ -33,12 +34,13 @@ public class BuildItem : MonoBehaviour {
             {//If yes
 
            
-            
                 if (newObject.ItemTypeNr==1 && HangarManager.Instance().HasEmptySpot()) //Is there an empty spot in the hangar?
                 {
 
-                
+                ItemCounter++; //every time we build something this is incremented to give unique names etc.
                 newObject.InProduction = true;
+                newObject.ShipIdentifier = ItemCounter;
+                newObject.ShipName = newObject.ItemName + "0" + ItemCounter;
                 HangarManager.Instance().InsertShip(newObject); //Insert Item BuildNumber (e.g. 0 = probe)
                 DaysUntilFinished = newObject.TurnsUntillFinished;
                

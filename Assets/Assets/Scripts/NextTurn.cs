@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class NextTurn : MonoBehaviour {
 
     public int TurnCounter;
+    public int AlreadyOccupiedBaysNr;
+    public int NrOfFinishedShipsInHangar; // thi number i to make sure that already finished ships dont get overwritten by new production items
     
 
     public GameObject TurnText;
@@ -33,6 +35,15 @@ public class NextTurn : MonoBehaviour {
             Debug.Log(LengthOfInProductionList + ";" + HangarManager.Instance().InProductionItems.Count);
             HangarManager.Instance().InProductionItems[LengthOfInProductionList].ProgressBuild();
 
+
+            //Below Metod call on specific item deals with the transition from InProduction ships to finished ones and displays them when they are finished in the Hangar
+            //**************************##########################
+            //AlreadyOccupiedBaysNr = HangarManager.Instance().BayVacancyNrCheck(); //we need to know how many bay are alredy occupied before inserting new items 
+          
+                                            // under here we adjust the baynumber for already finished ships, if there are such
+            HangarManager.Instance().UpdateValuesInHangar(LengthOfInProductionList + NrOfFinishedShipsInHangar, HangarManager.Instance().InProductionItems[LengthOfInProductionList]); // TEST.Chamging the last item in the production TRYING TO MAKE THIS change display WORKS!!!
+
+
             TextComponent3.text = "" + HangarManager.Instance().InProductionItems[LengthOfInProductionList].TurnsUntillFinished; // HERE WE SET THE TURNSLEFT in the production panel
 
             TextComponent2.text = ""; //TEST TEST Clear the text for the production list -- Sorta Works
@@ -49,13 +60,20 @@ public class NextTurn : MonoBehaviour {
                     HangarManager.Instance().InProductionItems.RemoveAt(i); // remove this BaseItem from the inproduction list
                     TextComponent2.text = ""; // empty the textfield
                     for (int j = HangarManager.Instance().InProductionItems.Count - 1; j >= 0; j--) //refill the text again (which now should be without the removed text part)
-                        TextComponent2.text += "/ " + HangarManager.Instance().InProductionItems[j] + "\n";
-
-          
-                }
-
-                   
+                        TextComponent2.text += "/ " + HangarManager.Instance().InProductionItems[j] + "\n";                         
+                }  
+                
             }
+
+            NrOfFinishedShipsInHangar = 0; //reset the number for a new count of actual finished ships in hangar
+            for (int k = 0; k < HangarManager.Instance().FinishedItems.Count; k++) // We count through the items in the finisheditemslist 
+            {
+                if (HangarManager.Instance().FinishedItems[k].ItemTypeNr == 1)// && HangarManager.Instance().InProductionItems.Count==1 // finding thoe that are spacecraft + LATER: also we need to know where the ship position is!!!! All clones should be set to the moon when being created 
+                    NrOfFinishedShipsInHangar++;
+            }
+
+
+
         }
 
 
