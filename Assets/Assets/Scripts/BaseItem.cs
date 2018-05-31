@@ -166,7 +166,7 @@ public class BaseItem : ScriptableObject {
 
         foreach (var FinishedItem in HangarManager.Instance().FinishedItems) // trying to read out the list of build things
         {
-            Debug.Log("Finished Item nr " + count +" is:" + HangarManager.Instance().FinishedItems + FinishedItem);// Show in the log whats on this list to show iterate through
+            Debug.Log("Finished Item nr " + count +" is:" + HangarManager.Instance().FinishedItems + FinishedItem);// Show in the Debug log whats on this list to show iterate through
             count++;
 
 

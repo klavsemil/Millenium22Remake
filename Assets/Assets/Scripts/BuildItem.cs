@@ -13,7 +13,7 @@ public class BuildItem : MonoBehaviour {
     public int ItemCounter;
 
     public GameObject NotenoughResourcesPanel; // this is for telling the player that there is not resources enough
-
+    public GameObject NotEnoughRoomInHangarPanel; // this is for telling the player that there is not room in hangar
     //TEST TEST
     //public GameObject FillInHangarPanel; // this is for setting the information of this vehicle into the hanagar bay panel
     //public GameObject TypeTextObject; //For transfering text
@@ -48,11 +48,18 @@ public class BuildItem : MonoBehaviour {
                 Debug.Log(newObject.PowerNeeded + " PowerNeeded ");
 
                 // Below a call to a method to set the data from the selected object for production into a specific hangar. MIGHT not belong here!!
-
-                TypeName = newObject.ItemName; 
-                //HangarManager.
-
+                TypeName = newObject.ItemName;                
                 }
+                else if(newObject.ItemTypeNr ==1 && HangarManager.Instance().HasEmptySpot()==false)
+                {
+                 //Message player that there is no room in Hangar
+                 Destroy(newObject); //Ødelæg objectet
+
+                NotEnoughRoomInHangarPanel.SetActive(true);
+                }
+
+
+
                 //All other non SpaceCraftObjects handled here 
                 if (newObject.ItemTypeNr == 2) // if this is an energyitem
                 {

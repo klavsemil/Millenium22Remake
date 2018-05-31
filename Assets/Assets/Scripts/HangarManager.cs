@@ -30,7 +30,35 @@ public class HangarManager : MonoBehaviour {
     public GameObject Probe7; //    
     public GameObject Grazer8; // 
     public GameObject Probe8; //   
-    
+
+    public GameObject LaunchButton; //**********TEST************* This is for setting the launch button available on when an item is finished
+    public GameObject LoadEquipmentButton; // for setting the load equipment button available
+    public GameObject LaunchButton2;
+    public GameObject LoadEquipmentButton2; //
+    public GameObject LaunchButton3;
+    public GameObject LoadEquipmentButton3; //
+    public GameObject LaunchButton4;
+    public GameObject LoadEquipmentButton4; //
+    public GameObject LaunchButton5;
+    public GameObject LoadEquipmentButton5;
+    public GameObject LaunchButton6;
+    public GameObject LoadEquipmentButton6; //
+    public GameObject LaunchButton7;
+    public GameObject LoadEquipmentButton7; //
+    public GameObject LaunchButton8;
+    public GameObject LoadEquipmentButton8; //
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -119,21 +147,25 @@ public class HangarManager : MonoBehaviour {
         {
             Grazer.SetActive(true); // Show a grazer in Hangar 01 
             Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Space craft ready in Hangar"; // This sets the ship status
-            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
-
+            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish 
+            LaunchButton.SetActive(true); //Make it possible to launch this Spacecraft
+            LoadEquipmentButton.SetActive(true); // Make it possible to load/unload craft -------------Not strictly necessary at this point
         }
         if (ship.ItemID == 0 && BayNumber == 0 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a probe then display it in Hangar
         {
             Probe.SetActive(true); // Show a ptobe in Hangar 01 
             Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
-            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
-
+            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish 
+            LaunchButton.SetActive(true); //Make it possible to launch this Spacecraft
+            LoadEquipmentButton.SetActive(true);
         }
         if (ship.ItemID == 4 && BayNumber == 0 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a SIOS Base then display it in Hangar
         {
             SIOS.SetActive(true); // Show a ptobe in Hangar 01 
             Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SIOS Colony Spacecraft ready in Hangar"; // This sets the ship status
-            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish  
+            LaunchButton.SetActive(true); //Make it possible to launch this Spacecraft
+            LoadEquipmentButton.SetActive(true);
 
         }
 
@@ -142,13 +174,18 @@ public class HangarManager : MonoBehaviour {
         {
             Grazer2.SetActive(true); // Show a grazer in Hangar 02     
             Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
-            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish  
+            LaunchButton2.SetActive(true); //Make it possible to launch this Spacecraft
+            LoadEquipmentButton2.SetActive(true);
+
         }
         if (ship.ItemID == 0 && BayNumber == 1 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a probe then display it in Hangar
         {
             Probe2.SetActive(true); // Show a probe in Hangar 02     
             Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
             Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+            LaunchButton2.SetActive(true); //Make it possible to launch this Spacecraft
+            LoadEquipmentButton2.SetActive(true);
 
         }
 
@@ -158,6 +195,8 @@ public class HangarManager : MonoBehaviour {
             Grazer3.SetActive(true); // Show a grazer in Hangar 03  
             Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
             Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+            LaunchButton3.SetActive(true); //Make it possible to launch this Spacecraft
+            LoadEquipmentButton3.SetActive(true);
 
         }
         if (ship.ItemID == 0 && BayNumber == 2 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Probe then display it in Hangar
@@ -165,6 +204,10 @@ public class HangarManager : MonoBehaviour {
             Probe3.SetActive(true); // Show a probe in Hangar 03    
             Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
             Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+            LaunchButton3.SetActive(true); //Make it possible to launch this Spacecraft
+            LoadEquipmentButton3.SetActive(true);
+
+
 
         }
 
@@ -174,6 +217,8 @@ public class HangarManager : MonoBehaviour {
             Grazer4.SetActive(true); // Show a grazer in Hangar 04  
             Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
             Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+            LaunchButton4.SetActive(true); //Make it possible to launch this Spacecraft
+            LoadEquipmentButton4.SetActive(true);
 
 
         }
@@ -182,6 +227,8 @@ public class HangarManager : MonoBehaviour {
             Probe4.SetActive(true); // Show a probe in Hangar 04    
             Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
             Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+            LaunchButton4.SetActive(true); //Make it possible to launch this Spacecraft
+            LoadEquipmentButton4.SetActive(true);
 
         }
 
@@ -190,6 +237,8 @@ public class HangarManager : MonoBehaviour {
             Grazer5.SetActive(true); // Show a grazer in Hangar 05  
             Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
             Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+            LaunchButton5.SetActive(true); //Make it possible to launch this Spacecraft
+            LoadEquipmentButton5.SetActive(true);
 
 
         }
@@ -198,6 +247,8 @@ public class HangarManager : MonoBehaviour {
             Probe5.SetActive(true); // Show a probe in Hangar 05    
             Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
             Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+            LaunchButton5.SetActive(true); //Make it possible to launch this Spacecraft
+            LoadEquipmentButton5.SetActive(true);
 
         }
 
@@ -206,6 +257,8 @@ public class HangarManager : MonoBehaviour {
             Grazer6.SetActive(true); // Show a grazer in Hangar 06  
             Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
             Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+            LaunchButton6.SetActive(true); //Make it possible to launch this Spacecraft
+            LoadEquipmentButton6.SetActive(true);
 
 
         }
@@ -214,6 +267,8 @@ public class HangarManager : MonoBehaviour {
             Probe6.SetActive(true); // Show a probe in Hangar 06    
             Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
             Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+            LaunchButton6.SetActive(true); //Make it possible to launch this Spacecraft
+            LoadEquipmentButton6.SetActive(true);
 
         }
 
@@ -222,6 +277,8 @@ public class HangarManager : MonoBehaviour {
             Grazer7.SetActive(true); // Show a grazer in Hangar 07  
             Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
             Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+            LaunchButton7.SetActive(true); //Make it possible to launch this Spacecraft
+            LoadEquipmentButton7.SetActive(true);
 
 
         }
@@ -230,6 +287,8 @@ public class HangarManager : MonoBehaviour {
             Probe7.SetActive(true); // Show a probe in Hangar 07    
             Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
             Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+            LaunchButton7.SetActive(true); //Make it possible to launch this Spacecraft
+            LoadEquipmentButton7.SetActive(true);
 
         }
         if (ship.ItemID == 1 && BayNumber == 7 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Grazer then display it in Hangar
@@ -237,6 +296,8 @@ public class HangarManager : MonoBehaviour {
             Grazer8.SetActive(true); // Show a grazer in Hangar 08  
             Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
             Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+            LaunchButton8.SetActive(true); //Make it possible to launch this Spacecraft
+            LoadEquipmentButton8.SetActive(true);
 
 
         }
@@ -244,17 +305,12 @@ public class HangarManager : MonoBehaviour {
         {
             Probe8.SetActive(true); // Show a probe in Hangar 08    
             Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
-            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish
+            LaunchButton8.SetActive(true); //Make it possible to launch this Spacecraft
+            LoadEquipmentButton8.SetActive(true);
         }
-        
+
     }
-
-
-
-
-
-
-
 
 
 
