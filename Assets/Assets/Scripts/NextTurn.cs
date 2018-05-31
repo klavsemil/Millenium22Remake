@@ -39,8 +39,10 @@ public class NextTurn : MonoBehaviour {
             //Below Metod call on specific item deals with the transition from InProduction ships to finished ones and displays them when they are finished in the Hangar
             //**************************##########################
             //AlreadyOccupiedBaysNr = HangarManager.Instance().BayVacancyNrCheck(); //we need to know how many bay are alredy occupied before inserting new items 
-          
-                                            // under here we adjust the baynumber for already finished ships, if there are such
+
+            // under here we adjust the baynumber for already finished ships, if there are such
+
+            if(HangarManager.Instance().InProductionItems[LengthOfInProductionList].ItemTypeNr==1) // NOT SURE we only want to update the hangar ships in production and not update items which is not ships
             HangarManager.Instance().UpdateValuesInHangar(LengthOfInProductionList + NrOfFinishedShipsInHangar, HangarManager.Instance().InProductionItems[LengthOfInProductionList]); // TEST.Chamging the last item in the production TRYING TO MAKE THIS change display WORKS!!!
 
 

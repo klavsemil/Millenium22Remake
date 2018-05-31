@@ -12,7 +12,6 @@ public class HangarManager : MonoBehaviour {
     public List<BaseItem> InProductionItems; // This is a list of baseitems which has been chosen for production by player and been accepted as for base having resources enough... 
     public List<BaseItem> FinishedItems; // This is a list of baseitems which is finished.. *****************************
 
-
     public GameObject Grazer; // for displaying a grazer in Hangar bay 01
     public GameObject Probe; // for displaying a probe in hanagar bay 01
     public GameObject SIOS; //
@@ -23,6 +22,17 @@ public class HangarManager : MonoBehaviour {
     public GameObject Probe3; // 
     public GameObject Grazer4; // 
     public GameObject Probe4; //    
+    public GameObject Grazer5; // 
+    public GameObject Probe5; //    
+    public GameObject Grazer6; // 
+    public GameObject Probe6; //    
+    public GameObject Grazer7; // 
+    public GameObject Probe7; //    
+    public GameObject Grazer8; // 
+    public GameObject Probe8; //   
+    
+
+
 
     public GameObject[] HangarPanelInsertion; // An array for insertion of information into the right hangar panel
 
@@ -39,8 +49,6 @@ public class HangarManager : MonoBehaviour {
                 return true;
             }
           
-
-
         }
         return false; 
     }
@@ -110,55 +118,135 @@ public class HangarManager : MonoBehaviour {
         if (ship.ItemID == 1 && BayNumber == 0 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a finished Grazer then display it in Hangar
         {
             Grazer.SetActive(true); // Show a grazer in Hangar 01 
+            Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Space craft ready in Hangar"; // This sets the ship status
+            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+
         }
         if (ship.ItemID == 0 && BayNumber == 0 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a probe then display it in Hangar
         {
             Probe.SetActive(true); // Show a ptobe in Hangar 01 
+            Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
+            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+
         }
         if (ship.ItemID == 4 && BayNumber == 0 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a SIOS Base then display it in Hangar
         {
             SIOS.SetActive(true); // Show a ptobe in Hangar 01 
+            Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SIOS Colony Spacecraft ready in Hangar"; // This sets the ship status
+            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+
         }
 
 
         if (ship.ItemID == 1 && BayNumber == 1 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Grazer then display it in Hangar
         {
-            Grazer2.SetActive(true); // Show a grazer in Hangar 02             
+            Grazer2.SetActive(true); // Show a grazer in Hangar 02     
+            Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
+            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
         }
         if (ship.ItemID == 0 && BayNumber == 1 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a probe then display it in Hangar
         {
-            Probe2.SetActive(true); // Show a probe in Hangar 02             
+            Probe2.SetActive(true); // Show a probe in Hangar 02     
+            Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
+            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+
         }
 
 
         if (ship.ItemID == 1 && BayNumber == 2 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Grazer then display it in Hangar
         {
-            Grazer3.SetActive(true); // Show a grazer in Hangar 03             
+            Grazer3.SetActive(true); // Show a grazer in Hangar 03  
+            Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
+            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+
         }
         if (ship.ItemID == 0 && BayNumber == 2 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Probe then display it in Hangar
         {
-            Probe3.SetActive(true); // Show a probe in Hangar 03             
+            Probe3.SetActive(true); // Show a probe in Hangar 03    
+            Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
+            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+
         }
 
 
         if (ship.ItemID == 1 && BayNumber == 3 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Grazer then display it in Hangar
         {
-            Grazer4.SetActive(true); // Show a grazer in Hangar 04            
+            Grazer4.SetActive(true); // Show a grazer in Hangar 04  
+            Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
+            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+
+
         }
         if (ship.ItemID == 0 && BayNumber == 3 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Probe then display it in Hangar
         {
-            Probe4.SetActive(true); // Show a probe in Hangar 04             
+            Probe4.SetActive(true); // Show a probe in Hangar 04    
+            Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
+            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+
         }
 
+        if (ship.ItemID == 1 && BayNumber == 4 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Grazer then display it in Hangar
+        {
+            Grazer5.SetActive(true); // Show a grazer in Hangar 05  
+            Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
+            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
 
 
+        }
+        if (ship.ItemID == 0 && BayNumber == 4 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Probe then display it in Hangar
+        {
+            Probe5.SetActive(true); // Show a probe in Hangar 05    
+            Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
+            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+
+        }
+
+        if (ship.ItemID == 1 && BayNumber == 5 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Grazer then display it in Hangar
+        {
+            Grazer6.SetActive(true); // Show a grazer in Hangar 06  
+            Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
+            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
 
 
+        }
+        if (ship.ItemID == 0 && BayNumber == 5 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Probe then display it in Hangar
+        {
+            Probe6.SetActive(true); // Show a probe in Hangar 06    
+            Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
+            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+
+        }
+
+        if (ship.ItemID == 1 && BayNumber == 6 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Grazer then display it in Hangar
+        {
+            Grazer7.SetActive(true); // Show a grazer in Hangar 07  
+            Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
+            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
 
 
+        }
+        if (ship.ItemID == 0 && BayNumber == 6 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Probe then display it in Hangar
+        {
+            Probe7.SetActive(true); // Show a probe in Hangar 07    
+            Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
+            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+
+        }
+        if (ship.ItemID == 1 && BayNumber == 7 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Grazer then display it in Hangar
+        {
+            Grazer8.SetActive(true); // Show a grazer in Hangar 08  
+            Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
+            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
 
 
-        // needs to do this for all 8 hangars!
+        }
+        if (ship.ItemID == 0 && BayNumber == 7 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Probe then display it in Hangar
+        {
+            Probe8.SetActive(true); // Show a probe in Hangar 08    
+            Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
+            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+        }
+        
     }
 
 
