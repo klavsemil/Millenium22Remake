@@ -5775,7 +5775,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Destination Arrival in:\t\t\t   Turns "
+  m_Text: "Destination Arrival in:\t\t   Turns "
 --- !u!222 &174531244
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20709,6 +20709,7 @@ MonoBehaviour:
   - {fileID: 930519985}
   InProductionItems: []
   FinishedItems: []
+  ShipsInOrbit: []
   Grazer: {fileID: 491647894}
   Probe: {fileID: 757025180}
   SIOS: {fileID: 1524573859}
@@ -20742,6 +20743,28 @@ MonoBehaviour:
   LoadEquipmentButton7: {fileID: 1144907024}
   LaunchButton8: {fileID: 218514252}
   LoadEquipmentButton8: {fileID: 1556538593}
+  TextForNrOfSolagenMk2: {fileID: 375900419}
+  TextForNrOfSolagenMk3: {fileID: 1685337393}
+  TextForNrOfSolagenMk4: {fileID: 1088052838}
+  TextForNrOfFusionPowerGenerators: {fileID: 1350749690}
+  TextForNrOfFighters: {fileID: 1308311552}
+  TextForNrOfOrbitalLasers: {fileID: 1077788200}
+  TextForNrOfLivingQuarters: {fileID: 1518076518}
+  TextForNrOfBunkers: {fileID: 486078317}
+  TextForNrOfVaccines: {fileID: 992392971}
+  TextForNrOfTerraFormers: {fileID: 344350921}
+  TextForNrOfRadars: {fileID: 1905353614}
+  NrOfSolaGenMk2: 0
+  NrOfSolaGenMk3: 0
+  NrOfSolaGenMk4: 0
+  NrOfFusionPowerGenerators: 0
+  NrOfFighters: 0
+  NrOfOrbitalLasers: 0
+  NrOfLivingQuarters: 0
+  NrOfBunkers: 0
+  NrOfVaccines: 0
+  NrOfTerraformers: 0
+  NrOfRadars: 0
   HangarPanelInsertion: []
 --- !u!1 &581523585
 GameObject:
@@ -26888,7 +26911,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Grazer 01
+  m_Text: XXXX
 --- !u!222 &767504704
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -29702,15 +29725,70 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 580568514}
+        m_MethodName: LaunchShipFromSurface
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 986352603}
+        m_MethodName: set_text
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: No Ship In Bay..
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1815503584}
+        m_MethodName: set_text
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: XX
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 14214732}
+        m_MethodName: set_text
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: XX
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1327058432}
+        m_MethodName: set_text
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: XX
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 834264185}
+        m_MethodName: set_text
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: XX
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -52670,6 +52748,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1429524946}
+  - component: {fileID: 1429524947}
   m_Layer: 0
   m_Name: SpaceCraftCockpit
   m_TagString: Untagged
@@ -52694,6 +52773,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1429524947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1429524945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a275ef44cc3e5a4bb7a6dd32a539aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TextForNameOfShip: {fileID: 767504701}
+  TextForPositionOfShip: {fileID: 1705991317}
 --- !u!1 &1429606845
 GameObject:
   m_ObjectHideFlags: 0

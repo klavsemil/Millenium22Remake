@@ -19,7 +19,7 @@ public class BayManager : MonoBehaviour {
             return false;
     }
 
-    bool Launch() //empty this specific launchbay
+    public bool Launch() //empty this specific launchbay
     {
         if (ship == null)
             return false; //you cannot launch a non exiting ship from a bay

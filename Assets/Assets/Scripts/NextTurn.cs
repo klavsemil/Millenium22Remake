@@ -22,6 +22,8 @@ public class NextTurn : MonoBehaviour {
     {
         TurnCounter++;
 
+        HangarManager.Instance().DisplayEquipmentList();
+
         var TextComponent = TurnText.GetComponent<Text>(); // this is a text component for showing the incrementing of the turn
         TextComponent.text = TurnCounter + "";  // 
 
@@ -42,14 +44,35 @@ public class NextTurn : MonoBehaviour {
 
             // under here we adjust the baynumber for already finished ships, if there are such
 
-            if(HangarManager.Instance().InProductionItems[LengthOfInProductionList].ItemTypeNr==1) // NOT SURE we only want to update the hangar ships in production and not update items which is not ships
+
+            NrOfFinishedShipsInHangar = 0; //reset the number for a new count of actual finished ships in hangar
+            for (int k = 0; k < HangarManager.Instance().FinishedItems.Count; k++) // We count through the items in the finisheditemslist 
+            {
+                if (HangarManager.Instance().FinishedItems[k].ItemTypeNr == 1)// && HangarManager.Instance().InProductionItems.Count==1 // finding thoe that are spacecraft + LATER: also we need to know where the ship position is!!!! All clones should be set to the moon when being created 
+                    NrOfFinishedShipsInHangar++;
+            }
+
+
+
+
+
+
+            if (HangarManager.Instance().InProductionItems[LengthOfInProductionList].ItemTypeNr==1) // NOT SURE we only want to update the hangar ships in production and not update items which is not ships
             HangarManager.Instance().UpdateValuesInHangar(LengthOfInProductionList + NrOfFinishedShipsInHangar, HangarManager.Instance().InProductionItems[LengthOfInProductionList]); // TEST.Chamging the last item in the production TRYING TO MAKE THIS change display WORKS!!!
+
+
+
+
+
+
 
 
             TextComponent3.text = "" + HangarManager.Instance().InProductionItems[LengthOfInProductionList].TurnsUntillFinished; // HERE WE SET THE TURNSLEFT in the production panel
 
             TextComponent2.text = ""; //TEST TEST Clear the text for the production list -- Sorta Works
             //foreach(var Item in HangarManager.Instance().InProductionItems) // here we check the list of items set into production - because it is possible to set several things into production at the same time
+
+
             for (int i = HangarManager.Instance().InProductionItems.Count - 1; i >= 0; i--) //counting backwards to avoid problems when removing an element(baseitem) from the list
             {
                 //for each item in production we progress build -NOTE THIS SHOULD ONLY BE DONE FOR LAST ITEM IN THE LIST!!! 
@@ -78,7 +101,7 @@ public class NextTurn : MonoBehaviour {
 
         }
 
-
+     
 
 
 
@@ -94,5 +117,15 @@ public class NextTurn : MonoBehaviour {
 
     }
 
-//
+    public void ProgressSpaceTravel()
+    {
+
+
+    }
+
+
+
+
+
+    //
 }

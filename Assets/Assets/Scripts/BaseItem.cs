@@ -44,6 +44,7 @@ public class BaseItem : ScriptableObject {
     public bool AsteroidFound; //only for Grazer
 
     public bool OnMoon; // true if item is on moon
+    public bool InOrbit; // this is set true when launch ship is pressed
     public bool OnShip; // true if item is on ship
     public bool InTransitAsteroidField; // This is true if vehicle is in transit
     public bool InTransitMoon;
@@ -72,17 +73,38 @@ public class BaseItem : ScriptableObject {
    
     //Other functions here: like install, load on ship, destroy, etc..??
 
-    public void Launch() // we need a method on the launchbutton to set the detination of a ship
+    public void Launch() // method to handle item being launched into orbit... //MIGHT NOT BE NECCESSARY!!
     {
-        if (InProduction == true)// if this vehicle is being produced it is not to be able to launch
+        if (this.InOrbit == false)
             return;
 
-        if (ItemTypeNr == 1 && OnMoon == true && InTransitAsteroidField == true)//if this is a vehicle on the moon and is set to fly to asteroid field                
+
+
+
+    }
+
+
+
+
+
+    public void LaunchTowardsDestination() // we need a method on the launchbutton to set the detination of a ship
+    {
+        if (InProduction == true)// if this vehicle is being produced it is not to be able to launch
+            return; // leave method if it is in production... NOTnecesary I think as the launch button is not visible before item is finished
+
+        //this.InOrbit = true; should be set when pressing launch in the hangar bay panel.
+
+        if (ItemTypeNr == 1 && InOrbit == true && InTransitAsteroidField == true)//if this is a vehicle on the moon and is set to fly to asteroid field  
+        {
             DaysUntilArrival = 17; //set the duration untill arrival for thiss object to be 17 turn/days
+            this.InOrbit = false;
+        }
 
-        if (ItemTypeNr == 1 && OnMoon == true && InTransitComet == true)//if this is a vehicle on the moon and is set to fly to asteroid field                
+        if (ItemTypeNr == 1 && InOrbit == true && InTransitComet == true)//if this is a vehicle on the moon and is set to fly to asteroid field   
+        {
             DaysUntilArrival = 35; //set the duration untill arrival for thiss object to be 35 turn/days to arrive at comet
-
+            this.InOrbit = false;
+        }
 
         if (ItemTypeNr == 1 && InAsteroidField == true && InTransitMoon == true)//if this is a vehicle in the asteroid field and set to fly to the moon
             DaysUntilArrival = 17; //set the duration untill arrival for thiss object to be 17 turn/days
@@ -101,7 +123,7 @@ public class BaseItem : ScriptableObject {
 
     }
 
-    public void Land() //when a ship is in transit to the moon and days untill arrival reaches 0
+    public void Land() //when a ship is in transit to the moon and days untill arrival reaches 0 // THIS NEEDS TO BE REDONE
     {
         if(InTransitMoon == true && DaysUntilArrival == 0)
         {

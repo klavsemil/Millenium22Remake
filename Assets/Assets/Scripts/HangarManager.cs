@@ -12,6 +12,9 @@ public class HangarManager : MonoBehaviour {
     public List<BaseItem> InProductionItems; // This is a list of baseitems which has been chosen for production by player and been accepted as for base having resources enough... 
     public List<BaseItem> FinishedItems; // This is a list of baseitems which is finished.. *****************************
 
+    public List<BaseItem> ShipsInOrbit; //Not sure about this list yet.
+
+
     public GameObject Grazer; // for displaying a grazer in Hangar bay 01
     public GameObject Probe; // for displaying a probe in hanagar bay 01
     public GameObject SIOS; //
@@ -31,8 +34,8 @@ public class HangarManager : MonoBehaviour {
     public GameObject Grazer8; // 
     public GameObject Probe8; //   
 
-    public GameObject LaunchButton; //**********TEST************* This is for setting the launch button available on when an item is finished
-    public GameObject LoadEquipmentButton; // for setting the load equipment button available
+    public GameObject LaunchButton; //
+    public GameObject LoadEquipmentButton; // 
     public GameObject LaunchButton2;
     public GameObject LoadEquipmentButton2; //
     public GameObject LaunchButton3;
@@ -49,17 +52,29 @@ public class HangarManager : MonoBehaviour {
     public GameObject LoadEquipmentButton8; //
 
 
+    public GameObject TextForNrOfSolagenMk2;
+    public GameObject TextForNrOfSolagenMk3;
+    public GameObject TextForNrOfSolagenMk4;
+    public GameObject TextForNrOfFusionPowerGenerators;
+    public GameObject TextForNrOfFighters;
+    public GameObject TextForNrOfOrbitalLasers;
+    public GameObject TextForNrOfLivingQuarters;
+    public GameObject TextForNrOfBunkers;
+    public GameObject TextForNrOfVaccines;
+    public GameObject TextForNrOfTerraFormers;
+    public GameObject TextForNrOfRadars;
 
-
-
-
-
-
-
-
-
-
-
+    public int NrOfSolaGenMk2;
+    public int NrOfSolaGenMk3;
+    public int NrOfSolaGenMk4;
+    public int NrOfFusionPowerGenerators;
+    public int NrOfFighters;
+    public int NrOfOrbitalLasers;
+    public int NrOfLivingQuarters;
+    public int NrOfBunkers;
+    public int NrOfVaccines;
+    public int NrOfTerraformers;
+    public int NrOfRadars;
 
 
     public GameObject[] HangarPanelInsertion; // An array for insertion of information into the right hangar panel
@@ -80,6 +95,40 @@ public class HangarManager : MonoBehaviour {
         }
         return false; 
     }
+
+    public void LaunchShipFromSurface(int BayNumber) //This will empty the hangarbay selected by pressing launch button and should Return the Finished itemnumber so its information can be displayed in the cockpit 
+    {
+        HangarManager.Instance().ShipsInOrbit.Add(Bays[BayNumber].ship); //add the specific ship from the baynumber where the launch button has been clicked // HOPE THIS IS LIKE A STACK SO IT ADDS FROM THE LAST PLace in the list
+        //Debug.Log("BAynumber IS********************************:    " + BayNumber);
+        //Debug.Log("%%%%%%%%%%%%%%%%%%%%%%%%##############%%%%%%%%%%%%%Item in SHIPSINORBIT [Baynumber] IS:   " + ShipsInOrbit[ShipsInOrbit.Count-1]);
+        HangarManager.Instance().ShipsInOrbit[ShipsInOrbit.Count-1].InOrbit = true;
+
+
+        //if(BayManager.Launch()==false)
+
+        HangarManager.Instance().Bays[BayNumber].ship = null; // trying to empty this bay
+                                                              //Debug.Log("WHAT IS INSIDE BAY:" + BayNumber + "is: " + Bays[BayNumber].ship.ShipName + "");
+                                                              //Debug.Log(Bays[BayNumber].ship.ShipName+"");
+
+
+        //  ///////////////TEST TEST WE JUST REMOVE THE TEXT IN Unity inspection manager 
+        // HangarManager.Instance().UpdateValuesInHangar(BayNumber, Bays[BayNumber].ship); // TEST TEST ****DOES NOT WORK!!!!!!********* WE TRY TO SEE IF THE HANGAR BAY DISPLAYS EMPTY INFO
+
+
+        if(HangarManager.Instance().ShipsInOrbit.Count>=0) //if there is any ships in the orbit list, then update the cockpitdisplay - NB REMEMBER TORESET OLD VALUES ON Ship cockpit panel
+        ShipManager.Instance().UpdateShipInterface(ShipsInOrbit.Count-1); // Set the textfields that fits the last index in ShipsInOrbit list
+
+
+        
+
+
+    }
+
+    //public void 
+
+
+
+
 
     //here we make a method that returns an integer which corresponds to the number of first vacant HangarBay
     public int BayVacancyNrCheck() // not sure if it needs some parameter on allready reserved places from the InproductionITems.length!!! - NOTE . IS NOT USED AT PRESENT
@@ -133,6 +182,7 @@ public class HangarManager : MonoBehaviour {
 
     public void UpdateValuesInHangar(int BayNumber, BaseItem ship) // this method is used for updating information in the bay panels if there is a ship or a ship has reserved space there
     {
+
         Bays[BayNumber].gameObject.transform.GetChild(2).gameObject.GetComponent<Text>().text = ship.ItemName;
         Bays[BayNumber].gameObject.transform.GetChild(4).gameObject.GetComponent<Text>().text = ship.ShipName;
         Bays[BayNumber].gameObject.transform.GetChild(6).gameObject.GetComponent<Text>().text = ship.Crew;
@@ -161,7 +211,7 @@ public class HangarManager : MonoBehaviour {
         }
         if (ship.ItemID == 4 && BayNumber == 0 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a SIOS Base then display it in Hangar
         {
-            SIOS.SetActive(true); // Show a ptobe in Hangar 01 
+            SIOS.SetActive(true); // Show a SIOS in Hangar 01 
             Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SIOS Colony Spacecraft ready in Hangar"; // This sets the ship status
             Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish  
             LaunchButton.SetActive(true); //Make it possible to launch this Spacecraft
@@ -312,8 +362,6 @@ public class HangarManager : MonoBehaviour {
 
     }
 
-
-
     public bool HasEmptySpot()
     {
         for (int i = 0; i < Bays.Length; i++)
@@ -335,17 +383,90 @@ public class HangarManager : MonoBehaviour {
             instance = GameObject.FindObjectOfType<HangarManager>() as HangarManager;
             instance.InProductionItems = new List<BaseItem>();
             instance.FinishedItems = new List<BaseItem>(); // this is for instansiated things that are finished and ready to use ******************************
+            instance.ShipsInOrbit = new List<BaseItem>(); // this list is for ships in orbit
         }
 
         return instance;
     }
 
-    public void DisplayEquipmentList()
+    public void DisplayEquipmentList() //updating equipmentlist
     {
-     
+
+        var TextComponentSolaGenMK2 = TextForNrOfSolagenMk2.GetComponent<Text>();
+        var TextComponentSolaGenMK3 = TextForNrOfSolagenMk3.GetComponent<Text>();
+        var TextComponentSolaGenMK4 = TextForNrOfSolagenMk4.GetComponent<Text>();
+        var TextComponentFusionPower = TextForNrOfFusionPowerGenerators.GetComponent<Text>();
+        var TextComponentFighters = TextForNrOfFighters.GetComponent<Text>();
+        var TextComponentOrbitalLasers = TextForNrOfOrbitalLasers.GetComponent<Text>();
+        var TextComponentLivingQuarters = TextForNrOfLivingQuarters.GetComponent<Text>();
+        var TextComponentBunkers = TextForNrOfBunkers.GetComponent<Text>();
+        var TextComponentVaccines = TextForNrOfVaccines.GetComponent<Text>();
+        var TextComponentTerraFormers = TextForNrOfTerraFormers.GetComponent<Text>();
+        var TextComponentRadars = TextForNrOfRadars.GetComponent<Text>();
 
 
+    NrOfSolaGenMk2 = 0; // we reset this as it is called every turn and should count the pieces of Solagenmk2 in the finished itemlist up from zero
+            NrOfSolaGenMk3 = 0;
+            NrOfSolaGenMk4 = 0;
+            NrOfFusionPowerGenerators = 0;
+            NrOfFighters = 0;
+            NrOfOrbitalLasers = 0;
+            NrOfLivingQuarters = 0;
+            NrOfBunkers = 0;
+            NrOfVaccines = 0;
+            NrOfTerraformers = 0;
+            NrOfRadars = 0;
 
+
+        for (int k = 0; k < HangarManager.Instance().FinishedItems.Count; k++) // We count through the items in the finisheditemslist 
+        {
+            if (HangarManager.Instance().FinishedItems[k].ItemID == 6)// && HangarManager.Instance().InProductionItems.Count==1 // finding thoe that are spacecraft + LATER: also we need to know where the ship position is!!!! All clones should be set to the moon when being created 
+                NrOfSolaGenMk2++;
+
+            if (HangarManager.Instance().FinishedItems[k].ItemID == 7)// && HangarManager.Instance().InProductionItems.Count==1 // finding thoe that are spacecraft + LATER: also we need to know where the ship position is!!!! All clones should be set to the moon when being created 
+                NrOfSolaGenMk3++;
+
+            if (HangarManager.Instance().FinishedItems[k].ItemID == 8)// && HangarManager.Instance().InProductionItems.Count==1 // finding thoe that are spacecraft + LATER: also we need to know where the ship position is!!!! All clones should be set to the moon when being created 
+                NrOfSolaGenMk4++;
+
+            if (HangarManager.Instance().FinishedItems[k].ItemID == 9)// && HangarManager.Instance().InProductionItems.Count==1 // finding thoe that are spacecraft + LATER: also we need to know where the ship position is!!!! All clones should be set to the moon when being created 
+                NrOfFusionPowerGenerators++;
+
+            if (HangarManager.Instance().FinishedItems[k].ItemID == 10)// && HangarManager.Instance().InProductionItems.Count==1 // finding thoe that are spacecraft + LATER: also we need to know where the ship position is!!!! All clones should be set to the moon when being created 
+                NrOfFighters++;
+
+            if (HangarManager.Instance().FinishedItems[k].ItemID == 11)// && HangarManager.Instance().InProductionItems.Count==1 // finding thoe that are spacecraft + LATER: also we need to know where the ship position is!!!! All clones should be set to the moon when being created 
+                NrOfOrbitalLasers++;
+
+            if (HangarManager.Instance().FinishedItems[k].ItemID == 13)// && HangarManager.Instance().InProductionItems.Count==1 // finding thoe that are spacecraft + LATER: also we need to know where the ship position is!!!! All clones should be set to the moon when being created 
+                NrOfLivingQuarters++;
+
+            if (HangarManager.Instance().FinishedItems[k].ItemID == 14)// && HangarManager.Instance().InProductionItems.Count==1 // finding thoe that are spacecraft + LATER: also we need to know where the ship position is!!!! All clones should be set to the moon when being created 
+                NrOfBunkers++;
+
+            if (HangarManager.Instance().FinishedItems[k].ItemID == 15)
+                NrOfVaccines++;
+
+            if (HangarManager.Instance().FinishedItems[k].ItemID == 16)// 
+                NrOfTerraformers++;
+
+            if (HangarManager.Instance().FinishedItems[k].ItemID == 17)// 
+                NrOfRadars++;
+
+
+        }
+
+        TextComponentSolaGenMK2.text = NrOfSolaGenMk2 + "";  // display the counted number of equipment
+        TextComponentSolaGenMK3.text = NrOfSolaGenMk3 + "";
+        TextComponentSolaGenMK4.text = NrOfSolaGenMk4 + "";
+        TextComponentFusionPower.text = NrOfFusionPowerGenerators + "";
+        TextComponentFighters.text = NrOfFighters + "";
+        TextComponentOrbitalLasers.text = NrOfOrbitalLasers + "";
+        TextComponentLivingQuarters.text = NrOfLivingQuarters + "";
+        TextComponentBunkers.text = NrOfBunkers + "";
+        TextComponentVaccines.text = NrOfVaccines + "";
+        TextComponentTerraFormers.text = NrOfTerraformers + "";
+        TextComponentRadars.text = NrOfRadars + "";
 
 
     }

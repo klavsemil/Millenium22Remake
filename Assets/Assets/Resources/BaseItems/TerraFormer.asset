@@ -9,33 +9,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d99cfc17f459844458ced6b386b846b0, type: 3}
-  m_Name: Carrack
+  m_Name: TerraFormer
   m_EditorClassIdentifier: 
-  ItemID: 3
-  ItemEntryNumber: 3
-  ItemName: Carrack
-  ItemTypeNr: 1
-  ItemDecription: Large Cargo Hauler
+  ItemID: 16
+  ItemEntryNumber: 16
+  ItemName: TerraFormer
+  ItemTypeNr: 4
+  ItemDecription: High powered Atmosphere Processor
   InProduction: 0
-  TurnsUntillFinished: 24
-  PowerNeeded: 2200
-  WaterNeeded: 70
-  TitanNeeded: 710
-  AluNeeded: 320
-  CopperNeeded: 150
-  SiliconNeeded: 250
+  TurnsUntillFinished: 36
+  PowerNeeded: 12000
+  WaterNeeded: 0
+  TitanNeeded: 590
+  AluNeeded: 0
+  CopperNeeded: 80
+  SiliconNeeded: 0
   IronNeeded: 0
-  SilverNeeded: 0
-  PlatinumNeeded: 0
-  UraniumNeeded: 0
-  Researched: 1
+  SilverNeeded: 255
+  PlatinumNeeded: 100
+  UraniumNeeded: 35
+  Researched: 0
   TurnsUntillResearched: 0
-  Weight: 1500
-  LoadableItem: 1
-  MaxLoad: 1000
+  Weight: 1060
+  LoadableItem: 0
+  MaxLoad: 0
   LoadValue: 0
-  IsCrewed: 1
-  Crew: 40
+  IsCrewed: 0
+  Crew: 
   ShipName: 
   AsteroidMiningCapabillity: 0
   AsteroidFound: 0

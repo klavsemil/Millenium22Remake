@@ -39,11 +39,14 @@ MonoBehaviour:
   ShipName: 
   AsteroidMiningCapabillity: 0
   AsteroidFound: 0
-  OnMoon: 0
+  OnMoon: 1
+  InOrbit: 0
   OnShip: 0
   InTransitAsteroidField: 0
   InTransitMoon: 0
   InTransitComet: 0
+  InTransitCallisto: 0
+  InTransitMars: 0
   InAsteroidField: 0
   OnComet: 0
   DaysUntilArrival: 0
