@@ -76,6 +76,16 @@ public class HangarManager : MonoBehaviour {
     public int NrOfTerraformers;
     public int NrOfRadars;
 
+    public GameObject TextForShip1Name; //Objects for ship rooster
+    public GameObject TextForShip1Status;
+    public GameObject TextForShip1ETA;
+
+
+
+
+
+
+
 
     public GameObject[] HangarPanelInsertion; // An array for insertion of information into the right hangar panel
 
@@ -383,6 +393,44 @@ public class HangarManager : MonoBehaviour {
 
         return instance;
     }
+
+    public void DisplayShipsInList()
+    {
+
+     var TextComponentShip1Name = TextForShip1Name.GetComponent<Text>();
+     var TextComponentShip1Status = TextForShip1Status.GetComponent<Text>();
+     var TextComponentShip1ETA = TextForShip1ETA.GetComponent<Text>();
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void DisplayEquipmentList() //updating equipmentlist
     {

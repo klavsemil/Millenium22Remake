@@ -36,7 +36,7 @@ public class NextTurn : MonoBehaviour {
         {
             LengthOfInProductionList = HangarManager.Instance().InProductionItems.Count - 1; // THIS DOES NOT SEEM RIGHT WE might also need a LENGTHOFSHIP BUILD -Not sure though
             Debug.Log(LengthOfInProductionList + ";" + HangarManager.Instance().InProductionItems.Count);
-            HangarManager.Instance().InProductionItems[LengthOfInProductionList].ProgressBuild();// PROGRESSING BUILD
+            HangarManager.Instance().InProductionItems[LengthOfInProductionList].ProgressBuild();// PROGRESSING BUILD -> in here we also handle what todo when build is finished
 
             //Below Metod call on specific item deals with the transition from InProduction ships to finished ones and displays them when they are finished in the Hangar
             //**************************##########################
@@ -53,14 +53,12 @@ public class NextTurn : MonoBehaviour {
                         LengthOfShipsInProduction++;
                 }
 
-
-
-                //HangarManager.Instance().UpdateValuesInHangar(LengthOfInProductionList + NrOfFinishedShipsInHangar, HangarManager.Instance().InProductionItems[LengthOfInProductionList]); // TEST.Chamging the last item in the production TRYING TO MAKE THIS change display WORKS!!!
+                //HangarManager.Instance().UpdateValuesInHangar(LengthOfInProductionList + NrOfFinishedShipsInHangar, HangarManager.Instance().InProductionItems[LengthOfInProductionList]); // TEST.Changing the last item in the production TRYING TO MAKE THIS change display WORKS!!!
 
             }
             
-            //**!!
-            HangarManager.Instance().UpdateValuesInHangar(LengthOfShipsInProduction + NrOfFinishedShipsInHangar, HangarManager.Instance().InProductionItems[LengthOfShipsInProduction]); // TEST.Chamging the last item in the production TRYING TO MAKE THIS change display WORKS!!!
+            //**!!************************************************?????????????????????????????
+            HangarManager.Instance().UpdateValuesInHangar(LengthOfShipsInProduction + NrOfFinishedShipsInHangar, HangarManager.Instance().InProductionItems[LengthOfShipsInProduction]); // TEST.Changing the last item in the production TRYING TO MAKE THIS change display WORKS!!!
 
 
             TextComponent3.text = "" + HangarManager.Instance().InProductionItems[LengthOfInProductionList].TurnsUntillFinished; // HERE WE SET THE TURNSLEFT in the production panel
