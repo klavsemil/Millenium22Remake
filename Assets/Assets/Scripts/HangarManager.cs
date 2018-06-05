@@ -85,6 +85,7 @@ public class HangarManager : MonoBehaviour {
         {
             if (Bays[i].IsEmpty())
             {
+                ship.InMoonBayNr = i+1; //we count up Moon bays from 1 not zero
                 Bays[i].ship = ship;
 
                 SetValuesInHangarWindow(i,ship); //here we need to set the values of the Panel textfield gameobjects
@@ -98,36 +99,33 @@ public class HangarManager : MonoBehaviour {
 
     public void LaunchShipFromSurface(int BayNumber) //This will empty the hangarbay selected by pressing launch button and should Return the Finished itemnumber so its information can be displayed in the cockpit 
     {
+        HangarManager.Instance().Bays[BayNumber].ship.InMoonBayNr = 0;   //We  set the moonbay status for the ship to zero as it is not more on moon.
         HangarManager.Instance().ShipsInOrbit.Add(Bays[BayNumber].ship); //add the specific ship from the baynumber where the launch button has been clicked // HOPE THIS IS LIKE A STACK SO IT ADDS FROM THE LAST PLace in the list
-        //Debug.Log("BAynumber IS********************************:    " + BayNumber);
-        //Debug.Log("%%%%%%%%%%%%%%%%%%%%%%%%##############%%%%%%%%%%%%%Item in SHIPSINORBIT [Baynumber] IS:   " + ShipsInOrbit[ShipsInOrbit.Count-1]);
+
+
+        if (FinishedItems.Count > 0) // We also need to remove the ship from the list of finished items at the moon
+        {
+            for (int i = HangarManager.Instance().FinishedItems.Count-1; i >= 0; i--)
+            {
+                if (HangarManager.Instance().FinishedItems[i].InMoonBayNr == BayNumber) // HERE WE NEED TO KNOW IF THEindex starts at 0 or 1 ??
+                {
+                    HangarManager.Instance().FinishedItems.RemoveAt(i);// We Remove the item from the Finished Items list
+
+                }
+            }
+        } 
+        
         HangarManager.Instance().ShipsInOrbit[ShipsInOrbit.Count-1].InOrbit = true;
+        Destroy(HangarManager.Instance().Bays[BayNumber].ship); // we see to that the ship is removed correctly from the bay Array
 
-
-        //if(BayManager.Launch()==false)
-
-        HangarManager.Instance().Bays[BayNumber].ship = null; // trying to empty this bay
-                                                              //Debug.Log("WHAT IS INSIDE BAY:" + BayNumber + "is: " + Bays[BayNumber].ship.ShipName + "");
-                                                              //Debug.Log(Bays[BayNumber].ship.ShipName+"");
-
-
-        //  ///////////////TEST TEST WE JUST REMOVE THE TEXT IN Unity inspection manager 
-        // HangarManager.Instance().UpdateValuesInHangar(BayNumber, Bays[BayNumber].ship); // TEST TEST ****DOES NOT WORK!!!!!!********* WE TRY TO SEE IF THE HANGAR BAY DISPLAYS EMPTY INFO
-
+       
 
         if(HangarManager.Instance().ShipsInOrbit.Count>=0) //if there is any ships in the orbit list, then update the cockpitdisplay - NB REMEMBER TORESET OLD VALUES ON Ship cockpit panel
         ShipManager.Instance().UpdateShipInterface(ShipsInOrbit.Count-1); // Set the textfields that fits the last index in ShipsInOrbit list
 
 
-        
-
 
     }
-
-    //public void 
-
-
-
 
 
     //here we make a method that returns an integer which corresponds to the number of first vacant HangarBay
@@ -175,9 +173,6 @@ public class HangarManager : MonoBehaviour {
         {
             Bays[BayNumber].gameObject.transform.GetChild(10).gameObject.GetComponent<Text>().text = "No Cargo";
         }
-
-
-
     } 
 
     public void UpdateValuesInHangar(int BayNumber, BaseItem ship) // this method is used for updating information in the bay panels if there is a ship or a ship has reserved space there

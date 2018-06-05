@@ -44,6 +44,8 @@ public class BaseItem : ScriptableObject {
     public bool AsteroidFound; //only for Grazer
 
     public bool OnMoon; // true if item is on moon
+    public int InMoonBayNr; //from 0 to 8, where 0 means it is not on moon or not designated a moonbay yet
+
     public bool InOrbit; // this is set true when launch ship is pressed
     public bool OnShip; // true if item is on ship
     public bool InTransitAsteroidField; // This is true if vehicle is in transit
@@ -82,10 +84,6 @@ public class BaseItem : ScriptableObject {
 
 
     }
-
-
-
-
 
     public void LaunchTowardsDestination() // we need a method on the launchbutton to set the detination of a ship
     {
@@ -135,7 +133,6 @@ public class BaseItem : ScriptableObject {
             }
             //For production part:
             //HangarManager.instance().InsertShip(Instantiate(Resources.Load("BaseItems/Grazer") as BaseItem));
-
 
             InTransitMoon = false;  
  

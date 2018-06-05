@@ -22,7 +22,7 @@ public class BuildItem : MonoBehaviour {
 
 
     public int DaysUntilFinished;
-    public string TypeName; //TEST TEST THIS is for sending info to the panel corresponding to the hangarbay which holds this
+    public string TypeName; 
 
     public void InstantiateBuild(int BuildNumber) // HERE SHOULD ALSO BE A PARAMETER FOR BUILDTYPE to determine if it is a ship or not!
     {
@@ -98,6 +98,16 @@ public class BuildItem : MonoBehaviour {
             }
 
     }
+
+
+
+
+
+
+
+
+
+
 
  //This one below here is not used..
     public void FinishBuild() // when 0 days left for production is reached this method sees to change status of object to finished // THIS SHOULD NOT BE HERE I think!!!!!

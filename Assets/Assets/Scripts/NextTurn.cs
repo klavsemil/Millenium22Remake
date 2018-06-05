@@ -17,6 +17,7 @@ public class NextTurn : MonoBehaviour {
     public GameObject TurnTextForGUI;
 
     public int LengthOfInProductionList; // variable for the length of inproduction list.
+    public int LengthOfShipsInProduction; // a way to count up Ships in production As these need for counting up nr of in production items correctly
 
     public void ProgressTurn() // Resource increment is handled in its own Turn method in ResourceManager
     {
@@ -24,19 +25,18 @@ public class NextTurn : MonoBehaviour {
 
         HangarManager.Instance().DisplayEquipmentList();
 
-        var TextComponent = TurnText.GetComponent<Text>(); // this is a text component for showing the incrementing of the turn
+        var TextComponent = TurnText.GetComponent<Text>(); // For incrementing of the turn
         TextComponent.text = TurnCounter + "";  // 
 
         var TextComponent2 = InproductionText.GetComponent<Text>(); // we need this to append and subtract items on the build stack (reverse of que)
 
-        var TextComponent3 = TurnTextForGUI.GetComponent<Text>(); // This is for displaying number of turns left..
+        var TextComponent3 = TurnTextForGUI.GetComponent<Text>(); // Turns left..
 
         if (HangarManager.Instance().InProductionItems.Count > 0)
         {
-            LengthOfInProductionList = HangarManager.Instance().InProductionItems.Count - 1;
+            LengthOfInProductionList = HangarManager.Instance().InProductionItems.Count - 1; // THIS DOES NOT SEEM RIGHT WE might also need a LENGTHOFSHIP BUILD -Not sure though
             Debug.Log(LengthOfInProductionList + ";" + HangarManager.Instance().InProductionItems.Count);
-            HangarManager.Instance().InProductionItems[LengthOfInProductionList].ProgressBuild();
-
+            HangarManager.Instance().InProductionItems[LengthOfInProductionList].ProgressBuild();// PROGRESSING BUILD
 
             //Below Metod call on specific item deals with the transition from InProduction ships to finished ones and displays them when they are finished in the Hangar
             //**************************##########################
@@ -44,27 +44,23 @@ public class NextTurn : MonoBehaviour {
 
             // under here we adjust the baynumber for already finished ships, if there are such
 
-
-            NrOfFinishedShipsInHangar = 0; //reset the number for a new count of actual finished ships in hangar
-            for (int k = 0; k < HangarManager.Instance().FinishedItems.Count; k++) // We count through the items in the finisheditemslist 
-            {
-                if (HangarManager.Instance().FinishedItems[k].ItemTypeNr == 1)// && HangarManager.Instance().InProductionItems.Count==1 // finding thoe that are spacecraft + LATER: also we need to know where the ship position is!!!! All clones should be set to the moon when being created 
-                    NrOfFinishedShipsInHangar++;
-            }
-
-
-
-
-
-
             if (HangarManager.Instance().InProductionItems[LengthOfInProductionList].ItemTypeNr==1) // NOT SURE we only want to update the hangar ships in production and not update items which is not ships
-            HangarManager.Instance().UpdateValuesInHangar(LengthOfInProductionList + NrOfFinishedShipsInHangar, HangarManager.Instance().InProductionItems[LengthOfInProductionList]); // TEST.Chamging the last item in the production TRYING TO MAKE THIS change display WORKS!!!
+            {
+                LengthOfShipsInProduction = 0; // reset it for a new count
+                for (int i =0; i<LengthOfInProductionList;i++)
+                {
+                    if (HangarManager.Instance().InProductionItems[i].ItemTypeNr == 1) //if it is a ship 
+                        LengthOfShipsInProduction++;
+                }
 
 
 
+                //HangarManager.Instance().UpdateValuesInHangar(LengthOfInProductionList + NrOfFinishedShipsInHangar, HangarManager.Instance().InProductionItems[LengthOfInProductionList]); // TEST.Chamging the last item in the production TRYING TO MAKE THIS change display WORKS!!!
 
-
-
+            }
+            
+            //**!!
+            HangarManager.Instance().UpdateValuesInHangar(LengthOfShipsInProduction + NrOfFinishedShipsInHangar, HangarManager.Instance().InProductionItems[LengthOfShipsInProduction]); // TEST.Chamging the last item in the production TRYING TO MAKE THIS change display WORKS!!!
 
 
             TextComponent3.text = "" + HangarManager.Instance().InProductionItems[LengthOfInProductionList].TurnsUntillFinished; // HERE WE SET THE TURNSLEFT in the production panel
@@ -102,17 +98,6 @@ public class NextTurn : MonoBehaviour {
         }
 
      
-
-
-
-
-
-        /*foreach (var FinishedItem in HangarManager.Instance().FinishedItems) // here we check the list of items which is finished-
-        {
-            
-            Debug.Log("item"+" curently in the finished list: " + FinishedItem); // want to have a counter for each item in the list!!!
-        }
-        */
 
 
     }
