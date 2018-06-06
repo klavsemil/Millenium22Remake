@@ -180,6 +180,13 @@ public class BaseItem : ScriptableObject {
     {
         HangarManager.Instance().FinishedItems.Add(this); // take this object and put it into the list of finished items
                                                           /*HangarManager.Instance().InProductionItems.Remove(this);*/ // take this object and remove it from the list of items which is in production
+
+        if(this.ItemTypeNr==1)
+        {
+            HangarManager.Instance().ShipsInService.Add(this);
+            // Maybe more here
+        }
+
         this.InProduction = false; // As this item is finished we set it to false 
         
 

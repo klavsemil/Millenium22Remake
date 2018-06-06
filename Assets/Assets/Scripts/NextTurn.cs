@@ -32,6 +32,21 @@ public class NextTurn : MonoBehaviour {
 
         var TextComponent3 = TurnTextForGUI.GetComponent<Text>(); // Turns left..
 
+
+        for (int i = 0; i < 8; i++)
+        {
+            // if the bay is empty (nothing is in production/finished or the spacecraft has launched)  show the defaualt empty thing
+            HangarManager.Instance().UpdateValuesInHangar(i, HangarManager.Instance().Bays[i].ship);
+        }
+
+
+        foreach (BaseItem obj in HangarManager.Instance().ShipsInService)
+        {
+
+            // if something breaks, check if the shipidentifer actually is in the list
+            Debug.Log( obj.ShipName + " is on moon : "+obj.OnMoon);
+        }
+
         if (HangarManager.Instance().InProductionItems.Count > 0)
         {
             LengthOfInProductionList = HangarManager.Instance().InProductionItems.Count - 1; // THIS DOES NOT SEEM RIGHT WE might also need a LENGTHOFSHIP BUILD -Not sure though
@@ -56,14 +71,15 @@ public class NextTurn : MonoBehaviour {
                 //HangarManager.Instance().UpdateValuesInHangar(LengthOfInProductionList + NrOfFinishedShipsInHangar, HangarManager.Instance().InProductionItems[LengthOfInProductionList]); // TEST.Changing the last item in the production TRYING TO MAKE THIS change display WORKS!!!
 
             }
-            
-            //**!!************************************************?????????????????????????????
-            HangarManager.Instance().UpdateValuesInHangar(LengthOfShipsInProduction + NrOfFinishedShipsInHangar, HangarManager.Instance().InProductionItems[LengthOfShipsInProduction]); // TEST.Changing the last item in the production TRYING TO MAKE THIS change display WORKS!!!
 
+            //*!?
+            //HangarManager.Instance().UpdateValuesInHangar(LengthOfShipsInProduction + NrOfFinishedShipsInHangar, HangarManager.Instance().InProductionItems[LengthOfShipsInProduction]); // TEST.Changing the last item in the production TRYING TO MAKE THIS change display WORKS!!!
+            // go into each hangar bay , and update the UI with the necessary information depending on the status
+          
 
             TextComponent3.text = "" + HangarManager.Instance().InProductionItems[LengthOfInProductionList].TurnsUntillFinished; // HERE WE SET THE TURNSLEFT in the production panel
 
-            TextComponent2.text = ""; //TEST TEST Clear the text for the production list -- Sorta Works
+            TextComponent2.text = ""; // Clear the text for the production list -- Sorta Works
             //foreach(var Item in HangarManager.Instance().InProductionItems) // here we check the list of items set into production - because it is possible to set several things into production at the same time
 
 
