@@ -187,6 +187,10 @@ public class BaseItem : ScriptableObject {
             // Maybe more here
         }
 
+        MessageManager.Instance().UpdateMessagePanel("Item Finished Production! ", this.ItemName);
+
+
+
         this.InProduction = false; // As this item is finished we set it to false 
         
 

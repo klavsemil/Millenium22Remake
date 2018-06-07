@@ -46,48 +46,10 @@ public class ShipManager : MonoBehaviour {
             TextComponentShipLocation.text = "In Transit to Callisto";
 
 
-
-
-
-
-
-
-
-
-
-
-
     }
 
 
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     public static ShipManager Instance() // THIS IS NOT HTE ONLY SINGLETON SO MIGHT BE BAD... (SINGLETON ALSO IN HANGARMANAGER!!!)
