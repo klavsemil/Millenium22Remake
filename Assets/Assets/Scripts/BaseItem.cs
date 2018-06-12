@@ -55,8 +55,13 @@ public class BaseItem : ScriptableObject {
     public bool InTransitMars;
     public bool InAsteroidField; // if true this vehicle is in asteroid field - NOTE for this prototype we only have this other location 
     public bool OnComet; // near comet
-    public int DaysUntilArrival; 
-        
+    public int DaysUntilArrival;
+
+    public bool AutoMineRunComet;
+    public bool AutoMineRunAsteroids;
+    public int DaysOnAutomineComet;
+    public int DaysOnAutoMineAsteroids;
+
     // Future location status should be here
 
     public int ShipIdentifier; // this is zero if not on ship but otherwise it should fit a ItemID for the ship carrying it.
@@ -155,17 +160,19 @@ public class BaseItem : ScriptableObject {
 
         //var TextComponent3 = TurnCounterForProductionText.GetComponent<Text>();
 
-        if (this.TurnsUntillFinished > 0 && this.InProduction == true)
+        if (this.TurnsUntillFinished > 0) // && this.InProduction == true)
         {
             this.TurnsUntillFinished--;
             Debug.Log("Turns untill finished for this object: " + this.TurnsUntillFinished);
          // TextComponent3.text = "" + this.TurnsUntillFinished; // this is for displaying the number of turns left for this object to be finished **********************************************
-
+          // if(this.TurnsUntillFinished == 1) // TESTING TESTEREINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+            //    this.InProduction = false; // will remove the item from the inproduction list one round before it is finished so that the production status can be displayed correctly ... HMM
 
         }
           
         else
         {
+            
             Debug.Log("Production is finished for this object Finished method call here");
             //this.InProduction = false;   // We also need to remove this object from the inbuild progress list and into the finished stuff list
             FinishBuild(); // call the finish build function
@@ -187,12 +194,15 @@ public class BaseItem : ScriptableObject {
             // Maybe more here
         }
 
-        MessageManager.Instance().UpdateMessagePanel("Item Finished Production! ", this.ItemName);
-
-
-
         this.InProduction = false; // As this item is finished we set it to false 
-        
+
+        //Below here: we tell what is finished dbuild and what eventually is next in production que
+        string NextProductionItem = "No more items in production que!";
+        if (HangarManager.Instance().InProductionItems.Count > 1)
+        {
+            NextProductionItem = "Still running! "; //+ HangarManager.Instance().InProductionItems[HangarManager.Instance().InProductionItems.Count-1].ItemName; // MAYBE -1 in the list count
+        }
+        MessageManager.Instance().UpdateMessagePanel("Turn: "+ NextTurn.Instance().TurnCounter+". Item Finished: \n",  "          "+ this.ItemName + ".   Production status is: " + NextProductionItem +"\n");
 
         foreach (var FinishedItem in HangarManager.Instance().FinishedItems) // trying to read out the list of build things
         {

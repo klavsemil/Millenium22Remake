@@ -20,8 +20,8 @@ public class MessageManager : MonoBehaviour {
         var TextComponentHeadline = TextForHeadline.GetComponent<Text>();
         var TextComponentMessage = TextForMessage.GetComponent<Text>();
 
-        TextComponentHeadline.text = Headline;
-        TextComponentMessage.text = Message;
+        TextComponentHeadline.text += Headline; // TESTTTTTTTTTTTTT with += 'insted if just =
+        TextComponentMessage.text += Message;
 
 
     }

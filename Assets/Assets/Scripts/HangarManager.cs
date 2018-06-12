@@ -13,6 +13,8 @@ public class HangarManager : MonoBehaviour {
 
     public List<BaseItem> ShipsInService; //Not sure about this list yet.
 
+    public bool AnythingLaunched = false;
+    public GameObject MarsWarningPanel;
 
     public GameObject Grazer; // for displaying a grazer in Hangar bay 01
     public GameObject Probe; // for displaying a probe in hanagar bay 01
@@ -143,6 +145,14 @@ public class HangarManager : MonoBehaviour {
 
     public void LaunchShipFromSurface(int BayNumber) //This will empty the hangarbay selected by pressing launch button and should Return the Finished itemnumber so its information can be displayed in the cockpit 
     {
+
+        if (AnythingLaunched == false) // This makes the threat message from the martian appear when launcing the first time
+        {
+            // display warning sign from Martians
+            MarsWarningPanel.SetActive(true);
+            AnythingLaunched = true; // make it so this message does not appear again
+        }
+
         HangarManager.Instance().Bays[BayNumber].ship.InMoonBayNr = 0;   //We  set the moonbay status for the ship to zero as it is not more on moon.
         //HangarManager.Instance().ShipsInService.Add(Bays[BayNumber].ship); //add the specific ship from the baynumber where the launch button has been clicked // HOPE THIS IS LIKE A STACK SO IT ADDS FROM THE LAST PLace in the list
 
@@ -665,7 +675,7 @@ public class HangarManager : MonoBehaviour {
         if (ShipsInService.Count > 5)
         {
             Ship6Access.SetActive(true);
-            TextComponentShip1Name.text = HangarManager.Instance().ShipsInService[5].ShipName;
+            TextComponentShip6Name.text = HangarManager.Instance().ShipsInService[5].ShipName;
 
             if (HangarManager.Instance().ShipsInService[5].OnMoon == true)
                 TextComponentShip6Status.text = "On Moon";

@@ -109,15 +109,7 @@ public class BuildItem : MonoBehaviour {
 
 
 
- //This one below here is not used..
-    public void FinishBuild() // when 0 days left for production is reached this method sees to change status of object to finished // THIS SHOULD NOT BE HERE I think!!!!!
-    {                         // Removes the InProduction == trueand increments the equipment list etc..
-        if (DaysUntilFinished == 0)
-        {
-            //remove GUI indicating build in progress and also emptying graphical representation in build bay
-        }
-
-    }
+ 
 
 
 

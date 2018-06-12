@@ -8,13 +8,20 @@ public class NextTurn : MonoBehaviour {
     public int TurnCounter;
     public int AlreadyOccupiedBaysNr;
     public int NrOfFinishedShipsInHangar; // thi number i to make sure that already finished ships dont get overwritten by new production items
-    
+
+
+    private static NextTurn instance = null;
 
     public GameObject TurnText;
 
     public GameObject InproductionText;
 
     public GameObject TurnTextForGUI;
+
+    public GameObject ProbeInProduction;
+    public GameObject GrazerInProduction;
+    public GameObject SolaGenInProduction;
+    
 
     public int LengthOfInProductionList; // variable for the length of inproduction list.
     public int LengthOfShipsInProduction; // a way to count up Ships in production As these need for counting up nr of in production items correctly
@@ -92,6 +99,49 @@ public class NextTurn : MonoBehaviour {
 
                 if (HangarManager.Instance().InProductionItems[i].InProduction == false)
                 {
+                    // We need to remove the graphical representation of this object in the production module(false). And set the next in line to be represented:
+                    if (HangarManager.Instance().InProductionItems.Count > 1)
+                    {
+                        if (HangarManager.Instance().InProductionItems[i].ItemID == 0 && HangarManager.Instance().InProductionItems[i - 1].ItemID != 0) // If probe then remove the graphical representation of it unless next in production is also probe
+                        {
+                            ProbeInProduction.SetActive(false);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 1)
+                                GrazerInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 6 || HangarManager.Instance().InProductionItems[i - 1].ItemID == 7 || HangarManager.Instance().InProductionItems[i - 1].ItemID == 8)
+                                SolaGenInProduction.SetActive(true);
+                        }
+
+                        if (HangarManager.Instance().InProductionItems[i].ItemID == 1 && HangarManager.Instance().InProductionItems[i - 1].ItemID != 1) // If grazer then remove the graphical representation of it
+                        {
+                            GrazerInProduction.SetActive(false);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 0)
+                                ProbeInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 6 || HangarManager.Instance().InProductionItems[i - 1].ItemID == 7 || HangarManager.Instance().InProductionItems[i - 1].ItemID == 8)
+                                SolaGenInProduction.SetActive(true);
+                        }
+
+                        if ((HangarManager.Instance().InProductionItems[i].ItemID == 6 || HangarManager.Instance().InProductionItems[i].ItemID == 7 || HangarManager.Instance().InProductionItems[i].ItemID == 8) && (HangarManager.Instance().InProductionItems[i - 1].ItemID != 6 || HangarManager.Instance().InProductionItems[i - 1].ItemID != 7) || HangarManager.Instance().InProductionItems[i - 1].ItemID != 8) // If solagenMK2 or MK3 or MK3 then remove the graphical representation of it
+                        {
+                            SolaGenInProduction.SetActive(false);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 0)
+                                ProbeInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 1)
+                                GrazerInProduction.SetActive(true);
+                        }
+
+
+                    }
+                    if(HangarManager.Instance().InProductionItems.Count <= 1)
+                    {
+                        ProbeInProduction.SetActive(false); // if no production is left after this, then erase all graphical representation of production items in the production module
+                        GrazerInProduction.SetActive(false);
+                        SolaGenInProduction.SetActive(false);
+                    }
+
+
+
+
+
                     HangarManager.Instance().InProductionItems.RemoveAt(i); // remove this BaseItem from the inproduction list
                     TextComponent2.text = ""; // empty the textfield
                     for (int j = HangarManager.Instance().InProductionItems.Count - 1; j >= 0; j--) //refill the text again (which now should be without the removed text part)
@@ -121,6 +171,25 @@ public class NextTurn : MonoBehaviour {
 
 
     }
+
+
+    public static NextTurn Instance() // 
+    {
+        if (instance == null)
+        {
+
+            instance = GameObject.FindObjectOfType<NextTurn>() as NextTurn;
+        }
+
+        return instance;
+    }
+
+
+
+
+
+
+
 
 
 
