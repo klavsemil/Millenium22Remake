@@ -53,14 +53,17 @@ public class BaseItem : ScriptableObject {
     public bool InTransitComet;
     public bool InTransitCallisto;
     public bool InTransitMars;
-    public bool InAsteroidField; // if true this vehicle is in asteroid field - NOTE for this prototype we only have this other location 
-    public bool OnComet; // near comet
+    public bool InAsteroidField; // if true this vehicle is in asteroid field -
+    public bool InorbitMars;
+    public bool InOrbitCallisto;
+    public bool OnComet; // On comet
     public int DaysUntilArrival;
 
     public bool AutoMineRunComet;
     public bool AutoMineRunAsteroids;
     public int DaysOnAutomineComet;
     public int DaysOnAutoMineAsteroids;
+    public bool CurrentlyMining;
 
     // Future location status should be here
 

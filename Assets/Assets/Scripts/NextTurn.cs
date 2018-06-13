@@ -50,6 +50,10 @@ public class NextTurn : MonoBehaviour {
         foreach (BaseItem obj in HangarManager.Instance().ShipsInService)
         {
 
+            //HERE WE NEED TO DECREMENT DAYSUNTILLARRIVAL FOR ALL SHIPS THAT ARE ENROUTE UNTILL THEY REACH 0
+
+
+
             // if something breaks, check if the shipidentifer actually is in the list
             Debug.Log( obj.ShipName + " is on moon : "+obj.OnMoon);
         }
@@ -161,14 +165,14 @@ public class NextTurn : MonoBehaviour {
 
         }
 
-     
+        ProgressSpaceTravel(); //at the end of the progre turn method we 'move' all ships
 
 
     }
 
     public void ProgressSpaceTravel()
     {
-
+        ShipManager.Instance().TravelShips();
 
     }
 

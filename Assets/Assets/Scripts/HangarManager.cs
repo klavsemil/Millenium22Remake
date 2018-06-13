@@ -179,6 +179,14 @@ public class HangarManager : MonoBehaviour {
             {
                 obj.InOrbit = true;
                 obj.OnMoon = false;
+                /*obj.DaysUntilArrival = 0;
+                obj.InOrbitCallisto = false;
+                obj.InorbitMars = false;
+                obj.InAsteroidField = false;
+                obj.OnComet = false;
+                obj.AutoMineRunAsteroids = false;
+                obj.AutoMineRunComet = false;
+                */
                 break;
             }
             counter++;
@@ -191,7 +199,7 @@ public class HangarManager : MonoBehaviour {
 
 
 
-        if (HangarManager.Instance().ShipsInService.Count>=0) //if there is any ships in the orbit list, then update the cockpitdisplay - NB REMEMBER TORESET OLD VALUES ON Ship cockpit panel
+        if (HangarManager.Instance().ShipsInService.Count>=0) //if there is any ships in the orbit list, then update the cockpitdisplay - NB REMEMBER TO RESET OLD VALUES ON Ship cockpit panel
         ShipManager.Instance().UpdateShipInterface(counter); // Set the textfields that fits the last index in ShipsInOrbit list
 
 
@@ -518,9 +526,16 @@ public class HangarManager : MonoBehaviour {
 
             if (HangarManager.Instance().ShipsInService[0].OnComet == true)
                 TextComponentShip1Status.text = "On Comet";
+///////////////////
+            if (HangarManager.Instance().ShipsInService[0].OnComet == true && HangarManager.Instance().ShipsInService[0].AutoMineRunComet==true && HangarManager.Instance().ShipsInService[0].CurrentlyMining == true)
+                TextComponentShip1Status.text = ">>Automining Comet<<";
+
 
             if (HangarManager.Instance().ShipsInService[0].InAsteroidField == true)
                 TextComponentShip1Status.text = "In Asteroid field";
+///////////////////
+            if (HangarManager.Instance().ShipsInService[0].InAsteroidField == true && HangarManager.Instance().ShipsInService[0].AutoMineRunAsteroids==true && HangarManager.Instance().ShipsInService[0].CurrentlyMining == true)
+                TextComponentShip1Status.text = ">>Automining Asteroids<<";
 
             if (HangarManager.Instance().ShipsInService[0].InOrbit == true)
                 TextComponentShip1Status.text = "In Orbit Moon";
@@ -530,6 +545,8 @@ public class HangarManager : MonoBehaviour {
 
             if (HangarManager.Instance().ShipsInService[0].InTransitComet == true)
                 TextComponentShip1Status.text = "In Transit to Comet";
+
+
 
             if (HangarManager.Instance().ShipsInService[0].InTransitMoon == true)
                 TextComponentShip1Status.text = "In Transit to Moon";
@@ -570,6 +587,12 @@ public class HangarManager : MonoBehaviour {
             if (HangarManager.Instance().ShipsInService[1].InTransitCallisto == true)
                 TextComponentShip2Status.text = "In Transit to Callisto";
 
+            if (HangarManager.Instance().ShipsInService[1].OnComet == true && HangarManager.Instance().ShipsInService[1].AutoMineRunComet == true && HangarManager.Instance().ShipsInService[1].CurrentlyMining == true)
+                TextComponentShip2Status.text = ">>Automining Comet<<";
+
+            if (HangarManager.Instance().ShipsInService[1].InAsteroidField == true && HangarManager.Instance().ShipsInService[1].AutoMineRunAsteroids == true && HangarManager.Instance().ShipsInService[1].CurrentlyMining == true)
+                TextComponentShip2Status.text = ">>Automining Asteroids<<";
+
             TextComponentShip2ETA.text = HangarManager.Instance().ShipsInService[1].DaysUntilArrival + "";
 
         }
@@ -603,6 +626,14 @@ public class HangarManager : MonoBehaviour {
             if (HangarManager.Instance().ShipsInService[2].InTransitCallisto == true)
                 TextComponentShip3Status.text = "In Transit to Callisto";
 
+            if (HangarManager.Instance().ShipsInService[2].OnComet == true && HangarManager.Instance().ShipsInService[2].AutoMineRunComet == true && HangarManager.Instance().ShipsInService[2].CurrentlyMining == true)
+                TextComponentShip3Status.text = ">>Automining Comet<<";
+
+            if (HangarManager.Instance().ShipsInService[2].InAsteroidField == true && HangarManager.Instance().ShipsInService[2].AutoMineRunAsteroids == true && HangarManager.Instance().ShipsInService[2].CurrentlyMining == true)
+                TextComponentShip3Status.text = ">>Automining Asteroids<<";
+
+
+
             TextComponentShip3ETA.text = HangarManager.Instance().ShipsInService[2].DaysUntilArrival + "";
         }
 
@@ -634,6 +665,15 @@ public class HangarManager : MonoBehaviour {
 
             if (HangarManager.Instance().ShipsInService[3].InTransitCallisto == true)
                 TextComponentShip4Status.text = "In Transit to Callisto";
+
+            if (HangarManager.Instance().ShipsInService[3].OnComet == true && HangarManager.Instance().ShipsInService[3].AutoMineRunComet == true && HangarManager.Instance().ShipsInService[3].CurrentlyMining == true)
+                TextComponentShip4Status.text = ">>Automining Comet<<";
+
+            if (HangarManager.Instance().ShipsInService[3].InAsteroidField == true && HangarManager.Instance().ShipsInService[3].AutoMineRunAsteroids == true && HangarManager.Instance().ShipsInService[3].CurrentlyMining == true)
+                TextComponentShip4Status.text = ">>Automining Asteroids<<";
+
+
+
 
             TextComponentShip4ETA.text = HangarManager.Instance().ShipsInService[3].DaysUntilArrival + "";
 
@@ -668,6 +708,13 @@ public class HangarManager : MonoBehaviour {
             if (HangarManager.Instance().ShipsInService[4].InTransitCallisto == true)
                 TextComponentShip5Status.text = "In Transit to Callisto";
 
+            if (HangarManager.Instance().ShipsInService[4].OnComet == true && HangarManager.Instance().ShipsInService[4].AutoMineRunComet == true && HangarManager.Instance().ShipsInService[4].CurrentlyMining == true)
+                TextComponentShip5Status.text = ">>Automining Comet<<";
+
+            if (HangarManager.Instance().ShipsInService[4].InAsteroidField == true && HangarManager.Instance().ShipsInService[4].AutoMineRunAsteroids == true && HangarManager.Instance().ShipsInService[4].CurrentlyMining == true)
+                TextComponentShip5Status.text = ">>Automining Asteroids<<";
+
+
             TextComponentShip5ETA.text = HangarManager.Instance().ShipsInService[4].DaysUntilArrival + "";
 
         }
@@ -701,6 +748,12 @@ public class HangarManager : MonoBehaviour {
             if (HangarManager.Instance().ShipsInService[5].InTransitCallisto == true)
                 TextComponentShip6Status.text = "In Transit to Callisto";
 
+            if (HangarManager.Instance().ShipsInService[5].OnComet == true && HangarManager.Instance().ShipsInService[5].AutoMineRunComet == true && HangarManager.Instance().ShipsInService[5].CurrentlyMining == true)
+                TextComponentShip6Status.text = ">>Automining Comet<<";
+
+            if (HangarManager.Instance().ShipsInService[5].InAsteroidField == true && HangarManager.Instance().ShipsInService[5].AutoMineRunAsteroids == true && HangarManager.Instance().ShipsInService[5].CurrentlyMining == true)
+                TextComponentShip6Status.text = ">>Automining Asteroids<<";
+
             TextComponentShip6ETA.text = HangarManager.Instance().ShipsInService[5].DaysUntilArrival + "";
 
         }
@@ -732,6 +785,14 @@ public class HangarManager : MonoBehaviour {
 
             if (HangarManager.Instance().ShipsInService[6].InTransitCallisto == true)
                 TextComponentShip7Status.text = "In Transit to Callisto";
+
+
+            if (HangarManager.Instance().ShipsInService[6].OnComet == true && HangarManager.Instance().ShipsInService[6].AutoMineRunComet == true && HangarManager.Instance().ShipsInService[6].CurrentlyMining == true)
+                TextComponentShip7Status.text = ">>Automining Comet<<";
+
+            if (HangarManager.Instance().ShipsInService[6].InAsteroidField == true && HangarManager.Instance().ShipsInService[6].AutoMineRunAsteroids == true && HangarManager.Instance().ShipsInService[6].CurrentlyMining == true)
+                TextComponentShip7Status.text = ">>Automining Asteroids<<";
+
 
             TextComponentShip7ETA.text = HangarManager.Instance().ShipsInService[6].DaysUntilArrival + "";
 
@@ -766,6 +827,15 @@ public class HangarManager : MonoBehaviour {
             if (HangarManager.Instance().ShipsInService[7].InTransitCallisto == true)
                 TextComponentShip8Status.text = "In Transit to Callisto";
 
+
+            if (HangarManager.Instance().ShipsInService[7].OnComet == true && HangarManager.Instance().ShipsInService[7].AutoMineRunComet == true && HangarManager.Instance().ShipsInService[7].CurrentlyMining == true)
+                TextComponentShip8Status.text = ">>Automining Comet<<";
+
+            if (HangarManager.Instance().ShipsInService[7].InAsteroidField == true && HangarManager.Instance().ShipsInService[7].AutoMineRunAsteroids == true && HangarManager.Instance().ShipsInService[7].CurrentlyMining == true)
+                TextComponentShip8Status.text = ">>Automining Asteroids<<";
+
+
+
             TextComponentShip8ETA.text = HangarManager.Instance().ShipsInService[7].DaysUntilArrival + "";
         }
 
@@ -798,6 +868,14 @@ public class HangarManager : MonoBehaviour {
             if (HangarManager.Instance().ShipsInService[8].InTransitCallisto == true)
                 TextComponentShip9Status.text = "In Transit to Callisto";
 
+
+            if (HangarManager.Instance().ShipsInService[8].OnComet == true && HangarManager.Instance().ShipsInService[8].AutoMineRunComet == true && HangarManager.Instance().ShipsInService[8].CurrentlyMining == true)
+                TextComponentShip9Status.text = ">>Automining Comet<<";
+
+            if (HangarManager.Instance().ShipsInService[8].InAsteroidField == true && HangarManager.Instance().ShipsInService[8].AutoMineRunAsteroids == true && HangarManager.Instance().ShipsInService[8].CurrentlyMining == true)
+                TextComponentShip9Status.text = ">>Automining Asteroids<<";
+
+
             TextComponentShip9ETA.text = HangarManager.Instance().ShipsInService[8].DaysUntilArrival + "";
 
         }
@@ -829,6 +907,17 @@ public class HangarManager : MonoBehaviour {
 
             if (HangarManager.Instance().ShipsInService[9].InTransitCallisto == true)
                 TextComponentShip10Status.text = "In Transit to Callisto";
+
+
+            if (HangarManager.Instance().ShipsInService[9].OnComet == true && HangarManager.Instance().ShipsInService[9].AutoMineRunComet == true && HangarManager.Instance().ShipsInService[9].CurrentlyMining == true)
+                TextComponentShip10Status.text = ">>Automining Comet<<";
+
+            if (HangarManager.Instance().ShipsInService[9].InAsteroidField == true && HangarManager.Instance().ShipsInService[9].AutoMineRunAsteroids == true && HangarManager.Instance().ShipsInService[9].CurrentlyMining == true)
+                TextComponentShip10Status.text = ">>Automining Asteroids<<";
+
+
+
+
 
             TextComponentShip10ETA.text = HangarManager.Instance().ShipsInService[9].DaysUntilArrival + "";
 
