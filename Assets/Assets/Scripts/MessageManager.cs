@@ -23,7 +23,6 @@ public class MessageManager : MonoBehaviour {
         TextComponentHeadline.text += Headline; // TESTTTTTTTTTTTTT with += 'insted if just =
         TextComponentMessage.text += Message;
 
-
     }
 
     public static MessageManager Instance() // 

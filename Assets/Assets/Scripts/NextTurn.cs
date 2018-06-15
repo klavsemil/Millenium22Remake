@@ -3,12 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
 public class NextTurn : MonoBehaviour {
 
     public int TurnCounter;
+
+    public int TurnsPassedUntillMartianWarning;
+    public bool MartianWarningPassed;
+    public bool MartianAttackSet;
+    public int TurnsUntillMartianAttack;
+    public int MartianAttackNumber;
+    public bool MoonBaseHasRadar;
+    public GameObject AttackAlertPanel;
+
     public int AlreadyOccupiedBaysNr;
     public int NrOfFinishedShipsInHangar; // thi number i to make sure that already finished ships dont get overwritten by new production items
-
 
     private static NextTurn instance = null;
 
@@ -29,6 +39,11 @@ public class NextTurn : MonoBehaviour {
     public void ProgressTurn() // Resource increment is handled in its own Turn method in ResourceManager
     {
         TurnCounter++;
+
+        MarsAttackCalculation(); //This method calculates if and when Martians attack, and then calls Marsattack()method when attack happen
+
+
+
 
         HangarManager.Instance().DisplayEquipmentList();
 
@@ -143,9 +158,6 @@ public class NextTurn : MonoBehaviour {
                     }
 
 
-
-
-
                     HangarManager.Instance().InProductionItems.RemoveAt(i); // remove this BaseItem from the inproduction list
                     TextComponent2.text = ""; // empty the textfield
                     for (int j = HangarManager.Instance().InProductionItems.Count - 1; j >= 0; j--) //refill the text again (which now should be without the removed text part)
@@ -165,16 +177,89 @@ public class NextTurn : MonoBehaviour {
 
         }
 
-        ProgressSpaceTravel(); //at the end of the progre turn method we 'move' all ships
+        ProgressSpaceTravel(); //at the end of the progress turn method we 'move' all ships
 
 
     }
 
-    public void ProgressSpaceTravel()
+    public void ProgressSpaceTravel() // We could also call the Shipmanager.Instance().automine() here..
     {
         ShipManager.Instance().TravelShips();
+        ShipManager.Instance().Automine();
+            
+            
+            
+    }
+
+    public void MarsAttackCalculation()// this is called once every turn to set And/or count the time untill attack
+    {
+        if (HangarManager.Instance().AnythingLaunched == true && MartianWarningPassed == false) //This onetime use 'if' sets the initiation of the possibility of martian attack
+        {
+            TurnsPassedUntillMartianWarning = TurnCounter;
+            MartianWarningPassed = true;
+        }
+
+        if(MartianWarningPassed == true)
+        {
+            if(MartianAttackSet == false)
+            {
+                //Random rnd = new Random();
+                int MartianAttackFrequency = Random.Range(15, 35);
+
+                TurnsUntillMartianAttack = MartianAttackFrequency; // This Calculus wont work:TurnsPassedUntillMartianWarning + MartianAttackFrequency;
+                MartianAttackNumber++; // we keep track on what attacknumber it is that the martians are conducting in order to set how many Martian fighter bombers attack
+                MartianAttackSet = true;
+            }
+
+            if(MartianAttackSet == true)
+            {
+                TurnsUntillMartianAttack--;// count down until attack
+
+                if (TurnsUntillMartianAttack == 0)
+                {
+                    MartianAttack(MartianAttackNumber); // we call the Martian attack because the moonbase is now to be attacked.   
+                    MartianAttackSet = false; // we reset the martian attack o a new countdown can be given next round 
+
+
+                }
+
+
+
+                //WE NEED TO SET a warning if a radar is present at the base 
+                for(int i = 0; i < HangarManager.Instance().FinishedItems.Count; i++)
+                {
+                    if (HangarManager.Instance().FinishedItems[i].ItemID == 17)
+                    {
+                        MoonBaseHasRadar = true; // 
+                        break;
+                    }
+
+                }
+
+                if(MoonBaseHasRadar==true) //Remember this is called every turn if martiansattack is true..
+                {
+                    // give warning in log(first time!!) and defense module of when an attack will occur. countdown each round
+
+                }
+           
+            
+            }
+           
+        }
 
     }
+
+    public void MartianAttack(int AttackNr) // Parameter i what number attack it is.
+    {
+        AttackAlertPanel.SetActive(true);
+
+
+        // here we calculate attack -or maybe in it own class/method
+
+        MessageManager.Instance().UpdateMessagePanel("Turn: " + NextTurn.Instance().TurnCounter+"\n", "Martian fighterbombers attacked Moonbase! " + "\n"); // Maybe result/Casualties here!?
+    }
+
+
 
 
     public static NextTurn Instance() // 

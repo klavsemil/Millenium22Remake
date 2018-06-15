@@ -12,11 +12,25 @@ public class ShipManager : MonoBehaviour {
     public GameObject TextForDestinationOfShip; // if destination is set then this is to be changed.
     public GameObject TextForDaysUntillArrival;
 
+    public GameObject TextForWaterAmount;
+    public GameObject TextForTitanAmount;
+    public GameObject TextForAluAmount;
+    public GameObject TextForCopperAmount;
+    public GameObject TextForSilicaAmount;
+    public GameObject TextForIronAmount;
+    public GameObject TextForSilverAmount;
+    public GameObject TextForPlatinumAmount;
+    public GameObject TextForUraniumAmount;
+
     public GameObject NavButton;
     public GameObject AutoMineButton;
     public GameObject NavPanel;
     public GameObject AutominePanel;
 
+    public int AutomineChance; // used to calculate chance of finding ore in automine method below
+    public int AutomineAccident; // used to calculate risk of losing Grazer.
+    public bool CometOreFound;
+    public bool AsteroidOreFound;
 
 
     //public GameObject SetAutoMiningCometButton;
@@ -112,10 +126,6 @@ public class ShipManager : MonoBehaviour {
             TextComponentShipLocation.text = "AutoMining In Asteroids";
             TextComponentShipDestination.text = ">>Automining<<";
         }
-
-
-
-
 
 
 
@@ -386,28 +396,40 @@ public class ShipManager : MonoBehaviour {
                     {
                         HangarManager.Instance().ShipsInService[i].InTransitAsteroidField = false;
                         HangarManager.Instance().ShipsInService[i].InAsteroidField = true;
-                        // VERY IMPORTANT TO GET MESAGE ONTO LOG THAT SHIP HAs ARRIVED
+                        // GET MESAGE ONTO LOG THAT SHIP HAs ARRIVED
+                       if(HangarManager.Instance().ShipsInService[i].AutoMineRunAsteroids==true)
+                             MessageManager.Instance().UpdateMessagePanel("Turn: " + NextTurn.Instance().TurnCounter + ". Spacecraft: " + HangarManager.Instance().ShipsInService[i].ShipName + "\n", "                        Arrived in Asteroid Field, Now >>AutoMining the Asteroid Field<<" + "\n");
+                        else MessageManager.Instance().UpdateMessagePanel("Turn: " + NextTurn.Instance().TurnCounter + ". Spacecraft: " + HangarManager.Instance().ShipsInService[i].ShipName + "\n", "                         Arrived in Asteroid Field" + "\n");
 
                     }
                     if (HangarManager.Instance().ShipsInService[i].InTransitComet)
                     {
                         HangarManager.Instance().ShipsInService[i].InTransitComet = false;
                         HangarManager.Instance().ShipsInService[i].OnComet = true;
+                                 if (HangarManager.Instance().ShipsInService[i].AutoMineRunComet == true)
+                             MessageManager.Instance().UpdateMessagePanel("Turn: " + NextTurn.Instance().TurnCounter + ". Spacecraft: " + HangarManager.Instance().ShipsInService[i].ShipName + "\n", "                        Arrived in vicinity of Comet, Now >>AutoMining the Comet<<" + "\n");
+                        else MessageManager.Instance().UpdateMessagePanel("Turn: " + NextTurn.Instance().TurnCounter + ". Spacecraft: " + HangarManager.Instance().ShipsInService[i].ShipName + "\n", "                        Arrived in vicinity of Comet" + "\n");
+
+
                     }
                     if (HangarManager.Instance().ShipsInService[i].InTransitMoon)
                     {
                         HangarManager.Instance().ShipsInService[i].InTransitMoon = false;
                         HangarManager.Instance().ShipsInService[i].InOrbit = true;
+                        MessageManager.Instance().UpdateMessagePanel("Turn: " + NextTurn.Instance().TurnCounter + ". Spacecraft: " + HangarManager.Instance().ShipsInService[i].ShipName + "\n", "                        Arrived in Moon Orbit" + "\n");
                     }
                     if (HangarManager.Instance().ShipsInService[i].InTransitMars)
                     {
                         HangarManager.Instance().ShipsInService[i].InTransitMars = false;
                         HangarManager.Instance().ShipsInService[i].InorbitMars = true;
+                        MessageManager.Instance().UpdateMessagePanel("Turn: " + NextTurn.Instance().TurnCounter + ". Spacecraft: " + HangarManager.Instance().ShipsInService[i].ShipName + "\n", "                        Arrived in Mars Orbit" + "\n");
                     }
                     if (HangarManager.Instance().ShipsInService[i].InTransitCallisto)
                     {
                         HangarManager.Instance().ShipsInService[i].InTransitCallisto = false;
                         HangarManager.Instance().ShipsInService[i].InOrbitCallisto = true;
+                        MessageManager.Instance().UpdateMessagePanel("Turn: " + NextTurn.Instance().TurnCounter + ". Spacecraft: " + HangarManager.Instance().ShipsInService[i].ShipName + "\n", "                        Arrived in Callisto Orbit" + "\n");
+
                     }
                     if (HangarManager.Instance().ShipsInService[i].AutoMineRunComet)
                     {
@@ -419,46 +441,275 @@ public class ShipManager : MonoBehaviour {
                     if (HangarManager.Instance().ShipsInService[i].AutoMineRunAsteroids)
                     {
                         HangarManager.Instance().ShipsInService[i].CurrentlyMining = true;
-                        HangarManager.Instance().ShipsInService[i].DaysOnAutoMineAsteroids = 0; // this i to be incremented pr turn elsewhere (not sure where yet)
+                        HangarManager.Instance().ShipsInService[i].DaysOnAutoMineAsteroids = 0; // this i to be incremented pr turn elsewhere in automine method and set to a minus value when ore is found  (not sure where yet)
 
-                        //mesage on automining commencing
+                        //mesage on automining commencing + Calling Automine method
                     }
-
-
-
-
 
                 }
 
                 //future decrement of fuel
             }
 
-            if(HangarManager.Instance().ShipsInService[i].AutoMineRunComet == true && HangarManager.Instance().ShipsInService[i].CurrentlyMining == true)
+           
+
+        }
+
+    }
+
+    public void Automine() //called every round from NextTurn.Progresspacetravel
+    {
+        int AsteroidOreFindFrequency = 0;
+        int CometOreFindFrequency = 0;
+        int ResourceSetFound; // reused on all reources random calculation 
+        int AccidentFrequency = 0;
+
+      
+        for (int i = 0; i < HangarManager.Instance().ShipsInService.Count; i++)
+        {
+
+            if (HangarManager.Instance().ShipsInService[i].AutoMineRunComet == true && HangarManager.Instance().ShipsInService[i].CurrentlyMining == true)
             {
                 HangarManager.Instance().ShipsInService[i].DaysOnAutomineComet++;
                 //here we insert chance for ship to find minerals and/or be destroyed by Comet Geyser (Message)
+
+ 
+                if (HangarManager.Instance().ShipsInService[i].DaysOnAutomineComet < 10 && HangarManager.Instance().ShipsInService[i].DaysOnAutomineComet > 0) // above zero as if it is below zero it is tranporting ore found to the moonbase (remmeber mesage for this!)
+                {
+                    AutomineChance = 10; // 10 is lowest chance of finding minable ore on comet
+                    AutomineAccident = 20;
+                    CometOreFindFrequency = Random.Range(0, 100);
+                    AccidentFrequency = Random.Range(0, 100);
+                    CometOreFindFrequency += AutomineChance;
+                    AccidentFrequency += AutomineAccident;
+
+                }
+                if (HangarManager.Instance().ShipsInService[i].DaysOnAutomineComet >= 10)
+                {
+                    AutomineChance = 20; // 
+                    AutomineAccident = 40;
+                    CometOreFindFrequency = Random.Range(0, 100);
+                    AccidentFrequency = Random.Range(0, 100);
+                    CometOreFindFrequency += AutomineChance;
+                    AccidentFrequency += AutomineAccident;
+                }
+                Debug.Log(" Comet Ore frequency = "+ CometOreFindFrequency);
+
+   
+
+                if (AccidentFrequency > 115)
+                {
+                    MessageManager.Instance().UpdateMessagePanel("Turn: " + NextTurn.Instance().TurnCounter + ". Spacecraft: " + HangarManager.Instance().ShipsInService[i].ShipName + "\n", " A Geyser on the comet errupted right under the ship, and it together with its crew was lost" + "\n"); // here more accident narrative options should be possible
+                    CometOreFindFrequency = 0; // Not sure this sis NEccessary.... as we destroy the ship
+                    //destroy ship, remove Correctly from ShipsinServiceList 
+
+                    HangarManager.Instance().ShipsInService.RemoveAt(i); // check if this works ...................................########%&¤####¤#%¤&%/&(%%¤""#¤%&/
+                    break; // we need to get out of the current loop as its size is now altered and would probably crassh
+                }
+
+                if (CometOreFindFrequency > 95) // this has to be balanced out using probability math.
+                {
+                    // Ore is found
+                    HangarManager.Instance().ShipsInService[i].DaysOnAutomineComet = -48; // as it takes 24 day to travel one way between the moon and comet we need to set this back to -48 to make it make this run and not collecting more ore meanwhile (!)  
+                    MessageManager.Instance().UpdateMessagePanel("Turn: " + NextTurn.Instance().TurnCounter + ". Spacecraft: " + HangarManager.Instance().ShipsInService[i].ShipName + "\n", "   Found Usable ore vein on Comet -> Autotransporting it to moonbase" + "\n");
+                    // calculate what is found TOTAL 250 Tons
+                    ResourceSetFound = Random.Range(0, 10);
+
+                    if (ResourceSetFound >= 0 && ResourceSetFound < 4) 
+                    {
+                        HangarManager.Instance().ShipsInService[i].WaterCarried = 30;
+                        HangarManager.Instance().ShipsInService[i].TitanCarried = 30;
+                        HangarManager.Instance().ShipsInService[i].AluCarried = 30;
+                        HangarManager.Instance().ShipsInService[i].CopperCarried = 30;
+                        HangarManager.Instance().ShipsInService[i].SilicaCarried = 40;
+                        HangarManager.Instance().ShipsInService[i].IronCarried = 70;
+                        HangarManager.Instance().ShipsInService[i].PlatinumCarried = 20;
+                    }
+
+                    if (ResourceSetFound >= 4 && ResourceSetFound < 8)
+                    {
+                        HangarManager.Instance().ShipsInService[i].WaterCarried = 40;
+                        HangarManager.Instance().ShipsInService[i].TitanCarried = 20;
+                        HangarManager.Instance().ShipsInService[i].AluCarried = 50;
+                        HangarManager.Instance().ShipsInService[i].CopperCarried = 20;
+                        HangarManager.Instance().ShipsInService[i].SilicaCarried = 60;
+                        HangarManager.Instance().ShipsInService[i].IronCarried = 50;
+                        HangarManager.Instance().ShipsInService[i].PlatinumCarried = 10;
+                    }
+
+                    if (ResourceSetFound >= 8 && ResourceSetFound < 10)
+                    {
+                        HangarManager.Instance().ShipsInService[i].WaterCarried = 20;
+                        HangarManager.Instance().ShipsInService[i].TitanCarried = 40;
+                        HangarManager.Instance().ShipsInService[i].AluCarried = 20;
+                        HangarManager.Instance().ShipsInService[i].CopperCarried = 40;
+                        HangarManager.Instance().ShipsInService[i].SilicaCarried = 40;
+                        HangarManager.Instance().ShipsInService[i].IronCarried = 50;
+                        HangarManager.Instance().ShipsInService[i].PlatinumCarried = 40;
+                    }
+
+
+                    CometOreFindFrequency = 0; // resetscore to 0 ,NOT SURE THIs IS NEcessary
+                }
+
+                if (HangarManager.Instance().ShipsInService[i].DaysOnAutomineComet == -24) // if this number i reached the grazer is exactly back at moon and the resources helda are automatically ofloaded to moon resource pool
+                {
+                    ResourceManager.instance.WaterOnBase += HangarManager.Instance().ShipsInService[i].WaterCarried;
+                    ResourceManager.instance.TitanOnBase += HangarManager.Instance().ShipsInService[i].TitanCarried;
+                    ResourceManager.instance.AluOnBase += HangarManager.Instance().ShipsInService[i].AluCarried;
+                    ResourceManager.instance.CopperOnBase += HangarManager.Instance().ShipsInService[i].CopperCarried;
+                    ResourceManager.instance.IronOnBase += HangarManager.Instance().ShipsInService[i].IronCarried;
+                    ResourceManager.instance.SilicaOnBase += HangarManager.Instance().ShipsInService[i].SilicaCarried;
+                    ResourceManager.instance.SilverOnBase += HangarManager.Instance().ShipsInService[i].SilverCarried;
+                    ResourceManager.instance.PlatinumOnBase += HangarManager.Instance().ShipsInService[i].PlatinumCarried;
+                    ResourceManager.instance.UraniumOnBase += HangarManager.Instance().ShipsInService[i].UraniumCarried;
+
+                    HangarManager.Instance().ShipsInService[i].WaterCarried = 0; //After offloading resources Reset it!!
+                    HangarManager.Instance().ShipsInService[i].TitanCarried = 0;
+                    HangarManager.Instance().ShipsInService[i].AluCarried = 0;
+                    HangarManager.Instance().ShipsInService[i].CopperCarried = 0;
+                    HangarManager.Instance().ShipsInService[i].SilicaCarried = 0;
+                    HangarManager.Instance().ShipsInService[i].IronCarried = 0;
+                    HangarManager.Instance().ShipsInService[i].UraniumCarried = 0;
+
+                }
+
             }
 
             if (HangarManager.Instance().ShipsInService[i].AutoMineRunAsteroids == true && HangarManager.Instance().ShipsInService[i].CurrentlyMining == true)
             {
                 HangarManager.Instance().ShipsInService[i].DaysOnAutoMineAsteroids++;
                 //here we insert chance for ship to find minerals and/or be destroyed by Comet Geyser (Message)
+                if (HangarManager.Instance().ShipsInService[i].DaysOnAutoMineAsteroids < 10 && HangarManager.Instance().ShipsInService[i].DaysOnAutoMineAsteroids > 0)
+                {
+                    AutomineChance = 20; // 
+                    AutomineAccident = 10;
+                    AsteroidOreFindFrequency = Random.Range(0, 100);
+                    AccidentFrequency = Random.Range(0, 100);
+                    AsteroidOreFindFrequency += AutomineChance;
+                    AccidentFrequency += AutomineAccident;
+                }
+                if (HangarManager.Instance().ShipsInService[i].DaysOnAutoMineAsteroids >= 10)
+                {
+                    AutomineChance = 40; // 
+                    AutomineAccident = 20;
+                    AsteroidOreFindFrequency = Random.Range(0, 100);
+                    AccidentFrequency = Random.Range(0, 100);
+                    AsteroidOreFindFrequency += AutomineChance;
+                    AccidentFrequency += AutomineAccident;
+                }
+
+
+                if (AccidentFrequency > 120)
+                {
+                    MessageManager.Instance().UpdateMessagePanel("Turn: " + NextTurn.Instance().TurnCounter + ". Spacecraft: " + HangarManager.Instance().ShipsInService[i].ShipName + "\n", " A Mysterious little spaceCraft appeared on the grazers radar just before all communiction was lost. The ship crew was lost" + "\n"); // here more accident narrative options should be possible
+                    CometOreFindFrequency = 0; // Not sure this sis NEccessary.... as we destroy the ship
+                    //destroy ship, remove Correctly from ShipsinServiceList 
+
+                    HangarManager.Instance().ShipsInService.RemoveAt(i); // check if this works ...................................########%&¤####¤#%¤&%/&(%%¤""#¤%&/NOT SURE Yet
+                    break; // we need to get out of the current loop as its size is now altered and would probably crassh
+                }
+
+
+                if (AsteroidOreFindFrequency > 90) // this has to be balanced out using probability math.
+                {
+                    // Ore is found
+                    HangarManager.Instance().ShipsInService[i].DaysOnAutoMineAsteroids = -34; // as it takes 24 day to travel one way between the moon and asteroids, we need to set this back to -34 to make it make this run and not collecting more ore meanwhile (!)  
+                    MessageManager.Instance().UpdateMessagePanel("Turn: " + NextTurn.Instance().TurnCounter + ". Spacecraft: " + HangarManager.Instance().ShipsInService[i].ShipName + "\n", "   Found Usable ore on Asteroid -> Autotransporting it to moonbase" + "\n");
+                    // calculate what is found
+                    ResourceSetFound = Random.Range(0, 10);
+
+                    if (ResourceSetFound >= 0 && ResourceSetFound < 4)
+                    {
+                        HangarManager.Instance().ShipsInService[i].WaterCarried = 30;
+                        HangarManager.Instance().ShipsInService[i].TitanCarried = 30;
+                        HangarManager.Instance().ShipsInService[i].AluCarried = 30;
+                        HangarManager.Instance().ShipsInService[i].CopperCarried = 30;
+                        HangarManager.Instance().ShipsInService[i].SilicaCarried = 40;
+                        HangarManager.Instance().ShipsInService[i].IronCarried = 70;
+                        HangarManager.Instance().ShipsInService[i].UraniumCarried = 20;
+                    }
+
+                    if (ResourceSetFound >= 4 && ResourceSetFound < 8)
+                    {
+                        HangarManager.Instance().ShipsInService[i].WaterCarried = 40;
+                        HangarManager.Instance().ShipsInService[i].TitanCarried = 20;
+                        HangarManager.Instance().ShipsInService[i].AluCarried = 50;
+                        HangarManager.Instance().ShipsInService[i].CopperCarried = 20;
+                        HangarManager.Instance().ShipsInService[i].SilicaCarried = 60;
+                        HangarManager.Instance().ShipsInService[i].IronCarried = 50;
+                        HangarManager.Instance().ShipsInService[i].UraniumCarried = 10;
+                    }
+
+                    if (ResourceSetFound >= 8 && ResourceSetFound < 10)
+                    {
+                        HangarManager.Instance().ShipsInService[i].WaterCarried = 20;
+                        HangarManager.Instance().ShipsInService[i].TitanCarried = 40;
+                        HangarManager.Instance().ShipsInService[i].AluCarried = 20;
+                        HangarManager.Instance().ShipsInService[i].CopperCarried = 40;
+                        HangarManager.Instance().ShipsInService[i].SilicaCarried = 40;
+                        HangarManager.Instance().ShipsInService[i].IronCarried = 50;
+                        HangarManager.Instance().ShipsInService[i].UraniumCarried = 40;
+                    }
+                    //AsteroidOreFindFrequency = 0; // NOT URE IF ¨this reset is necesary
+                }
+
+                if (HangarManager.Instance().ShipsInService[i].DaysOnAutoMineAsteroids == -17) // if this number i reached the grazer is exactly back at moon and the resources helda are automatically ofloaded to moon resource pool
+                {
+                    ResourceManager.instance.WaterOnBase += HangarManager.Instance().ShipsInService[i].WaterCarried;
+                    ResourceManager.instance.TitanOnBase += HangarManager.Instance().ShipsInService[i].TitanCarried;
+                    ResourceManager.instance.AluOnBase += HangarManager.Instance().ShipsInService[i].AluCarried;
+                    ResourceManager.instance.CopperOnBase += HangarManager.Instance().ShipsInService[i].CopperCarried;
+                    ResourceManager.instance.IronOnBase += HangarManager.Instance().ShipsInService[i].IronCarried;
+                    ResourceManager.instance.SilicaOnBase += HangarManager.Instance().ShipsInService[i].SilicaCarried;
+                    ResourceManager.instance.SilverOnBase += HangarManager.Instance().ShipsInService[i].SilverCarried;
+                    ResourceManager.instance.PlatinumOnBase += HangarManager.Instance().ShipsInService[i].PlatinumCarried;
+                    ResourceManager.instance.UraniumOnBase += HangarManager.Instance().ShipsInService[i].UraniumCarried;
+
+                    HangarManager.Instance().ShipsInService[i].WaterCarried = 0;
+                    HangarManager.Instance().ShipsInService[i].TitanCarried = 0;
+                    HangarManager.Instance().ShipsInService[i].AluCarried = 0;
+                    HangarManager.Instance().ShipsInService[i].CopperCarried = 0;
+                    HangarManager.Instance().ShipsInService[i].SilicaCarried = 0;
+                    HangarManager.Instance().ShipsInService[i].IronCarried = 0;
+                    HangarManager.Instance().ShipsInService[i].UraniumCarried = 0;
+
+
+                }
+
+
+
+
+
             }
 
+            var TextComponentWater = TextForWaterAmount.GetComponent<Text>();
+            var TextComponentTitan = TextForTitanAmount.GetComponent<Text>();
+            var TextComponentAlu = TextForAluAmount.GetComponent<Text>();
+            var TextComponentCopper = TextForCopperAmount.GetComponent<Text>();
+            var TextComponentSilica = TextForSilicaAmount.GetComponent<Text>();
+            var TextComponentIron = TextForIronAmount.GetComponent<Text>();
+            var TextComponentSilver = TextForSilverAmount.GetComponent<Text>();
+            var TextComponentPlatinum = TextForPlatinumAmount.GetComponent<Text>();
+            var TextComponentUranium = TextForUraniumAmount.GetComponent<Text>();
 
-
-
-
-
+            TextComponentWater.text = HangarManager.Instance().ShipsInService[i].WaterCarried + "";
+            TextComponentTitan.text = HangarManager.Instance().ShipsInService[i].TitanCarried + "";
+            TextComponentAlu.text = HangarManager.Instance().ShipsInService[i].AluCarried + "";
+            TextComponentCopper.text = HangarManager.Instance().ShipsInService[i].CopperCarried + "";
+            TextComponentSilica.text = HangarManager.Instance().ShipsInService[i].SilicaCarried + "";
+            TextComponentIron.text = HangarManager.Instance().ShipsInService[i].IronCarried + "";
+            TextComponentSilver.text = HangarManager.Instance().ShipsInService[i].SilverCarried + "";
+            TextComponentPlatinum.text = HangarManager.Instance().ShipsInService[i].PlatinumCarried + "";
+            TextComponentUranium.text = HangarManager.Instance().ShipsInService[i].UraniumCarried + "";
 
         }
 
 
 
 
+
     }
-
-
 
 
 

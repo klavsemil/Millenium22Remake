@@ -52799,10 +52799,23 @@ MonoBehaviour:
   TextForPositionOfShip: {fileID: 1705991317}
   TextForDestinationOfShip: {fileID: 1032074144}
   TextForDaysUntillArrival: {fileID: 1513618589}
+  TextForWaterAmount: {fileID: 1614122441}
+  TextForTitanAmount: {fileID: 1340628119}
+  TextForAluAmount: {fileID: 1415153271}
+  TextForCopperAmount: {fileID: 1945922296}
+  TextForSilicaAmount: {fileID: 484860553}
+  TextForIronAmount: {fileID: 1790070135}
+  TextForSilverAmount: {fileID: 383915181}
+  TextForPlatinumAmount: {fileID: 1857200109}
+  TextForUraniumAmount: {fileID: 1287555708}
   NavButton: {fileID: 79063981}
   AutoMineButton: {fileID: 974443760}
   NavPanel: {fileID: 2069021320}
   AutominePanel: {fileID: 2120194428}
+  AutomineChance: 0
+  AutomineAccident: 0
+  CometOreFound: 0
+  AsteroidOreFound: 0
   ActiveShipNumber: 0
 --- !u!1 &1429606845
 GameObject:
@@ -70645,6 +70658,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TurnCounter: 0
+  TurnsPassedUntillMartianWarning: 0
+  MartianWarningPassed: 0
+  MartianAttackSet: 0
+  TurnsUntillMartianAttack: 0
+  MartianAttackNumber: 0
+  MoonBaseHasRadar: 0
+  AttackAlertPanel: {fileID: 1809209890}
   AlreadyOccupiedBaysNr: 0
   NrOfFinishedShipsInHangar: 0
   TurnText: {fileID: 223101747}
