@@ -204,7 +204,7 @@ public class NextTurn : MonoBehaviour {
             if(MartianAttackSet == false)
             {
                 //Random rnd = new Random();
-                int MartianAttackFrequency = Random.Range(15, 35);
+                int MartianAttackFrequency = Random.Range(20, 45);
 
                 TurnsUntillMartianAttack = MartianAttackFrequency; // This Calculus wont work:TurnsPassedUntillMartianWarning + MartianAttackFrequency;
                 MartianAttackNumber++; // we keep track on what attacknumber it is that the martians are conducting in order to set how many Martian fighter bombers attack

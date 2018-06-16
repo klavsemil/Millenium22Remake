@@ -30,7 +30,7 @@ public class BuildItem : MonoBehaviour {
         BaseItem newObject = BaseItemDatabase.GetItem(BuildNumber); //NOTE: THIS HAS BEEN MOVED OUTSIDE THE IF condition BELOW!!!
         HangarManager.Instance().InProductionItems.Add(newObject);
         
-            if (ResourceManager.instance.HasResourcesFor(newObject)) // Do we have the required resources
+            if (ResourceManager.instance.HasResourcesFor(newObject) && ResourceManager.instance.HasEnergyFor(newObject)) // Do we have the required resources ANd Energy
             {//If yes
 
            
@@ -67,13 +67,13 @@ public class BuildItem : MonoBehaviour {
                 HangarManager.Instance().InsertEquipment(newObject);
                 DaysUntilFinished = newObject.TurnsUntillFinished; // not sure if this is used....                
                 }
-                if (newObject.ItemTypeNr == 3) // if this is an energyitem
+                if (newObject.ItemTypeNr == 3) // if this is an Weaponitem
                 {
                  newObject.InProduction = true; // set the item to be in production
                  HangarManager.Instance().InsertEquipment(newObject);
                  DaysUntilFinished = newObject.TurnsUntillFinished; // not sure if this is used....                
                 }
-                if (newObject.ItemTypeNr == 4) // if this is an energyitem
+                if (newObject.ItemTypeNr == 4) // if this is an Supplementaryitem
                 {
                 newObject.InProduction = true; // set the item to be in production
                 HangarManager.Instance().InsertEquipment(newObject);

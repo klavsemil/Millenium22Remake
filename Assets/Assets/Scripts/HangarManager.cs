@@ -78,6 +78,8 @@ public class HangarManager : MonoBehaviour {
     public int NrOfRadars;
 
     //Objects for ship rooster // We have only room for a limited ammount of ships in this game!!!
+    public GameObject[] TextForShipName;
+
     public GameObject TextForShip1Name; 
     public GameObject TextForShip1Status;
     public GameObject TextForShip1ETA;
@@ -156,14 +158,14 @@ public class HangarManager : MonoBehaviour {
         HangarManager.Instance().Bays[BayNumber].ship.InMoonBayNr = 0;   //We  set the moonbay status for the ship to zero as it is not more on moon.
         //HangarManager.Instance().ShipsInService.Add(Bays[BayNumber].ship); //add the specific ship from the baynumber where the launch button has been clicked // HOPE THIS IS LIKE A STACK SO IT ADDS FROM THE LAST PLace in the list
 
-
+        // Problem Problem Problem... This erases the equipmentlist because a method in Nexturn (I believe) get outof bound...  
         if (FinishedItems.Count > 0) // We also need to remove the ship from the list of finished items at the moon
         {
             for (int i = HangarManager.Instance().FinishedItems.Count-1; i >= 0; i--)
             {
                 if (HangarManager.Instance().FinishedItems[i].InMoonBayNr == BayNumber) // HERE WE NEED TO KNOW IF THEindex starts at 0 or 1 ??
                 {
-                    HangarManager.Instance().FinishedItems.RemoveAt(i);// We Remove the item from the Finished Items list
+                   // HangarManager.Instance().FinishedItems.RemoveAt(i);// We Remove the item from the Finished Items list
 
                 }
             }
@@ -476,9 +478,16 @@ public class HangarManager : MonoBehaviour {
     public void DisplayShipsInList() // This method displays finished items in the Spacecraft roosterlist
     {
 
-        var TextComponentShip1Name = TextForShip1Name.GetComponent<Text>();
-        var TextComponentShip1Status = TextForShip1Status.GetComponent<Text>();
-        var TextComponentShip1ETA = TextForShip1ETA.GetComponent<Text>();
+        List<ShipListItem> shipList = new List<ShipListItem>();
+
+        ShipListItem one = new ShipListItem();
+        one.active = ShipsInService.Count > 0;
+        one.shipName = TextForShip1Name.GetComponent<Text>();
+        one.shipStatus = TextForShip1Status.GetComponent<Text>();
+        one.shipETA = TextForShip1ETA.GetComponent<Text>();
+        one.button = Ship1Access;
+
+        shipList.Add(one);
 
         var TextComponentShip2Name = TextForShip2Name.GetComponent<Text>();
         var TextComponentShip2Status = TextForShip2Status.GetComponent<Text>();
@@ -518,7 +527,7 @@ public class HangarManager : MonoBehaviour {
 
         if (ShipsInService.Count>0)
         {
-            Ship1Access.SetActive(true); // set the button for link to cockpit true
+            /*Ship1Access.SetActive(true); // set the button for link to cockpit true
             TextComponentShip1Name.text = HangarManager.Instance().ShipsInService[0].ShipName;
 
             if (HangarManager.Instance().ShipsInService[0].OnMoon == true)
@@ -554,7 +563,7 @@ public class HangarManager : MonoBehaviour {
             if (HangarManager.Instance().ShipsInService[0].InTransitCallisto == true)
                 TextComponentShip1Status.text = "In Transit to Callisto";
 
-            TextComponentShip1ETA.text = HangarManager.Instance().ShipsInService[0].DaysUntilArrival+"";
+            TextComponentShip1ETA.text = HangarManager.Instance().ShipsInService[0].DaysUntilArrival+"";*/
 
         }
 
@@ -1038,4 +1047,15 @@ public class HangarManager : MonoBehaviour {
 
 
 
+}
+
+
+public struct ShipListItem
+{
+    public bool active;
+    public GameObject button;
+
+    public Text shipName;
+    public Text shipStatus;
+    public Text shipETA;
 }

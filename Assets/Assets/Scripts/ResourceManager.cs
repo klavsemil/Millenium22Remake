@@ -18,6 +18,9 @@ public class ResourceManager : MonoBehaviour {
     public int SilverOnBase;
     public int PlatinumOnBase;
     public int UraniumOnBase;
+
+    public int EnergyOnBase = 170; //Basic Battery = 7KW , Solagen MK1 = 170 KW
+    public bool HasSolagenMK2; // Not sure on this yet 
    
     public bool HasResourcesFor(BaseItem ProductionItem) //if the object being asked for (the parameter BaseItem object) have the necessary resources//THIS also deducts resources if true
     {
@@ -48,6 +51,52 @@ public class ResourceManager : MonoBehaviour {
 
     }
 
+    public bool HasEnergyFor(BaseItem ProductionItem)
+    {
+        EnergyOnBase = 170;
+
+        for(int i =0; i<HangarManager.Instance().FinishedItems.Count; i++)
+        {
+            if (HangarManager.Instance().FinishedItems[i].ItemID==6)
+            {
+                if(EnergyOnBase >=170)
+                EnergyOnBase = 680;
+                
+            }
+            if (HangarManager.Instance().FinishedItems[i].ItemID == 7)
+            {
+                if(EnergyOnBase >= 680)
+                EnergyOnBase = 3200;
+           
+            }
+            if (HangarManager.Instance().FinishedItems[i].ItemID == 8)
+            {
+                if (EnergyOnBase >= 3200)
+                EnergyOnBase = 25000;
+               
+            }
+            if (HangarManager.Instance().FinishedItems[i].ItemID == 9)
+            {
+                if(EnergyOnBase >=25000)
+                EnergyOnBase = 37000;
+              
+            }
+
+        }
+        Debug.Log("ENERGY ON BASE: " + EnergyOnBase);
+        if (ProductionItem.PowerNeeded <= EnergyOnBase)
+        {
+            return true;
+
+        }
+        else return false;
+
+
+    }
+    
+
+
+
     public static ResourceManager instance;
 
     public void Awake() // only for one instance of this , Google singleton!, This works Only if attached to one object!!!
@@ -71,7 +120,7 @@ public class ResourceManager : MonoBehaviour {
 
         // If PowerManager.powerSurplus > PowerNeededFor mining{ ....  // Power will always be sufficient
         
-     WaterOnBase +=3;
+     WaterOnBase +=3; //THis Should be changed down for the prototype a there i energy enough
      TitanOnBase+=6;
      AluOnBase+=4;
      CopperOnBase+=0;

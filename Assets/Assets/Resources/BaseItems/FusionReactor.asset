@@ -17,8 +17,8 @@ MonoBehaviour:
   ItemTypeNr: 2
   ItemDecription: Powerfull Fusion Reactor
   InProduction: 0
-  TurnsUntillFinished: 0
-  PowerNeeded: 0
+  TurnsUntillFinished: 30
+  PowerNeeded: 3200
   WaterNeeded: 100
   TitanNeeded: 220
   AluNeeded: 0
@@ -40,6 +40,7 @@ MonoBehaviour:
   AsteroidMiningCapabillity: 0
   AsteroidFound: 0
   OnMoon: 1
+  InMoonBayNr: 0
   InOrbit: 0
   OnShip: 0
   InTransitAsteroidField: 0
@@ -48,8 +49,15 @@ MonoBehaviour:
   InTransitCallisto: 0
   InTransitMars: 0
   InAsteroidField: 0
+  InorbitMars: 0
+  InOrbitCallisto: 0
   OnComet: 0
   DaysUntilArrival: 0
+  AutoMineRunComet: 0
+  AutoMineRunAsteroids: 0
+  DaysOnAutomineComet: 0
+  DaysOnAutoMineAsteroids: 0
+  CurrentlyMining: 0
   ShipIdentifier: 0
   WaterCarried: 0
   TitanCarried: 0
