@@ -77,9 +77,13 @@ public class HangarManager : MonoBehaviour {
     public int NrOfTerraformers;
     public int NrOfRadars;
 
-    //Objects for ship rooster // We have only room for a limited ammount of ships in this game!!!
-    public GameObject[] TextForShipName;
+    public GameObject shipDisplayPrefab;
+    public GameObject shipListDisplay;
 
+    //Objects for ship rooster // We have only room for a limited ammount of ships in this game!!!
+    /*public GameObject[] TextForShipName;
+    public GameObject[] TextForShipStatus;
+    public GameObject[] TextForShipETA;
     public GameObject TextForShip1Name; 
     public GameObject TextForShip1Status;
     public GameObject TextForShip1ETA;
@@ -120,7 +124,7 @@ public class HangarManager : MonoBehaviour {
     public GameObject Ship7Access;
     public GameObject Ship8Access;
     public GameObject Ship9Access;
-    public GameObject Ship10Access;
+    public GameObject Ship10Access;*/
 
 
 
@@ -232,14 +236,14 @@ public class HangarManager : MonoBehaviour {
     public void SetValuesInHangarWindow(int BayNumber, BaseItem ship) // this Method fill in the textfields on the hangarbaypanel for chosen vacant Bay
     {
 
-        Bays[BayNumber].gameObject.transform.GetChild(2).gameObject.GetComponent<Text>().text = ship.ItemName ;
-        Bays[BayNumber].gameObject.transform.GetChild(4).gameObject.GetComponent<Text>().text = ship.ShipName;
-        Bays[BayNumber].gameObject.transform.GetChild(6).gameObject.GetComponent<Text>().text = ship.Crew ;
+        Bays[BayNumber].panel.transform.GetChild(2).gameObject.GetComponent<Text>().text = ship.ItemName ;
+        Bays[BayNumber].panel.transform.GetChild(4).gameObject.GetComponent<Text>().text = ship.ShipName;
+        Bays[BayNumber].panel.transform.GetChild(6).gameObject.GetComponent<Text>().text = ship.Crew ;
 
         if(ship.InProduction == true)//if the object in hangar i in production it i informed to the player here
         {
-            Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = "SpaceCraft in production! Finish in     turns"; // This Sees to that this bay is just reserved to be in production
-            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ship.TurnsUntillFinished + ""; // setting the number of turns until build is finish            
+            Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = "SpaceCraft in production! Finish in     turns"; // This Sees to that this bay is just reserved to be in production
+            Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ship.TurnsUntillFinished + ""; // setting the number of turns until build is finish            
         }
 
         //Below is for setting 3D models in of chosen vehicles in hangars
@@ -247,48 +251,48 @@ public class HangarManager : MonoBehaviour {
         // Below is for displaying this objects loaded resources if there is resources onboard spaceCraft else displaying there is nothing
         if (ship.WaterCarried > 0 || ship.TitanCarried > 0 || ship.IronCarried>0 || ship.AluCarried > 0 || ship.CopperCarried >0 || ship.SilicaCarried > 0 || ship.SilverCarried > 0 || ship.PlatinumCarried > 0 || ship.UraniumCarried > 0)
         {
-         Bays[BayNumber].gameObject.transform.GetChild(10).gameObject.GetComponent<Text>().text = "Water: " + ship.WaterCarried + ", " + "Titan: " + ship.TitanCarried + ", " + "Alu: " + ship.AluCarried + ", " + "Copper: " + ship.CopperCarried + ", " + "Silica: " + ship.SilicaCarried + ", " + "Iron: " + ship.IronCarried + ", " + "Silver: " + ship.SilverCarried + ", " + "Platinum: " + ship.PlatinumCarried + ", " + "Uranium: " + ship.UraniumCarried; // plus the other components
+         Bays[BayNumber].panel.transform.GetChild(10).gameObject.GetComponent<Text>().text = "Water: " + ship.WaterCarried + ", " + "Titan: " + ship.TitanCarried + ", " + "Alu: " + ship.AluCarried + ", " + "Copper: " + ship.CopperCarried + ", " + "Silica: " + ship.SilicaCarried + ", " + "Iron: " + ship.IronCarried + ", " + "Silver: " + ship.SilverCarried + ", " + "Platinum: " + ship.PlatinumCarried + ", " + "Uranium: " + ship.UraniumCarried; // plus the other components
         }
         else
         {
-            Bays[BayNumber].gameObject.transform.GetChild(10).gameObject.GetComponent<Text>().text = "No Cargo";
+            Bays[BayNumber].panel.transform.GetChild(10).gameObject.GetComponent<Text>().text = "No Cargo";
         }
     } 
 
     public void UpdateValuesInHangar(int BayNumber, BaseItem ship) // this method is used for updating information in the bay panels if there is a ship or a ship has reserved space there
     {
         if (ship != null) { 
-            Bays[BayNumber].gameObject.transform.GetChild(2).gameObject.GetComponent<Text>().text = ship.ItemName;
-            Bays[BayNumber].gameObject.transform.GetChild(4).gameObject.GetComponent<Text>().text = ship.ShipName;
-            Bays[BayNumber].gameObject.transform.GetChild(6).gameObject.GetComponent<Text>().text = ship.Crew;
+            Bays[BayNumber].panel.transform.GetChild(2).gameObject.GetComponent<Text>().text = ship.ItemName;
+            Bays[BayNumber].panel.transform.GetChild(4).gameObject.GetComponent<Text>().text = ship.ShipName;
+            Bays[BayNumber].panel.transform.GetChild(6).gameObject.GetComponent<Text>().text = ship.Crew;
 
             if (ship.InProduction == true)//if the object in hangar i in production it i informed to the player here
             {
-                Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = "SpaceCraft in production! Finish in    turns"; // This Sees to that this bay is just reserved to be in production
-                Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ship.TurnsUntillFinished + ""; // setting the number of turns until build is finish            
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = "SpaceCraft in production! Finish in    turns"; // This Sees to that this bay is just reserved to be in production
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ship.TurnsUntillFinished + ""; // setting the number of turns until build is finish            
             }
 
             if (ship.ItemID == 1 && BayNumber == 0 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a finished Grazer then display it in Hangar
             {
                 Grazer.SetActive(true); // Show a grazer in Hangar 01 
-                Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Space craft ready in Hangar"; // This sets the ship status
-                Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish 
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Space craft ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish 
                 LaunchButton.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton.SetActive(true); // Make it possible to load/unload craft -------------Not strictly necessary at this point
             }
             if (ship.ItemID == 0 && BayNumber == 0 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a probe then display it in Hangar
             {
                 Probe.SetActive(true); // Show a ptobe in Hangar 01 
-                Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
-                Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish 
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish 
                 LaunchButton.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton.SetActive(true);
             }
             if (ship.ItemID == 4 && BayNumber == 0 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a SIOS Base then display it in Hangar
             {
                 SIOS.SetActive(true); // Show a SIOS in Hangar 01 
-                Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SIOS Colony Spacecraft ready in Hangar"; // This sets the ship status
-                Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish  
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SIOS Colony Spacecraft ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish  
                 LaunchButton.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton.SetActive(true);
 
@@ -298,8 +302,8 @@ public class HangarManager : MonoBehaviour {
             if (ship.ItemID == 1 && BayNumber == 1 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Grazer then display it in Hangar
             {
                 Grazer2.SetActive(true); // Show a grazer in Hangar 02     
-                Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
-                Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish  
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish  
                 LaunchButton2.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton2.SetActive(true);
 
@@ -307,8 +311,8 @@ public class HangarManager : MonoBehaviour {
             if (ship.ItemID == 0 && BayNumber == 1 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a probe then display it in Hangar
             {
                 Probe2.SetActive(true); // Show a probe in Hangar 02     
-                Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
-                Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
                 LaunchButton2.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton2.SetActive(true);
 
@@ -318,8 +322,8 @@ public class HangarManager : MonoBehaviour {
             if (ship.ItemID == 1 && BayNumber == 2 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Grazer then display it in Hangar
             {
                 Grazer3.SetActive(true); // Show a grazer in Hangar 03  
-                Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
-                Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
                 LaunchButton3.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton3.SetActive(true);
 
@@ -327,8 +331,8 @@ public class HangarManager : MonoBehaviour {
             if (ship.ItemID == 0 && BayNumber == 2 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Probe then display it in Hangar
             {
                 Probe3.SetActive(true); // Show a probe in Hangar 03    
-                Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
-                Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
                 LaunchButton3.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton3.SetActive(true);
 
@@ -340,8 +344,8 @@ public class HangarManager : MonoBehaviour {
             if (ship.ItemID == 1 && BayNumber == 3 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Grazer then display it in Hangar
             {
                 Grazer4.SetActive(true); // Show a grazer in Hangar 04  
-                Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
-                Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
                 LaunchButton4.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton4.SetActive(true);
 
@@ -350,8 +354,8 @@ public class HangarManager : MonoBehaviour {
             if (ship.ItemID == 0 && BayNumber == 3 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Probe then display it in Hangar
             {
                 Probe4.SetActive(true); // Show a probe in Hangar 04    
-                Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
-                Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
                 LaunchButton4.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton4.SetActive(true);
 
@@ -360,8 +364,8 @@ public class HangarManager : MonoBehaviour {
             if (ship.ItemID == 1 && BayNumber == 4 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Grazer then display it in Hangar
             {
                 Grazer5.SetActive(true); // Show a grazer in Hangar 05  
-                Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
-                Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
                 LaunchButton5.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton5.SetActive(true);
 
@@ -370,8 +374,8 @@ public class HangarManager : MonoBehaviour {
             if (ship.ItemID == 0 && BayNumber == 4 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Probe then display it in Hangar
             {
                 Probe5.SetActive(true); // Show a probe in Hangar 05    
-                Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
-                Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
                 LaunchButton5.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton5.SetActive(true);
 
@@ -380,8 +384,8 @@ public class HangarManager : MonoBehaviour {
             if (ship.ItemID == 1 && BayNumber == 5 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Grazer then display it in Hangar
             {
                 Grazer6.SetActive(true); // Show a grazer in Hangar 06  
-                Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
-                Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
                 LaunchButton6.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton6.SetActive(true);
 
@@ -390,8 +394,8 @@ public class HangarManager : MonoBehaviour {
             if (ship.ItemID == 0 && BayNumber == 5 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Probe then display it in Hangar
             {
                 Probe6.SetActive(true); // Show a probe in Hangar 06    
-                Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
-                Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
                 LaunchButton6.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton6.SetActive(true);
 
@@ -400,8 +404,8 @@ public class HangarManager : MonoBehaviour {
             if (ship.ItemID == 1 && BayNumber == 6 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Grazer then display it in Hangar
             {
                 Grazer7.SetActive(true); // Show a grazer in Hangar 07  
-                Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
-                Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
                 LaunchButton7.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton7.SetActive(true);
 
@@ -410,8 +414,8 @@ public class HangarManager : MonoBehaviour {
             if (ship.ItemID == 0 && BayNumber == 6 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Probe then display it in Hangar
             {
                 Probe7.SetActive(true); // Show a probe in Hangar 07    
-                Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
-                Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
                 LaunchButton7.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton7.SetActive(true);
 
@@ -419,8 +423,8 @@ public class HangarManager : MonoBehaviour {
             if (ship.ItemID == 1 && BayNumber == 7 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Grazer then display it in Hangar
             {
                 Grazer8.SetActive(true); // Show a grazer in Hangar 08  
-                Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
-                Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SpaceCraft ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
                 LaunchButton8.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton8.SetActive(true);
 
@@ -429,8 +433,8 @@ public class HangarManager : MonoBehaviour {
             if (ship.ItemID == 0 && BayNumber == 7 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Probe then display it in Hangar
             {
                 Probe8.SetActive(true); // Show a probe in Hangar 08    
-                Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
-                Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Probe ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish
                 LaunchButton8.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton8.SetActive(true);
             }
@@ -438,11 +442,11 @@ public class HangarManager : MonoBehaviour {
         }
         else
         {
-            Bays[BayNumber].gameObject.transform.GetChild(2).gameObject.GetComponent<Text>().text = "XXX";
-            Bays[BayNumber].gameObject.transform.GetChild(4).gameObject.GetComponent<Text>().text = "XXX";
-            Bays[BayNumber].gameObject.transform.GetChild(6).gameObject.GetComponent<Text>().text = "XXX";
-            Bays[BayNumber].gameObject.transform.GetChild(8).gameObject.GetComponent<Text>().text = "XXX";
-            Bays[BayNumber].gameObject.transform.GetChild(11).gameObject.GetComponent<Text>().text = "XXX";
+            Bays[BayNumber].panel.transform.GetChild(2).gameObject.GetComponent<Text>().text = "XXX";
+            Bays[BayNumber].panel.transform.GetChild(4).gameObject.GetComponent<Text>().text = "XXX";
+            Bays[BayNumber].panel.transform.GetChild(6).gameObject.GetComponent<Text>().text = "XXX";
+            Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = "XXX";
+            Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = "XXX";
 
         }
 
@@ -478,52 +482,65 @@ public class HangarManager : MonoBehaviour {
     public void DisplayShipsInList() // This method displays finished items in the Spacecraft roosterlist
     {
 
-        List<ShipListItem> shipList = new List<ShipListItem>();
+        List<GameObject> toBeDeleted = new List<GameObject>();
 
-        ShipListItem one = new ShipListItem();
-        one.active = ShipsInService.Count > 0;
-        one.shipName = TextForShip1Name.GetComponent<Text>();
-        one.shipStatus = TextForShip1Status.GetComponent<Text>();
-        one.shipETA = TextForShip1ETA.GetComponent<Text>();
-        one.button = Ship1Access;
+        for(int i = 0; i < shipListDisplay.transform.childCount; i++)
+        {
+            if (shipListDisplay.transform.GetChild(i).CompareTag("ShipListItem")) toBeDeleted.Add(shipListDisplay.transform.GetChild(i).gameObject);
+        }
 
-        shipList.Add(one);
+        while(toBeDeleted.Count > 0)
+        {
+            GameObject obj = toBeDeleted[0];
+            toBeDeleted.Remove(obj);
+            Destroy(obj);
+        }
 
-        var TextComponentShip2Name = TextForShip2Name.GetComponent<Text>();
-        var TextComponentShip2Status = TextForShip2Status.GetComponent<Text>();
-        var TextComponentShip2ETA = TextForShip2ETA.GetComponent<Text>();
+        for(int i = 0; i < ShipsInService.Count; i++)
+        {
+            GameObject currDisplay = Object.Instantiate(shipDisplayPrefab, shipListDisplay.transform);
+            Vector3 pos = currDisplay.GetComponent<RectTransform>().localPosition;
+            pos.y = 9 - i * 5;
+            currDisplay.GetComponent<RectTransform>().localPosition = pos;
 
-        var TextComponentShip3Name = TextForShip3Name.GetComponent<Text>();
-        var TextComponentShip3Status = TextForShip3Status.GetComponent<Text>();
-        var TextComponentShip3ETA = TextForShip3ETA.GetComponent<Text>();
+            ShipListDisplayItem currDisp = currDisplay.GetComponent<ShipListDisplayItem>();
+            currDisp.number = i;
+            currDisp.shipName.text = HangarManager.Instance().ShipsInService[i].ShipName;
 
-        var TextComponentShip4Name = TextForShip4Name.GetComponent<Text>();
-        var TextComponentShip4Status = TextForShip4Status.GetComponent<Text>();
-        var TextComponentShip4ETA = TextForShip4ETA.GetComponent<Text>();
+            if (HangarManager.Instance().ShipsInService[i].OnMoon == true)
+                currDisp.shipStatus.text = "On Moon";
 
-        var TextComponentShip5Name = TextForShip5Name.GetComponent<Text>();
-        var TextComponentShip5Status = TextForShip5Status.GetComponent<Text>();
-        var TextComponentShip5ETA = TextForShip5ETA.GetComponent<Text>();
+            if (HangarManager.Instance().ShipsInService[i].OnComet == true)
+                currDisp.shipStatus.text = "On Comet";
 
-        var TextComponentShip6Name = TextForShip6Name.GetComponent<Text>();
-        var TextComponentShip6Status = TextForShip6Status.GetComponent<Text>();
-        var TextComponentShip6ETA = TextForShip6ETA.GetComponent<Text>();
+            if (HangarManager.Instance().ShipsInService[i].OnComet == true && HangarManager.Instance().ShipsInService[i].AutoMineRunComet == true && HangarManager.Instance().ShipsInService[i].CurrentlyMining == true)
+                currDisp.shipStatus.text = ">>Automining Comet<<";
 
-        var TextComponentShip7Name = TextForShip7Name.GetComponent<Text>();
-        var TextComponentShip7Status = TextForShip7Status.GetComponent<Text>();
-        var TextComponentShip7ETA = TextForShip7ETA.GetComponent<Text>();
+            if (HangarManager.Instance().ShipsInService[i].InAsteroidField == true)
+                currDisp.shipStatus.text = "In Asteroid field";
 
-        var TextComponentShip8Name = TextForShip8Name.GetComponent<Text>();
-        var TextComponentShip8Status = TextForShip8Status.GetComponent<Text>();
-        var TextComponentShip8ETA = TextForShip8ETA.GetComponent<Text>();
+            if (HangarManager.Instance().ShipsInService[i].InAsteroidField == true && HangarManager.Instance().ShipsInService[i].AutoMineRunAsteroids == true && HangarManager.Instance().ShipsInService[i].CurrentlyMining == true)
+                currDisp.shipStatus.text = ">>Automining Asteroids<<";
 
-        var TextComponentShip9Name = TextForShip9Name.GetComponent<Text>();
-        var TextComponentShip9Status = TextForShip9Status.GetComponent<Text>();
-        var TextComponentShip9ETA = TextForShip9ETA.GetComponent<Text>();
+            if (HangarManager.Instance().ShipsInService[i].InOrbit == true)
+                currDisp.shipStatus.text = "In Orbit Moon";
 
-        var TextComponentShip10Name = TextForShip10Name.GetComponent<Text>();
-        var TextComponentShip10Status = TextForShip10Status.GetComponent<Text>();
-        var TextComponentShip10ETA = TextForShip10ETA.GetComponent<Text>();
+            if (HangarManager.Instance().ShipsInService[i].InTransitAsteroidField == true)
+                currDisp.shipStatus.text = "In Transit to Asteroid Field";
+
+            if (HangarManager.Instance().ShipsInService[i].InTransitComet == true)
+                currDisp.shipStatus.text = "In Transit to Comet";
+
+            if (HangarManager.Instance().ShipsInService[i].InTransitMoon == true)
+                currDisp.shipStatus.text = "In Transit to Moon";
+
+            if (HangarManager.Instance().ShipsInService[i].InTransitCallisto == true)
+                currDisp.shipStatus.text = "In Transit to Callisto";
+
+
+            currDisp.shipETA.text = HangarManager.Instance().ShipsInService[i].DaysUntilArrival + "";
+        }
+
 
         if (ShipsInService.Count>0)
         {
@@ -546,6 +563,9 @@ public class HangarManager : MonoBehaviour {
             if (HangarManager.Instance().ShipsInService[0].InAsteroidField == true && HangarManager.Instance().ShipsInService[0].AutoMineRunAsteroids==true && HangarManager.Instance().ShipsInService[0].CurrentlyMining == true)
                 TextComponentShip1Status.text = ">>Automining Asteroids<<";
 
+
+
+
             if (HangarManager.Instance().ShipsInService[0].InOrbit == true)
                 TextComponentShip1Status.text = "In Orbit Moon";
 
@@ -563,374 +583,10 @@ public class HangarManager : MonoBehaviour {
             if (HangarManager.Instance().ShipsInService[0].InTransitCallisto == true)
                 TextComponentShip1Status.text = "In Transit to Callisto";
 
-            TextComponentShip1ETA.text = HangarManager.Instance().ShipsInService[0].DaysUntilArrival+"";*/
+            */
 
         }
 
-        if (ShipsInService.Count > 1)
-        {
-            Ship2Access.SetActive(true);
-            TextComponentShip2Name.text = HangarManager.Instance().ShipsInService[1].ShipName;
-
-            if (HangarManager.Instance().ShipsInService[1].OnMoon == true)
-                TextComponentShip2Status.text = "On Moon";
-
-            if (HangarManager.Instance().ShipsInService[1].OnComet == true)
-                TextComponentShip2Status.text = "On Comet";
-
-            if (HangarManager.Instance().ShipsInService[1].InAsteroidField == true)
-                TextComponentShip2Status.text = "In Asteroid field";
-
-            if (HangarManager.Instance().ShipsInService[1].InOrbit == true)
-                TextComponentShip2Status.text = "In Orbit Moon";
-
-            if (HangarManager.Instance().ShipsInService[1].InTransitAsteroidField == true)
-                TextComponentShip2Status.text = "In Transit to Asteroid Field";
-
-            if (HangarManager.Instance().ShipsInService[1].InTransitComet == true)
-                TextComponentShip2Status.text = "In Transit to Comet";
-
-            if (HangarManager.Instance().ShipsInService[1].InTransitMoon == true)
-                TextComponentShip2Status.text = "In Transit to Moon";
-
-            if (HangarManager.Instance().ShipsInService[1].InTransitCallisto == true)
-                TextComponentShip2Status.text = "In Transit to Callisto";
-
-            if (HangarManager.Instance().ShipsInService[1].OnComet == true && HangarManager.Instance().ShipsInService[1].AutoMineRunComet == true && HangarManager.Instance().ShipsInService[1].CurrentlyMining == true)
-                TextComponentShip2Status.text = ">>Automining Comet<<";
-
-            if (HangarManager.Instance().ShipsInService[1].InAsteroidField == true && HangarManager.Instance().ShipsInService[1].AutoMineRunAsteroids == true && HangarManager.Instance().ShipsInService[1].CurrentlyMining == true)
-                TextComponentShip2Status.text = ">>Automining Asteroids<<";
-
-            TextComponentShip2ETA.text = HangarManager.Instance().ShipsInService[1].DaysUntilArrival + "";
-
-        }
-
-        if (ShipsInService.Count > 2)
-        {
-            Ship3Access.SetActive(true);
-            TextComponentShip3Name.text = HangarManager.Instance().ShipsInService[2].ShipName;
-
-            if (HangarManager.Instance().ShipsInService[2].OnMoon == true)
-                TextComponentShip3Status.text = "On Moon";
-
-            if (HangarManager.Instance().ShipsInService[2].OnComet == true)
-                TextComponentShip3Status.text = "On Comet";
-
-            if (HangarManager.Instance().ShipsInService[2].InAsteroidField == true)
-                TextComponentShip3Status.text = "In Asteroid field";
-
-            if (HangarManager.Instance().ShipsInService[2].InOrbit == true)
-                TextComponentShip3Status.text = "In Orbit Moon";
-
-            if (HangarManager.Instance().ShipsInService[2].InTransitAsteroidField == true)
-                TextComponentShip3Status.text = "In Transit to Asteroid Field";
-
-            if (HangarManager.Instance().ShipsInService[2].InTransitComet == true)
-                TextComponentShip3Status.text = "In Transit to Comet";
-
-            if (HangarManager.Instance().ShipsInService[2].InTransitMoon == true)
-                TextComponentShip3Status.text = "In Transit to Moon";
-
-            if (HangarManager.Instance().ShipsInService[2].InTransitCallisto == true)
-                TextComponentShip3Status.text = "In Transit to Callisto";
-
-            if (HangarManager.Instance().ShipsInService[2].OnComet == true && HangarManager.Instance().ShipsInService[2].AutoMineRunComet == true && HangarManager.Instance().ShipsInService[2].CurrentlyMining == true)
-                TextComponentShip3Status.text = ">>Automining Comet<<";
-
-            if (HangarManager.Instance().ShipsInService[2].InAsteroidField == true && HangarManager.Instance().ShipsInService[2].AutoMineRunAsteroids == true && HangarManager.Instance().ShipsInService[2].CurrentlyMining == true)
-                TextComponentShip3Status.text = ">>Automining Asteroids<<";
-
-
-
-            TextComponentShip3ETA.text = HangarManager.Instance().ShipsInService[2].DaysUntilArrival + "";
-        }
-
-        if (ShipsInService.Count > 3)
-        {
-            Ship4Access.SetActive(true);
-            TextComponentShip4Name.text = HangarManager.Instance().ShipsInService[3].ShipName;
-
-            if (HangarManager.Instance().ShipsInService[3].OnMoon == true)
-                TextComponentShip4Status.text = "On Moon";
-
-            if (HangarManager.Instance().ShipsInService[3].OnComet == true)
-                TextComponentShip4Status.text = "On Comet";
-
-            if (HangarManager.Instance().ShipsInService[3].InAsteroidField == true)
-                TextComponentShip4Status.text = "In Asteroid field";
-
-            if (HangarManager.Instance().ShipsInService[3].InOrbit == true)
-                TextComponentShip4Status.text = "In Orbit Moon";
-
-            if (HangarManager.Instance().ShipsInService[3].InTransitAsteroidField == true)
-                TextComponentShip4Status.text = "In Transit to Asteroid Field";
-
-            if (HangarManager.Instance().ShipsInService[3].InTransitComet == true)
-                TextComponentShip4Status.text = "In Transit to Comet";
-
-            if (HangarManager.Instance().ShipsInService[3].InTransitMoon == true)
-                TextComponentShip4Status.text = "In Transit to Moon";
-
-            if (HangarManager.Instance().ShipsInService[3].InTransitCallisto == true)
-                TextComponentShip4Status.text = "In Transit to Callisto";
-
-            if (HangarManager.Instance().ShipsInService[3].OnComet == true && HangarManager.Instance().ShipsInService[3].AutoMineRunComet == true && HangarManager.Instance().ShipsInService[3].CurrentlyMining == true)
-                TextComponentShip4Status.text = ">>Automining Comet<<";
-
-            if (HangarManager.Instance().ShipsInService[3].InAsteroidField == true && HangarManager.Instance().ShipsInService[3].AutoMineRunAsteroids == true && HangarManager.Instance().ShipsInService[3].CurrentlyMining == true)
-                TextComponentShip4Status.text = ">>Automining Asteroids<<";
-
-
-
-
-            TextComponentShip4ETA.text = HangarManager.Instance().ShipsInService[3].DaysUntilArrival + "";
-
-        }
-
-        if (ShipsInService.Count > 4)
-        {
-            Ship5Access.SetActive(true);
-            TextComponentShip5Name.text = HangarManager.Instance().ShipsInService[4].ShipName;
-
-            if (HangarManager.Instance().ShipsInService[4].OnMoon == true)
-                TextComponentShip5Status.text = "On Moon";
-
-            if (HangarManager.Instance().ShipsInService[4].OnComet == true)
-                TextComponentShip5Status.text = "On Comet";
-
-            if (HangarManager.Instance().ShipsInService[4].InAsteroidField == true)
-                TextComponentShip5Status.text = "In Asteroid field";
-
-            if (HangarManager.Instance().ShipsInService[4].InOrbit == true)
-                TextComponentShip5Status.text = "In Orbit Moon";
-
-            if (HangarManager.Instance().ShipsInService[4].InTransitAsteroidField == true)
-                TextComponentShip5Status.text = "In Transit to Asteroid Field";
-
-            if (HangarManager.Instance().ShipsInService[4].InTransitComet == true)
-                TextComponentShip5Status.text = "In Transit to Comet";
-
-            if (HangarManager.Instance().ShipsInService[4].InTransitMoon == true)
-                TextComponentShip5Status.text = "In Transit to Moon";
-
-            if (HangarManager.Instance().ShipsInService[4].InTransitCallisto == true)
-                TextComponentShip5Status.text = "In Transit to Callisto";
-
-            if (HangarManager.Instance().ShipsInService[4].OnComet == true && HangarManager.Instance().ShipsInService[4].AutoMineRunComet == true && HangarManager.Instance().ShipsInService[4].CurrentlyMining == true)
-                TextComponentShip5Status.text = ">>Automining Comet<<";
-
-            if (HangarManager.Instance().ShipsInService[4].InAsteroidField == true && HangarManager.Instance().ShipsInService[4].AutoMineRunAsteroids == true && HangarManager.Instance().ShipsInService[4].CurrentlyMining == true)
-                TextComponentShip5Status.text = ">>Automining Asteroids<<";
-
-
-            TextComponentShip5ETA.text = HangarManager.Instance().ShipsInService[4].DaysUntilArrival + "";
-
-        }
-
-        if (ShipsInService.Count > 5)
-        {
-            Ship6Access.SetActive(true);
-            TextComponentShip6Name.text = HangarManager.Instance().ShipsInService[5].ShipName;
-
-            if (HangarManager.Instance().ShipsInService[5].OnMoon == true)
-                TextComponentShip6Status.text = "On Moon";
-
-            if (HangarManager.Instance().ShipsInService[5].OnComet == true)
-                TextComponentShip6Status.text = "On Comet";
-
-            if (HangarManager.Instance().ShipsInService[5].InAsteroidField == true)
-                TextComponentShip6Status.text = "In Asteroid field";
-
-            if (HangarManager.Instance().ShipsInService[5].InOrbit == true)
-                TextComponentShip6Status.text = "In Orbit Moon";
-
-            if (HangarManager.Instance().ShipsInService[5].InTransitAsteroidField == true)
-                TextComponentShip6Status.text = "In Transit to Asteroid Field";
-
-            if (HangarManager.Instance().ShipsInService[5].InTransitComet == true)
-                TextComponentShip6Status.text = "In Transit to Comet";
-
-            if (HangarManager.Instance().ShipsInService[5].InTransitMoon == true)
-                TextComponentShip6Status.text = "In Transit to Moon";
-
-            if (HangarManager.Instance().ShipsInService[5].InTransitCallisto == true)
-                TextComponentShip6Status.text = "In Transit to Callisto";
-
-            if (HangarManager.Instance().ShipsInService[5].OnComet == true && HangarManager.Instance().ShipsInService[5].AutoMineRunComet == true && HangarManager.Instance().ShipsInService[5].CurrentlyMining == true)
-                TextComponentShip6Status.text = ">>Automining Comet<<";
-
-            if (HangarManager.Instance().ShipsInService[5].InAsteroidField == true && HangarManager.Instance().ShipsInService[5].AutoMineRunAsteroids == true && HangarManager.Instance().ShipsInService[5].CurrentlyMining == true)
-                TextComponentShip6Status.text = ">>Automining Asteroids<<";
-
-            TextComponentShip6ETA.text = HangarManager.Instance().ShipsInService[5].DaysUntilArrival + "";
-
-        }
-        if (ShipsInService.Count > 6)
-        {
-            Ship7Access.SetActive(true);
-            TextComponentShip7Name.text = HangarManager.Instance().ShipsInService[6].ShipName;
-
-            if (HangarManager.Instance().ShipsInService[6].OnMoon == true)
-                TextComponentShip7Status.text = "On Moon";
-
-            if (HangarManager.Instance().ShipsInService[6].OnComet == true)
-                TextComponentShip7Status.text = "On Comet";
-
-            if (HangarManager.Instance().ShipsInService[6].InAsteroidField == true)
-                TextComponentShip7Status.text = "In Asteroid field";
-
-            if (HangarManager.Instance().ShipsInService[6].InOrbit == true)
-                TextComponentShip7Status.text = "In Orbit Moon";
-
-            if (HangarManager.Instance().ShipsInService[6].InTransitAsteroidField == true)
-                TextComponentShip7Status.text = "In Transit to Asteroid Field";
-
-            if (HangarManager.Instance().ShipsInService[6].InTransitComet == true)
-                TextComponentShip7Status.text = "In Transit to Comet";
-
-            if (HangarManager.Instance().ShipsInService[6].InTransitMoon == true)
-                TextComponentShip7Status.text = "In Transit to Moon";
-
-            if (HangarManager.Instance().ShipsInService[6].InTransitCallisto == true)
-                TextComponentShip7Status.text = "In Transit to Callisto";
-
-
-            if (HangarManager.Instance().ShipsInService[6].OnComet == true && HangarManager.Instance().ShipsInService[6].AutoMineRunComet == true && HangarManager.Instance().ShipsInService[6].CurrentlyMining == true)
-                TextComponentShip7Status.text = ">>Automining Comet<<";
-
-            if (HangarManager.Instance().ShipsInService[6].InAsteroidField == true && HangarManager.Instance().ShipsInService[6].AutoMineRunAsteroids == true && HangarManager.Instance().ShipsInService[6].CurrentlyMining == true)
-                TextComponentShip7Status.text = ">>Automining Asteroids<<";
-
-
-            TextComponentShip7ETA.text = HangarManager.Instance().ShipsInService[6].DaysUntilArrival + "";
-
-        }
-
-        if (ShipsInService.Count > 7)
-        {
-            Ship8Access.SetActive(true);
-            TextComponentShip8Name.text = HangarManager.Instance().ShipsInService[7].ShipName;
-
-            if (HangarManager.Instance().ShipsInService[7].OnMoon == true)
-                TextComponentShip8Status.text = "On Moon";
-
-            if (HangarManager.Instance().ShipsInService[7].OnComet == true)
-                TextComponentShip8Status.text = "On Comet";
-
-            if (HangarManager.Instance().ShipsInService[7].InAsteroidField == true)
-                TextComponentShip8Status.text = "In Asteroid field";
-
-            if (HangarManager.Instance().ShipsInService[7].InOrbit == true)
-                TextComponentShip8Status.text = "In Orbit Moon";
-
-            if (HangarManager.Instance().ShipsInService[7].InTransitAsteroidField == true)
-                TextComponentShip8Status.text = "In Transit to Asteroid Field";
-
-            if (HangarManager.Instance().ShipsInService[7].InTransitComet == true)
-                TextComponentShip8Status.text = "In Transit to Comet";
-
-            if (HangarManager.Instance().ShipsInService[7].InTransitMoon == true)
-                TextComponentShip8Status.text = "In Transit to Moon";
-
-            if (HangarManager.Instance().ShipsInService[7].InTransitCallisto == true)
-                TextComponentShip8Status.text = "In Transit to Callisto";
-
-
-            if (HangarManager.Instance().ShipsInService[7].OnComet == true && HangarManager.Instance().ShipsInService[7].AutoMineRunComet == true && HangarManager.Instance().ShipsInService[7].CurrentlyMining == true)
-                TextComponentShip8Status.text = ">>Automining Comet<<";
-
-            if (HangarManager.Instance().ShipsInService[7].InAsteroidField == true && HangarManager.Instance().ShipsInService[7].AutoMineRunAsteroids == true && HangarManager.Instance().ShipsInService[7].CurrentlyMining == true)
-                TextComponentShip8Status.text = ">>Automining Asteroids<<";
-
-
-
-            TextComponentShip8ETA.text = HangarManager.Instance().ShipsInService[7].DaysUntilArrival + "";
-        }
-
-        if (ShipsInService.Count > 8)
-        {
-            Ship9Access.SetActive(true);
-            TextComponentShip9Name.text = HangarManager.Instance().ShipsInService[8].ShipName;
-
-            if (HangarManager.Instance().ShipsInService[8].OnMoon == true)
-                TextComponentShip9Status.text = "On Moon";
-
-            if (HangarManager.Instance().ShipsInService[8].OnComet == true)
-                TextComponentShip9Status.text = "On Comet";
-
-            if (HangarManager.Instance().ShipsInService[8].InAsteroidField == true)
-                TextComponentShip9Status.text = "In Asteroid field";
-
-            if (HangarManager.Instance().ShipsInService[8].InOrbit == true)
-                TextComponentShip9Status.text = "In Orbit Moon";
-
-            if (HangarManager.Instance().ShipsInService[8].InTransitAsteroidField == true)
-                TextComponentShip9Status.text = "In Transit to Asteroid Field";
-
-            if (HangarManager.Instance().ShipsInService[8].InTransitComet == true)
-                TextComponentShip9Status.text = "In Transit to Comet";
-
-            if (HangarManager.Instance().ShipsInService[8].InTransitMoon == true)
-                TextComponentShip9Status.text = "In Transit to Moon";
-
-            if (HangarManager.Instance().ShipsInService[8].InTransitCallisto == true)
-                TextComponentShip9Status.text = "In Transit to Callisto";
-
-
-            if (HangarManager.Instance().ShipsInService[8].OnComet == true && HangarManager.Instance().ShipsInService[8].AutoMineRunComet == true && HangarManager.Instance().ShipsInService[8].CurrentlyMining == true)
-                TextComponentShip9Status.text = ">>Automining Comet<<";
-
-            if (HangarManager.Instance().ShipsInService[8].InAsteroidField == true && HangarManager.Instance().ShipsInService[8].AutoMineRunAsteroids == true && HangarManager.Instance().ShipsInService[8].CurrentlyMining == true)
-                TextComponentShip9Status.text = ">>Automining Asteroids<<";
-
-
-            TextComponentShip9ETA.text = HangarManager.Instance().ShipsInService[8].DaysUntilArrival + "";
-
-        }
-        if (ShipsInService.Count > 9)
-        {
-            Ship10Access.SetActive(true);
-            TextComponentShip10Name.text = HangarManager.Instance().ShipsInService[9].ShipName;
-
-            if (HangarManager.Instance().ShipsInService[9].OnMoon == true)
-                TextComponentShip10Status.text = "On Moon";
-
-            if (HangarManager.Instance().ShipsInService[9].OnComet == true)
-                TextComponentShip10Status.text = "On Comet";
-
-            if (HangarManager.Instance().ShipsInService[9].InAsteroidField == true)
-                TextComponentShip10Status.text = "In Asteroid field";
-
-            if (HangarManager.Instance().ShipsInService[9].InOrbit == true)
-                TextComponentShip10Status.text = "In Orbit Moon";
-
-            if (HangarManager.Instance().ShipsInService[9].InTransitAsteroidField == true)
-                TextComponentShip10Status.text = "In Transit to Asteroid Field";
-
-            if (HangarManager.Instance().ShipsInService[9].InTransitComet == true)
-                TextComponentShip10Status.text = "In Transit to Comet";
-
-            if (HangarManager.Instance().ShipsInService[9].InTransitMoon == true)
-                TextComponentShip10Status.text = "In Transit to Moon";
-
-            if (HangarManager.Instance().ShipsInService[9].InTransitCallisto == true)
-                TextComponentShip10Status.text = "In Transit to Callisto";
-
-
-            if (HangarManager.Instance().ShipsInService[9].OnComet == true && HangarManager.Instance().ShipsInService[9].AutoMineRunComet == true && HangarManager.Instance().ShipsInService[9].CurrentlyMining == true)
-                TextComponentShip10Status.text = ">>Automining Comet<<";
-
-            if (HangarManager.Instance().ShipsInService[9].InAsteroidField == true && HangarManager.Instance().ShipsInService[9].AutoMineRunAsteroids == true && HangarManager.Instance().ShipsInService[9].CurrentlyMining == true)
-                TextComponentShip10Status.text = ">>Automining Asteroids<<";
-
-
-
-
-
-            TextComponentShip10ETA.text = HangarManager.Instance().ShipsInService[9].DaysUntilArrival + "";
-
-        }
 
 
 
@@ -1047,15 +703,4 @@ public class HangarManager : MonoBehaviour {
 
 
 
-}
-
-
-public struct ShipListItem
-{
-    public bool active;
-    public GameObject button;
-
-    public Text shipName;
-    public Text shipStatus;
-    public Text shipETA;
 }

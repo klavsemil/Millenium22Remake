@@ -14,6 +14,7 @@ TagManager:
   - Hangar06
   - Hangar07
   - Hangar08
+  - ShipListItem
   layers:
   - Default
   - TransparentFX

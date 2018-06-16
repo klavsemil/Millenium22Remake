@@ -5,7 +5,7 @@ using UnityEngine;
 public class BayManager : MonoBehaviour {
 
     public BaseItem ship;
-
+    public GameObject panel;
     
 
     public bool IsEmpty() //check to see if a bay is empty
