@@ -197,6 +197,30 @@ public class BaseItem : ScriptableObject {
             // Maybe more here
         }
 
+        if (this.ItemID == 6) // if this is a SolarMK2 then set its panel true. //Note.. we need to update the finished item list if it gets destroyed 
+            HangarManager.Instance().SolagenMK2.SetActive(true);
+        if (this.ItemID == 7) // 
+        {
+            HangarManager.Instance().SolagenMK2.SetActive(true);
+            HangarManager.Instance().SolagenMK3.SetActive(true);
+        }           
+        if (this.ItemID == 8)
+        {
+            HangarManager.Instance().SolagenMK2.SetActive(true);
+            HangarManager.Instance().SolagenMK3.SetActive(true);
+            HangarManager.Instance().SolagenMK4.SetActive(true);
+        }
+           
+
+
+
+
+
+
+
+
+
+
         this.InProduction = false; // As this item is finished we set it to false 
 
         //Below here: we tell what is finished dbuild and what eventually is next in production que

@@ -49,14 +49,21 @@ public class ShipManager : MonoBehaviour {
         var TextComponentShipDaysUntillArrival = TextForDaysUntillArrival.GetComponent<Text>();
 
 
-        if(HangarManager.Instance().ShipsInService[ActiveShipNumber].DaysUntilArrival == 0) // If ship is on it way the navigation choices are not available
+        if(HangarManager.Instance().ShipsInService[ActiveShipNumber].DaysUntilArrival == 0 && HangarManager.Instance().ShipsInService[ActiveShipNumber].ItemID==1) // If ship is on its way, the navigation choices are not available and the automine option only available for Grazer
         {
             NavButton.SetActive(true);
             AutoMineButton.SetActive(true);
-            NavPanel.SetActive(true);
-            AutominePanel.SetActive(true);
+            NavPanel.SetActive(false);
+            AutominePanel.SetActive(false);
         }
-        else
+        if(HangarManager.Instance().ShipsInService[ActiveShipNumber].DaysUntilArrival == 0 && HangarManager.Instance().ShipsInService[ActiveShipNumber].ItemID != 1)
+        {
+            NavButton.SetActive(true);
+            AutoMineButton.SetActive(false);
+            NavPanel.SetActive(false);
+            AutominePanel.SetActive(false);
+        }
+        if (HangarManager.Instance().ShipsInService[ActiveShipNumber].DaysUntilArrival > 0)
         {
             NavButton.SetActive(false);
             AutoMineButton.SetActive(false);
@@ -497,11 +504,13 @@ public class ShipManager : MonoBehaviour {
 
    
 
-                if (AccidentFrequency > 115)
+                if (AccidentFrequency > 110)
                 {
                     MessageManager.Instance().UpdateMessagePanel("Turn: " + NextTurn.Instance().TurnCounter + ". Spacecraft: " + HangarManager.Instance().ShipsInService[i].ShipName + "\n", " A Geyser on the comet errupted right under the ship, and it together with its crew was lost" + "\n"); // here more accident narrative options should be possible
                     CometOreFindFrequency = 0; // Not sure this sis NEccessary.... as we destroy the ship
                     //destroy ship, remove Correctly from ShipsinServiceList 
+
+                    MessageManager.Instance().UpdateEncounterMessagePanel(HangarManager.Instance().ShipsInService[i].ShipName + " lost!!", "During drilling into a rich ore vein on the comet, a pressurized pocket of gas exploded, \n resulting in puncturing the ship hull, which rapidly depresurized the Grazer reulting in an implosion, killing the crew");
 
                     HangarManager.Instance().ShipsInService.RemoveAt(i); // check if this works ...................................########%&¤####¤#%¤&%/&(%%¤""#¤%&/
                     break; // we need to get out of the current loop as its size is now altered and would probably crassh
@@ -600,11 +609,12 @@ public class ShipManager : MonoBehaviour {
                 }
 
 
-                if (AccidentFrequency > 120)
+                if (AccidentFrequency > 105)
                 {
                     MessageManager.Instance().UpdateMessagePanel("Turn: " + NextTurn.Instance().TurnCounter + ". Spacecraft: " + HangarManager.Instance().ShipsInService[i].ShipName + "\n", " A Mysterious little spaceCraft appeared on the grazers radar just before all communiction was lost. The ship crew was lost" + "\n"); // here more accident narrative options should be possible
                     CometOreFindFrequency = 0; // Not sure this sis NEccessary.... as we destroy the ship
-                    //destroy ship, remove Correctly from ShipsinServiceList 
+                                               //destroy ship, remove Correctly from ShipsinServiceList 
+                    MessageManager.Instance().UpdateEncounterMessagePanel(HangarManager.Instance().ShipsInService[i].ShipName+" lost!!", "During prospecting for minable asteroids , a strange looking probe-sized Spacecraft suddenly appeared out of nowhere, \n and started to cut the grazer into pieces very rapidly, Before the crew was able to react they were killed");
 
                     HangarManager.Instance().ShipsInService.RemoveAt(i); // check if this works ...................................########%&¤####¤#%¤&%/&(%%¤""#¤%&/NOT SURE Yet
                     break; // we need to get out of the current loop as its size is now altered and would probably crassh

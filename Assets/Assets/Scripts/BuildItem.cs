@@ -14,6 +14,7 @@ public class BuildItem : MonoBehaviour {
 
     public GameObject NotenoughResourcesPanel; // this is for telling the player that there is not resources enough
     public GameObject NotEnoughRoomInHangarPanel; // this is for telling the player that there is not room in hangar
+    public GameObject NotEnoughEnergyPanel;
     //TEST TEST
     //public GameObject FillInHangarPanel; // this is for setting the information of this vehicle into the hanagar bay panel
     //public GameObject TypeTextObject; //For transfering text
@@ -90,11 +91,16 @@ public class BuildItem : MonoBehaviour {
             else //If no:
             {
             //fortæl spilleren at der ikke er resourcer nok
-            Destroy(newObject); //Ødelæg objectet
-
-            NotenoughResourcesPanel.SetActive(true);
-
-
+             if (ResourceManager.instance.HasResourcesFor(newObject)== false)
+             {
+                NotenoughResourcesPanel.SetActive(true);
+             }
+           
+             if (ResourceManager.instance.HasEnergyFor(newObject) == false)
+             {
+                NotEnoughEnergyPanel.SetActive(true);
+             }
+                Destroy(newObject); //Ødelæg objectet
             }
 
     }

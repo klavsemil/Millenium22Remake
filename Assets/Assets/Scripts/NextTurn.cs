@@ -31,7 +31,10 @@ public class NextTurn : MonoBehaviour {
     public GameObject ProbeInProduction;
     public GameObject GrazerInProduction;
     public GameObject SolaGenInProduction;
-    
+    public GameObject WaveriderInProduction;
+    public GameObject CarrackInProduction;
+    public GameObject SIOSInProduction;
+    public GameObject FusionReactorInProduction;
 
     public int LengthOfInProductionList; // variable for the length of inproduction list.
     public int LengthOfShipsInProduction; // a way to count up Ships in production As these need for counting up nr of in production items correctly
@@ -128,6 +131,15 @@ public class NextTurn : MonoBehaviour {
                                 GrazerInProduction.SetActive(true);
                             if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 6 || HangarManager.Instance().InProductionItems[i - 1].ItemID == 7 || HangarManager.Instance().InProductionItems[i - 1].ItemID == 8)
                                 SolaGenInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 2)
+                                WaveriderInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 9)
+                                FusionReactorInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 3)
+                                CarrackInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 4)
+                                SIOSInProduction.SetActive(true);
+                            
                         }
 
                         if (HangarManager.Instance().InProductionItems[i].ItemID == 1 && HangarManager.Instance().InProductionItems[i - 1].ItemID != 1) // If grazer then remove the graphical representation of it
@@ -137,16 +149,106 @@ public class NextTurn : MonoBehaviour {
                                 ProbeInProduction.SetActive(true);
                             if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 6 || HangarManager.Instance().InProductionItems[i - 1].ItemID == 7 || HangarManager.Instance().InProductionItems[i - 1].ItemID == 8)
                                 SolaGenInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 2)
+                                WaveriderInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 9)
+                                FusionReactorInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 3)
+                                CarrackInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 4)
+                                SIOSInProduction.SetActive(true);
                         }
 
-                        if ((HangarManager.Instance().InProductionItems[i].ItemID == 6 || HangarManager.Instance().InProductionItems[i].ItemID == 7 || HangarManager.Instance().InProductionItems[i].ItemID == 8) && (HangarManager.Instance().InProductionItems[i - 1].ItemID != 6 || HangarManager.Instance().InProductionItems[i - 1].ItemID != 7) || HangarManager.Instance().InProductionItems[i - 1].ItemID != 8) // If solagenMK2 or MK3 or MK3 then remove the graphical representation of it
+                        if ((HangarManager.Instance().InProductionItems[i].ItemID == 6 || HangarManager.Instance().InProductionItems[i].ItemID == 7 || HangarManager.Instance().InProductionItems[i].ItemID == 8) && (HangarManager.Instance().InProductionItems[i - 1].ItemID != 6 || HangarManager.Instance().InProductionItems[i - 1].ItemID != 7 || HangarManager.Instance().InProductionItems[i - 1].ItemID != 8)) // If solagenMK2 or MK3 or MK3 then remove the graphical representation of it
                         {
                             SolaGenInProduction.SetActive(false);
                             if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 0)
                                 ProbeInProduction.SetActive(true);
                             if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 1)
                                 GrazerInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 2)
+                                WaveriderInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 9)
+                                FusionReactorInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 3)
+                                CarrackInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 4)
+                                SIOSInProduction.SetActive(true);
                         }
+
+                        if (HangarManager.Instance().InProductionItems[i].ItemID == 2 && HangarManager.Instance().InProductionItems[i - 1].ItemID != 2) // If grazer then remove the graphical representation of it
+                        {
+                            WaveriderInProduction.SetActive(false);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 0)
+                                ProbeInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 6 || HangarManager.Instance().InProductionItems[i - 1].ItemID == 7 || HangarManager.Instance().InProductionItems[i - 1].ItemID == 8)
+                                SolaGenInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 1)
+                                GrazerInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 9)
+                                FusionReactorInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 3)
+                                CarrackInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 4)
+                                SIOSInProduction.SetActive(true);
+                        }
+
+                        if (HangarManager.Instance().InProductionItems[i].ItemID == 9 && HangarManager.Instance().InProductionItems[i - 1].ItemID != 9) // If fusion then remove the graphical representation of it
+                        {
+                            FusionReactorInProduction.SetActive(false);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 0)
+                                ProbeInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 6 || HangarManager.Instance().InProductionItems[i - 1].ItemID == 7 || HangarManager.Instance().InProductionItems[i - 1].ItemID == 8)
+                                SolaGenInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 1)
+                                GrazerInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 2)
+                                WaveriderInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 3)
+                                CarrackInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 4)
+                                SIOSInProduction.SetActive(true);
+                        }
+
+                        if (HangarManager.Instance().InProductionItems[i].ItemID == 3 && HangarManager.Instance().InProductionItems[i - 1].ItemID != 3) // If grazer then remove the graphical representation of it
+                        {
+                            CarrackInProduction.SetActive(false);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 0)
+                                ProbeInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 6 || HangarManager.Instance().InProductionItems[i - 1].ItemID == 7 || HangarManager.Instance().InProductionItems[i - 1].ItemID == 8)
+                                SolaGenInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 1)
+                                GrazerInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 2)
+                                WaveriderInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 9)
+                                FusionReactorInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 4)
+                                SIOSInProduction.SetActive(true);
+                        }
+
+                        if (HangarManager.Instance().InProductionItems[i].ItemID == 4 && HangarManager.Instance().InProductionItems[i - 1].ItemID != 4) // If grazer then remove the graphical representation of it
+                        {
+                            SIOSInProduction.SetActive(false);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 0)
+                                ProbeInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 6 || HangarManager.Instance().InProductionItems[i - 1].ItemID == 7 || HangarManager.Instance().InProductionItems[i - 1].ItemID == 8)
+                                SolaGenInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 1)
+                                GrazerInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 2)
+                                WaveriderInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 9)
+                                FusionReactorInProduction.SetActive(true);
+                            if (HangarManager.Instance().InProductionItems[i - 1].ItemID == 3)
+                                CarrackInProduction.SetActive(true);
+                        }
+
+
+
+
+
+
 
 
                     }
@@ -155,6 +257,10 @@ public class NextTurn : MonoBehaviour {
                         ProbeInProduction.SetActive(false); // if no production is left after this, then erase all graphical representation of production items in the production module
                         GrazerInProduction.SetActive(false);
                         SolaGenInProduction.SetActive(false);
+                        SIOSInProduction.SetActive(false);
+                        CarrackInProduction.SetActive(false);
+                        WaveriderInProduction.SetActive(false);
+                        FusionReactorInProduction.SetActive(false);
                     }
 
 

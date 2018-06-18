@@ -19,13 +19,21 @@ public class HangarManager : MonoBehaviour {
     public GameObject Grazer; // for displaying a grazer in Hangar bay 01
     public GameObject Probe; // for displaying a probe in hanagar bay 01
     public GameObject SIOS; //
+    public GameObject Waverider;
+    public GameObject Carrack; 
 
     public GameObject Grazer2; // for displaying a grazer in Hangar bay 02
     public GameObject Probe2; // for displaying a probe in hanagar bay 02
+    public GameObject Waverider2;
+    public GameObject Carrack2;
     public GameObject Grazer3; // 
     public GameObject Probe3; // 
+    public GameObject Waverider3;
+    public GameObject Carrack3;
     public GameObject Grazer4; // 
-    public GameObject Probe4; //    
+    public GameObject Probe4; //   
+    public GameObject Waverider4;
+    public GameObject Carrack4;
     public GameObject Grazer5; // 
     public GameObject Probe5; //    
     public GameObject Grazer6; // 
@@ -77,6 +85,11 @@ public class HangarManager : MonoBehaviour {
     public int NrOfTerraformers;
     public int NrOfRadars;
 
+    public GameObject SolagenMK2; // object for diplaying solarpanels when they are finished build
+    public GameObject SolagenMK3;
+    public GameObject SolagenMK4;
+
+
     public GameObject shipDisplayPrefab;
     public GameObject shipListDisplay;
 
@@ -125,8 +138,6 @@ public class HangarManager : MonoBehaviour {
     public GameObject Ship8Access;
     public GameObject Ship9Access;
     public GameObject Ship10Access;*/
-
-
 
 
     public GameObject[] HangarPanelInsertion; // An array for insertion of information into the right hangar panel
@@ -297,6 +308,15 @@ public class HangarManager : MonoBehaviour {
                 LoadEquipmentButton.SetActive(true);
 
             }
+            if (ship.ItemID == 3 && BayNumber == 0 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a SIOS Base then display it in Hangar
+            {
+                Carrack.SetActive(true); // Show a Carrack in Hangar 01 
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Carrack Spacecraft ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish  
+                LaunchButton.SetActive(true); //Make it possible to launch this Spacecraft
+                LoadEquipmentButton.SetActive(true);
+
+            }
 
 
             if (ship.ItemID == 1 && BayNumber == 1 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Grazer then display it in Hangar
@@ -318,6 +338,24 @@ public class HangarManager : MonoBehaviour {
 
             }
 
+            if (ship.ItemID == 4 && BayNumber == 1 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a SIOS Base then display it in Hangar
+            {
+                SIOS.SetActive(true); // Show a SIOS in Hangar 01 ! THIS IS actually howed in the middle of the hangar and therefore can be applied to all hangarbays 
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SIOS Colony Spacecraft ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish  
+                LaunchButton.SetActive(true); //Make it possible to launch this Spacecraft
+                LoadEquipmentButton.SetActive(true);
+
+            }
+            if (ship.ItemID == 3 && BayNumber == 1 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a SIOS Base then display it in Hangar
+            {
+                Carrack2.SetActive(true); // Show a Carrack in Hangar 02 
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Carrack Spacecraft ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish  
+                LaunchButton.SetActive(true); //Make it possible to launch this Spacecraft
+                LoadEquipmentButton.SetActive(true);
+
+            }
 
             if (ship.ItemID == 1 && BayNumber == 2 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Grazer then display it in Hangar
             {
@@ -335,11 +373,26 @@ public class HangarManager : MonoBehaviour {
                 Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
                 LaunchButton3.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton3.SetActive(true);
-
-
-
             }
 
+            if (ship.ItemID == 4 && BayNumber == 2 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a SIOS Base then display it in Hangar
+            {
+                SIOS.SetActive(true); // Show a SIOS in Hangar 
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SIOS Colony Spacecraft ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish  
+                LaunchButton.SetActive(true); //Make it possible to launch this Spacecraft
+                LoadEquipmentButton.SetActive(true);
+
+            }
+            if (ship.ItemID == 3 && BayNumber == 2 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a SIOS Base then display it in Hangar
+            {
+                Carrack3.SetActive(true); // Show a Carrack in Hangar 3
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Carrack Spacecraft ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish  
+                LaunchButton.SetActive(true); //Make it possible to launch this Spacecraft
+                LoadEquipmentButton.SetActive(true);
+
+            }
 
             if (ship.ItemID == 1 && BayNumber == 3 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Grazer then display it in Hangar
             {
@@ -348,8 +401,6 @@ public class HangarManager : MonoBehaviour {
                 Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
                 LaunchButton4.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton4.SetActive(true);
-
-
             }
             if (ship.ItemID == 0 && BayNumber == 3 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Probe then display it in Hangar
             {
@@ -360,6 +411,23 @@ public class HangarManager : MonoBehaviour {
                 LoadEquipmentButton4.SetActive(true);
 
             }
+            if (ship.ItemID == 4 && BayNumber == 3 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a SIOS Base then display it in Hangar
+            {
+                SIOS.SetActive(true); // Show a SIOS in Hangar 
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SIOS Colony Spacecraft ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish  
+                LaunchButton.SetActive(true); //Make it possible to launch this Spacecraft
+                LoadEquipmentButton.SetActive(true);
+            }
+            if (ship.ItemID == 3 && BayNumber == 3 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a SIOS Base then display it in Hangar
+            {
+                Carrack4.SetActive(true); // Show a Carrack in Hangar 02 
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " Carrack Spacecraft ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish  
+                LaunchButton.SetActive(true); //Make it possible to launch this Spacecraft
+                LoadEquipmentButton.SetActive(true);
+
+            }
 
             if (ship.ItemID == 1 && BayNumber == 4 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Grazer then display it in Hangar
             {
@@ -368,8 +436,6 @@ public class HangarManager : MonoBehaviour {
                 Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
                 LaunchButton5.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton5.SetActive(true);
-
-
             }
             if (ship.ItemID == 0 && BayNumber == 4 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Probe then display it in Hangar
             {
@@ -378,7 +444,15 @@ public class HangarManager : MonoBehaviour {
                 Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
                 LaunchButton5.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton5.SetActive(true);
+            }
 
+            if (ship.ItemID == 4 && BayNumber == 4 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a SIOS Base then display it in Hangar
+            {
+                SIOS.SetActive(true); // Show a SIOS in Hangar 
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SIOS Colony Spacecraft ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish  
+                LaunchButton.SetActive(true); //Make it possible to launch this Spacecraft
+                LoadEquipmentButton.SetActive(true);
             }
 
             if (ship.ItemID == 1 && BayNumber == 5 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Grazer then display it in Hangar
@@ -398,8 +472,18 @@ public class HangarManager : MonoBehaviour {
                 Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
                 LaunchButton6.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton6.SetActive(true);
+            }
+            if (ship.ItemID == 4 && BayNumber == 5 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a SIOS Base then display it in Hangar
+            {
+                SIOS.SetActive(true); // Show a SIOS in Hangar 
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SIOS Colony Spacecraft ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish  
+                LaunchButton.SetActive(true); //Make it possible to launch this Spacecraft
+                LoadEquipmentButton.SetActive(true);
 
             }
+
+
 
             if (ship.ItemID == 1 && BayNumber == 6 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Grazer then display it in Hangar
             {
@@ -418,8 +502,16 @@ public class HangarManager : MonoBehaviour {
                 Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
                 LaunchButton7.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton7.SetActive(true);
-
             }
+            if (ship.ItemID == 4 && BayNumber == 6 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a SIOS Base then display it in Hangar
+            {
+                SIOS.SetActive(true); // Show a SIOS in Hangar 
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SIOS Colony Spacecraft ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish  
+                LaunchButton.SetActive(true); //Make it possible to launch this Spacecraft
+                LoadEquipmentButton.SetActive(true);
+            }
+
             if (ship.ItemID == 1 && BayNumber == 7 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Grazer then display it in Hangar
             {
                 Grazer8.SetActive(true); // Show a grazer in Hangar 08  
@@ -427,8 +519,6 @@ public class HangarManager : MonoBehaviour {
                 Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish          
                 LaunchButton8.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton8.SetActive(true);
-
-
             }
             if (ship.ItemID == 0 && BayNumber == 7 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a Probe then display it in Hangar
             {
@@ -438,6 +528,21 @@ public class HangarManager : MonoBehaviour {
                 LaunchButton8.SetActive(true); //Make it possible to launch this Spacecraft
                 LoadEquipmentButton8.SetActive(true);
             }
+            if (ship.ItemID == 4 && BayNumber == 7 && ship.InProduction == false && ship.TurnsUntillFinished <= 0) // If this is a SIOS Base then display it in Hangar
+            {
+                SIOS.SetActive(true); // Show a SIOS in Hangar 
+                Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = " SIOS Colony Spacecraft ready in Hangar"; // This sets the ship status
+                Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = ""; // removes the number of turns until build is finish  
+                LaunchButton.SetActive(true); //Make it possible to launch this Spacecraft
+                LoadEquipmentButton.SetActive(true);
+
+            }
+
+
+
+
+
+
 
         }
         else
