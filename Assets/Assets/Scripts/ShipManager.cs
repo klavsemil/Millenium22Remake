@@ -32,6 +32,9 @@ public class ShipManager : MonoBehaviour {
     public bool CometOreFound;
     public bool AsteroidOreFound;
 
+    public GameObject CometAccidentPicture;
+    public GameObject AsteroidAccidentPicture;
+
 
     //public GameObject SetAutoMiningCometButton;
     //public GameObject SetAutoMiningAsteroidButton;
@@ -501,19 +504,20 @@ public class ShipManager : MonoBehaviour {
                     AccidentFrequency += AutomineAccident;
                 }
                 Debug.Log(" Comet Ore frequency = "+ CometOreFindFrequency);
+                Debug.Log(" accident frequency = " + AccidentFrequency);
 
-   
 
-                if (AccidentFrequency > 110)
+                if (AccidentFrequency > 100)
                 {
                     MessageManager.Instance().UpdateMessagePanel("Turn: " + NextTurn.Instance().TurnCounter + ". Spacecraft: " + HangarManager.Instance().ShipsInService[i].ShipName + "\n", " A Geyser on the comet errupted right under the ship, and it together with its crew was lost" + "\n"); // here more accident narrative options should be possible
                     CometOreFindFrequency = 0; // Not sure this sis NEccessary.... as we destroy the ship
                     //destroy ship, remove Correctly from ShipsinServiceList 
 
                     MessageManager.Instance().UpdateEncounterMessagePanel(HangarManager.Instance().ShipsInService[i].ShipName + " lost!!", "During drilling into a rich ore vein on the comet, a pressurized pocket of gas exploded, \n resulting in puncturing the ship hull, which rapidly depresurized the Grazer reulting in an implosion, killing the crew");
-
+                    AsteroidAccidentPicture.SetActive(false);
+                    CometAccidentPicture.SetActive(true);
                     HangarManager.Instance().ShipsInService.RemoveAt(i); // check if this works ...................................########%&¤####¤#%¤&%/&(%%¤""#¤%&/
-                    break; // we need to get out of the current loop as its size is now altered and would probably crassh
+                    continue; // we need to get out of the current loop as its size is now altered and would probably crassh
                 }
 
                 if (CometOreFindFrequency > 95) // this has to be balanced out using probability math.
@@ -615,9 +619,10 @@ public class ShipManager : MonoBehaviour {
                     CometOreFindFrequency = 0; // Not sure this sis NEccessary.... as we destroy the ship
                                                //destroy ship, remove Correctly from ShipsinServiceList 
                     MessageManager.Instance().UpdateEncounterMessagePanel(HangarManager.Instance().ShipsInService[i].ShipName+" lost!!", "During prospecting for minable asteroids , a strange looking probe-sized Spacecraft suddenly appeared out of nowhere, \n and started to cut the grazer into pieces very rapidly, Before the crew was able to react they were killed");
-
+                    CometAccidentPicture.SetActive(false);
+                    AsteroidAccidentPicture.SetActive(true);
                     HangarManager.Instance().ShipsInService.RemoveAt(i); // check if this works ...................................########%&¤####¤#%¤&%/&(%%¤""#¤%&/NOT SURE Yet
-                    break; // we need to get out of the current loop as its size is now altered and would probably crassh
+                    continue; // we need to get out of the current loop as its size is now altered and would probably crassh
                 }
 
 

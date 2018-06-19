@@ -16,6 +16,7 @@ public class NextTurn : MonoBehaviour {
     public int MartianAttackNumber;
     public bool MoonBaseHasRadar;
     public GameObject AttackAlertPanel;
+    public GameObject AttackResolvePanel;
 
     public int AlreadyOccupiedBaysNr;
     public int NrOfFinishedShipsInHangar; // thi number i to make sure that already finished ships dont get overwritten by new production items
@@ -310,7 +311,7 @@ public class NextTurn : MonoBehaviour {
             if(MartianAttackSet == false)
             {
                 //Random rnd = new Random();
-                int MartianAttackFrequency = Random.Range(20, 45);
+                int MartianAttackFrequency = Random.Range(25, 50);
 
                 TurnsUntillMartianAttack = MartianAttackFrequency; // This Calculus wont work:TurnsPassedUntillMartianWarning + MartianAttackFrequency;
                 MartianAttackNumber++; // we keep track on what attacknumber it is that the martians are conducting in order to set how many Martian fighter bombers attack
@@ -324,7 +325,7 @@ public class NextTurn : MonoBehaviour {
                 if (TurnsUntillMartianAttack == 0)
                 {
                     MartianAttack(MartianAttackNumber); // we call the Martian attack because the moonbase is now to be attacked.   
-                    MartianAttackSet = false; // we reset the martian attack o a new countdown can be given next round 
+                    MartianAttackSet = false; // we reset the martian attack so a new countdown can be given next round 
 
 
                 }
@@ -355,11 +356,14 @@ public class NextTurn : MonoBehaviour {
 
     }
 
-    public void MartianAttack(int AttackNr) // Parameter i what number attack it is.
+    public void MartianAttack(int AttackNr) // Parameter is what number attack it is.
     {
+
+        CombatManager.Instance().SetupEnemy(AttackNr);
         AttackAlertPanel.SetActive(true);
-
-
+        //AttackResolvePanel.SetActive(true);
+        
+        CombatManager.Instance().SetupPlayerForces(); // this hould not be done here!!!!!!!
         // here we calculate attack -or maybe in it own class/method
 
         MessageManager.Instance().UpdateMessagePanel("Turn: " + NextTurn.Instance().TurnCounter+"\n", "Martian fighterbombers attacked Moonbase! " + "\n"); // Maybe result/Casualties here!?

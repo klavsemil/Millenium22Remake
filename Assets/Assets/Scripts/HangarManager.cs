@@ -739,7 +739,7 @@ public class HangarManager : MonoBehaviour {
         var TextComponentRadars = TextForNrOfRadars.GetComponent<Text>();
 
 
-    NrOfSolaGenMk2 = 0; // we reset this as it is called every turn and should count the pieces of Solagenmk2 in the finished itemlist up from zero
+            NrOfSolaGenMk2 = 0; // we reset this as it is called every turn and should count the pieces of Solagenmk2 in the finished itemlist up from zero
             NrOfSolaGenMk3 = 0;
             NrOfSolaGenMk4 = 0;
             NrOfFusionPowerGenerators = 0;
