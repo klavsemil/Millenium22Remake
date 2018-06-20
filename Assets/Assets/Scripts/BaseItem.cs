@@ -211,16 +211,6 @@ public class BaseItem : ScriptableObject {
             HangarManager.Instance().SolagenMK4.SetActive(true);
         }
            
-
-
-
-
-
-
-
-
-
-
         this.InProduction = false; // As this item is finished we set it to false 
 
         //Below here: we tell what is finished dbuild and what eventually is next in production que
@@ -235,8 +225,6 @@ public class BaseItem : ScriptableObject {
         {
             Debug.Log("Finished Item nr " + count +" is:" + HangarManager.Instance().FinishedItems + FinishedItem);// Show in the Debug log whats on this list to show iterate through
             count++;
-
-
         }
 
     } 

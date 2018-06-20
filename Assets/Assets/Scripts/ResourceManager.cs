@@ -9,6 +9,8 @@ public class ResourceManager : MonoBehaviour {
     //the used resources from the mineral resource pool, each Turn/day the resources should be implemented, and resources should be added by grazers etc. unloading 
     //from the moon Hangar when returning from asteroid mining runs etc. 
 
+    //private static ResourceManager instance = null;
+
     public int WaterOnBase;
     public int TitanOnBase;
     public int AluOnBase;

@@ -83,10 +83,7 @@ public class NextTurn : MonoBehaviour {
             Debug.Log(LengthOfInProductionList + ";" + HangarManager.Instance().InProductionItems.Count);
             HangarManager.Instance().InProductionItems[LengthOfInProductionList].ProgressBuild();// PROGRESSING BUILD -> in here we also handle what todo when build is finished
 
-            //Below Metod call on specific item deals with the transition from InProduction ships to finished ones and displays them when they are finished in the Hangar
-            //**************************##########################
-            //AlreadyOccupiedBaysNr = HangarManager.Instance().BayVacancyNrCheck(); //we need to know how many bay are alredy occupied before inserting new items 
-
+           
             // under here we adjust the baynumber for already finished ships, if there are such
 
             if (HangarManager.Instance().InProductionItems[LengthOfInProductionList].ItemTypeNr==1) // NOT SURE we only want to update the hangar ships in production and not update items which is not ships
@@ -311,7 +308,7 @@ public class NextTurn : MonoBehaviour {
             if(MartianAttackSet == false)
             {
                 //Random rnd = new Random();
-                int MartianAttackFrequency = Random.Range(25, 50);
+                int MartianAttackFrequency = Random.Range(20, 40);
 
                 TurnsUntillMartianAttack = MartianAttackFrequency; // This Calculus wont work:TurnsPassedUntillMartianWarning + MartianAttackFrequency;
                 MartianAttackNumber++; // we keep track on what attacknumber it is that the martians are conducting in order to set how many Martian fighter bombers attack
