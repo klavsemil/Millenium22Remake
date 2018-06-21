@@ -106,15 +106,15 @@ public class ResourceManager : MonoBehaviour {
         instance = this;
     }
     // IF ARRAY THING GOE WRONG CHANGE IT BACK
-    public GameObject[] WaterText = new GameObject[2]; // this is needed for having a object to put inside the gamedata for changing the text in a Unity GUI text
-    public GameObject[] TitanText = new GameObject[2];
-    public GameObject[] AluText = new GameObject[2];
-    public GameObject[] CopperText = new GameObject[2];
-    public GameObject[] SilicaText = new GameObject[2];
-    public GameObject[] IronText = new GameObject[2];
-    public GameObject[] SilverText = new GameObject[2];
-    public GameObject[] PlatinumText = new GameObject[2];
-    public GameObject[] UraniumText = new GameObject[2];
+    public GameObject[] WaterText = new GameObject[3]; // this is needed for having a object to put inside the gamedata for changing the text in a Unity GUI text
+    public GameObject[] TitanText = new GameObject[3];
+    public GameObject[] AluText = new GameObject[3];
+    public GameObject[] CopperText = new GameObject[3];
+    public GameObject[] SilicaText = new GameObject[3];
+    public GameObject[] IronText = new GameObject[3];
+    public GameObject[] SilverText = new GameObject[3];
+    public GameObject[] PlatinumText = new GameObject[3];
+    public GameObject[] UraniumText = new GameObject[3];
 
     public void Turn() // This method increments the resource varibles in regard to the resource incrementation and updates GUITEXT!
     {
@@ -142,7 +142,7 @@ public class ResourceManager : MonoBehaviour {
     {
 
 
-        for(int i = 0; i < WaterText.Length; i++) //NOT URE YET
+        for(int i = 0; i < WaterText.Length; i++) //NOT sURE YET
         {
             var WaterTextComponent = WaterText[i].GetComponent<Text>(); //here we need to get the text from the GUI object chosen and insert it in this 
             WaterTextComponent.text = WaterOnBase + "";
