@@ -105,16 +105,16 @@ public class ResourceManager : MonoBehaviour {
     {
         instance = this;
     }
-
-    public GameObject WaterText; // this is needed for having a object to put inside the gamedata for changing the text in a Unity GUI text
-    public GameObject TitanText;
-    public GameObject AluText;
-    public GameObject CopperText;
-    public GameObject SilicaText;
-    public GameObject IronText;
-    public GameObject SilverText;
-    public GameObject PlatinumText;
-    public GameObject UraniumText;
+    // IF ARRAY THING GOE WRONG CHANGE IT BACK
+    public GameObject[] WaterText = new GameObject[2]; // this is needed for having a object to put inside the gamedata for changing the text in a Unity GUI text
+    public GameObject[] TitanText = new GameObject[2];
+    public GameObject[] AluText = new GameObject[2];
+    public GameObject[] CopperText = new GameObject[2];
+    public GameObject[] SilicaText = new GameObject[2];
+    public GameObject[] IronText = new GameObject[2];
+    public GameObject[] SilverText = new GameObject[2];
+    public GameObject[] PlatinumText = new GameObject[2];
+    public GameObject[] UraniumText = new GameObject[2];
 
     public void Turn() // This method increments the resource varibles in regard to the resource incrementation and updates GUITEXT!
     {
@@ -141,32 +141,38 @@ public class ResourceManager : MonoBehaviour {
     public void UpdateResourceText()
     {
 
-        var WaterTextComponent = WaterText.GetComponent<Text>(); //here we need to get the text from the GUI object chosen and insert it in this 
-        WaterTextComponent.text = WaterOnBase + "";
 
-        var TitanTextComponent = TitanText.GetComponent<Text>(); //as above just for Titan
-        TitanTextComponent.text = TitanOnBase + "";
+        for(int i = 0; i < WaterText.Length; i++) //NOT URE YET
+        {
+            var WaterTextComponent = WaterText[i].GetComponent<Text>(); //here we need to get the text from the GUI object chosen and insert it in this 
+            WaterTextComponent.text = WaterOnBase + "";
 
-        var AluTextComponent = AluText.GetComponent<Text>(); //as above just for Alu ...
-        AluTextComponent.text = AluOnBase + "";
+            var TitanTextComponent = TitanText[i].GetComponent<Text>(); //as above just for Titan
+            TitanTextComponent.text = TitanOnBase + "";
 
-        var CopperTextComponent = CopperText.GetComponent<Text>();
-        CopperTextComponent.text = CopperOnBase + "";
+            var AluTextComponent = AluText[i].GetComponent<Text>(); //as above just for Alu ...
+            AluTextComponent.text = AluOnBase + "";
 
-        var SilicaTextComponent = SilicaText.GetComponent<Text>();
-        SilicaTextComponent.text = SilicaOnBase + "";
+            var CopperTextComponent = CopperText[i].GetComponent<Text>();
+            CopperTextComponent.text = CopperOnBase + "";
 
-        var IronTextComponent = IronText.GetComponent<Text>();
-        IronTextComponent.text = IronOnBase + "";
+            var SilicaTextComponent = SilicaText[i].GetComponent<Text>();
+            SilicaTextComponent.text = SilicaOnBase + "";
 
-        var SilverTextComponent = SilverText.GetComponent<Text>();
-        SilverTextComponent.text = SilverOnBase + "";
+            var IronTextComponent = IronText[i].GetComponent<Text>();
+            IronTextComponent.text = IronOnBase + "";
 
-        var PlatinumTextComponent = PlatinumText.GetComponent<Text>();
-        PlatinumTextComponent.text = PlatinumOnBase + "";
+            var SilverTextComponent = SilverText[i].GetComponent<Text>();
+            SilverTextComponent.text = SilverOnBase + "";
 
-        var UraniumTextComponent = UraniumText.GetComponent<Text>();
-        UraniumTextComponent.text = UraniumOnBase + "";
+            var PlatinumTextComponent = PlatinumText[i].GetComponent<Text>();
+            PlatinumTextComponent.text = PlatinumOnBase + "";
+
+            var UraniumTextComponent = UraniumText[i].GetComponent<Text>();
+            UraniumTextComponent.text = UraniumOnBase + "";
+        }
+
+
 
 
 
