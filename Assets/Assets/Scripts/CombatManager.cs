@@ -47,6 +47,8 @@ public class CombatManager : MonoBehaviour {
             NrOfEnemyFighters = (AttackNr * 2)-1; // to be adjusted
         if (AttackNr >=10)
             NrOfEnemyFighters = (AttackNr * 3) - 1; // making it harder after attack 10
+        if (NrOfEnemyFighters > 20 && NextTurn.Instance().TurnCounter<150) // After round 150 it has to become increasingly more difficult 
+            NrOfEnemyFighters = 20;
 
         EnemyAttackBonus = NrOfEnemyFighters; // To be adjusted later
         TextComponentEnemyFighters.text = "Number of incomming fighters: " + NrOfEnemyFighters;
@@ -470,7 +472,7 @@ public class CombatManager : MonoBehaviour {
                     }
                 }
                 ResourceManager.instance.IronOnBase = 0; // 
-                TextComponentBombingResult.text += "Your base iron storage was hit and you lost all aluminium stored!";
+                TextComponentBombingResult.text += "Your base iron storage was hit and you lost all iron stored!";
             }
             if (BombingOutcome == 5)
             {
@@ -490,7 +492,7 @@ public class CombatManager : MonoBehaviour {
                 }
                 ResourceManager.instance.SilicaOnBase = 0; // 
                 ResourceManager.instance.IronOnBase = 0; // 
-                TextComponentBombingResult.text += "Your base silica and iron storage was hit and you lost all aluminium stored!";
+                TextComponentBombingResult.text += "Your base silica and iron storage was hit and you lost all stored of these!";
             }
 
         }
@@ -549,7 +551,7 @@ public class CombatManager : MonoBehaviour {
                 ResourceManager.instance.PlatinumOnBase = 0; // 
                 TextComponentBombingResult.text += "Your base platinium storage was hit and you lost all platinium stored!";
                 ResourceManager.instance.TitanOnBase = 0; // 
-                TextComponentBombingResult.text += ",Your base titanium storage was hit and you lost all titan stored!";
+                TextComponentBombingResult.text += ",Your base titanium storage was hit and you lost all of this stored!";
             }
             if (BombingOutcome == 3)
             {
@@ -575,7 +577,7 @@ public class CombatManager : MonoBehaviour {
                 TextComponentBombingResult.text += "the hangar got severely bombed destroying all spacecraft parked there (if any). Finally ";
                 ResourceManager.instance.PlatinumOnBase = 0; //                  
                 ResourceManager.instance.AluOnBase = 0; //
-                TextComponentBombingResult.text += "Your base aluminium storage and platinium storage was hit and you lost all aluminium stored!";
+                TextComponentBombingResult.text += "Your base aluminium storage and platinium storage was hit and you lost all of these stored!";
             }
             if (BombingOutcome == 4)
             {
@@ -600,7 +602,7 @@ public class CombatManager : MonoBehaviour {
                 }
                 TextComponentBombingResult.text += "the hangar got severely bombed destroying all spacecraft parked there (if any). Finally ";
                 ResourceManager.instance.IronOnBase = 0; // 
-                TextComponentBombingResult.text += "Your base iron storage was hit and you lost all aluminium stored!";
+                TextComponentBombingResult.text += "Your base iron storage was hit and you lost all this stored!";
             }
             if (BombingOutcome == 5)
             {
@@ -626,7 +628,7 @@ public class CombatManager : MonoBehaviour {
                 TextComponentBombingResult.text += "the hangar got severelybombed destroying all spacecraft parked there (if any). Finally ";
                 ResourceManager.instance.SilicaOnBase = 0; // 
                 ResourceManager.instance.IronOnBase = 0; // 
-                TextComponentBombingResult.text += "Your base silica and Iron storage was hit and you lost all aluminium stored!";
+                TextComponentBombingResult.text += "Your base silica and Iron storage was hit and you lost all of this stored!";
             }
 
         }
@@ -649,7 +651,7 @@ public class CombatManager : MonoBehaviour {
         TextComponentAvailableLasers.text = HangarManager.Instance().NrOfOrbitalLasers + "";
     }
 
-    public static CombatManager Instance() // THIS IS NOT HTE ONLY SINGLETON SO MIGHT BE BAD... (SINGLETON ALSO IN HANGARMANAGER!!!)
+    public static CombatManager Instance() // 
     {
         if (instance == null)
         {

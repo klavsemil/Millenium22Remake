@@ -105,7 +105,7 @@ public class ResourceManager : MonoBehaviour {
     {
         instance = this;
     }
-    // IF ARRAY THING GOE WRONG CHANGE IT BACK
+    // 
     public GameObject[] WaterText = new GameObject[3]; // this is needed for having a object to put inside the gamedata for changing the text in a Unity GUI text
     public GameObject[] TitanText = new GameObject[3];
     public GameObject[] AluText = new GameObject[3];
@@ -115,6 +115,7 @@ public class ResourceManager : MonoBehaviour {
     public GameObject[] SilverText = new GameObject[3];
     public GameObject[] PlatinumText = new GameObject[3];
     public GameObject[] UraniumText = new GameObject[3];
+    public GameObject[] EnergyText = new GameObject[3];
 
     public void Turn() // This method increments the resource varibles in regard to the resource incrementation and updates GUITEXT!
     {
@@ -132,7 +133,35 @@ public class ResourceManager : MonoBehaviour {
      PlatinumOnBase+=0;
      UraniumOnBase+=0;
 
+        
+
+        for (int i = 0; i < HangarManager.Instance().FinishedItems.Count; i++)
+        {
+            if(HangarManager.Instance().FinishedItems[i].ItemID == 6 && EnergyOnBase < 3200)
+            {
+                EnergyOnBase = 680;
+                continue;
+            }
+            if (HangarManager.Instance().FinishedItems[i].ItemID == 7 && EnergyOnBase <25000)
+            {
+                EnergyOnBase = 3200;
+                continue;
+            }
+            if (HangarManager.Instance().FinishedItems[i].ItemID == 8 && EnergyOnBase < 37000)
+            {
+                EnergyOnBase = 25000;
+                continue;
+            }
+            if (HangarManager.Instance().FinishedItems[i].ItemID == 9)
+            {
+                EnergyOnBase = 37000;
+                continue;
+            }
+
+        }
         UpdateResourceText();
+
+
 
     }
 
@@ -170,6 +199,10 @@ public class ResourceManager : MonoBehaviour {
 
             var UraniumTextComponent = UraniumText[i].GetComponent<Text>();
             UraniumTextComponent.text = UraniumOnBase + "";
+
+            var EnergyTextComponent = EnergyText[i].GetComponent<Text>();
+            EnergyTextComponent.text = EnergyOnBase + "";
+
         }
 
 

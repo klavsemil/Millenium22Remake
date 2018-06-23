@@ -245,12 +245,6 @@ public class NextTurn : MonoBehaviour {
                         }
 
 
-
-
-
-
-
-
                     }
                     if(HangarManager.Instance().InProductionItems.Count <= 1)
                     {
@@ -288,12 +282,12 @@ public class NextTurn : MonoBehaviour {
         //If There has been a warning from the Martian commander the player would be informed by his security advisor after 1 round
         if(TurnsPassedUntillMartianWarning+1 == TurnCounter && MartianWarningPassed == true)
         {
-            MessageManager.Instance().UpdateEncounterMessagePanel("I might have some information! ", "One of your trusted communications officers comes to your command station and tells you" +
-                " 'Sirs, 4 years back, I worked for Musk Space Incorporated, on a secret project involving genetically enhancing humans into Homo Martianis, which would be able to survive on Mars without the need for spacesuits." +
-                "I do not know if they succeded. But I can see that the Martian threat message uses the proprietary message protocol of Musk Incorporated and the threatening message might originate from them." +
+            MessageManager.Instance().UpdateEncounterMessagePanel("I might have some information! ", "One of your medical officers adresses you at your command station:\n" +
+                " 'Sirs, 4 years back, I worked on a secret project for Musk Space Incorporated, involving genetically enhancing humans into Homo Martianis,a human mutant which would be able to breathe on Mars without the need for spacesuits." +
+                "I do not know if they succeded, but I can see that the Martian threat message uses the proprietary message protocol of Musk Incorporated and thus the threat message might originate from them.\n\n" +
                 "I remember from the Musk Genetic alteration program, that they had severe problems with controling the temprement of the test subjects, who often exploded in anger over the smallest of issues." +
-                "If indeed these threats originate from the Homo Martianis and they got the big Musk base up there as they proposed, We might be facing a seriou threat sir'");
-                CommunicationAdvisor.SetActive(true); // Show the AdviSor
+                "\nIf indeed these threats originate from the Homo Martianis and they got the big Musk base up there as they proposed, we might be facing a seriou threat sir'");
+                CommunicationAdvisor.SetActive(true); //Show the AdviSor
         }
 
        

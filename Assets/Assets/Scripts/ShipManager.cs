@@ -35,6 +35,11 @@ public class ShipManager : MonoBehaviour {
     public GameObject CometAccidentPicture;
     public GameObject AsteroidAccidentPicture;
 
+    public bool ProbeVisitedMars;
+    public GameObject ProbeMarsScan;
+    public bool ProbeVisitedCallisto;
+    public GameObject ProbeCallistoScan;
+    public GameObject Scientist;
 
     //public GameObject SetAutoMiningCometButton;
     //public GameObject SetAutoMiningAsteroidButton;
@@ -79,8 +84,8 @@ public class ShipManager : MonoBehaviour {
         TextComponentShipDaysUntillArrival.text = HangarManager.Instance().ShipsInService[ShipNumber].DaysUntilArrival + ""; // Insert Number of turns untill arrival in cockpittextfield
 
 
-        if (HangarManager.Instance().ShipsInService[ShipNumber].InOrbit==true)// ****FIXED TO BE TRUE from being nothing!!
-        TextComponentShipLocation.text = "In Moon Orbit!"; // we insert the shipname into the testfield for name in the universal cockpit
+        if (HangarManager.Instance().ShipsInService[ShipNumber].InOrbit==true)// FIXED TO BE TRUE from being nothing!!
+        TextComponentShipLocation.text = "In Moon Orbit!"; // we insert the shipname into the textfield for name in the universal cockpit
         if (HangarManager.Instance().ShipsInService[ShipNumber].OnMoon == true)
             TextComponentShipLocation.text = "On Moon";
         if (HangarManager.Instance().ShipsInService[ShipNumber].OnComet == true)
@@ -433,12 +438,35 @@ public class ShipManager : MonoBehaviour {
                         HangarManager.Instance().ShipsInService[i].InTransitMars = false;
                         HangarManager.Instance().ShipsInService[i].InorbitMars = true;
                         MessageManager.Instance().UpdateMessagePanel("Turn: " + NextTurn.Instance().TurnCounter + ". Spacecraft: " + HangarManager.Instance().ShipsInService[i].ShipName + "\n", "                        Arrived in Mars Orbit" + "\n");
+                        if (HangarManager.Instance().ShipsInService[i].ItemID == 0 && ProbeVisitedMars == false) // IF a probe visit MArs first time it gets some info before getting destroyed
+                        {
+                            MessageManager.Instance().UpdateEncounterMessagePanel("Probe scan results from Mars","Your Probe scans the surface of mars and quickly reveals that Musk Space incorporated did indeed set up a large base " +
+                                "with quite extensive production facilities, which at the moment seems to be producing small combat spacecrafts. It also looks like humanoid creatures are wandering around the base without any protective helmets on!");
+                          
+                            ProbeMarsScan.SetActive(true);
+                            ProbeVisitedMars = true;
+                        }
+                            
+
                     }
                     if (HangarManager.Instance().ShipsInService[i].InTransitCallisto)
                     {
                         HangarManager.Instance().ShipsInService[i].InTransitCallisto = false;
                         HangarManager.Instance().ShipsInService[i].InOrbitCallisto = true;
                         MessageManager.Instance().UpdateMessagePanel("Turn: " + NextTurn.Instance().TurnCounter + ". Spacecraft: " + HangarManager.Instance().ShipsInService[i].ShipName + "\n", "                        Arrived in Callisto Orbit" + "\n");
+
+                        if (HangarManager.Instance().ShipsInService[i].ItemID == 0 && ProbeVisitedCallisto == false) // IF a probe visit MArs first time it gets some info before getting destroyed
+                        {
+                            MessageManager.Instance().UpdateEncounterMessagePanel("Probe scan results from Callisto", "Your Probe scans the surface of Callisto revealing a rocky moon which has very good deposits of minerals and could be a good " +
+                                "candidate for setting up base. Mineable Deposits include: \n\n Titanium \n Copper \n Water \n Iron \n Silver \n\n Inside a crater on the south pole of the moon a wreckage of an old Spacecraft carrier lies partially burried in sand and rocks \n " +
+                                "Your Chief Science officer exclaims that this might give the opportunity to build a battle space craft, which could carry our fighters to Mars and defeat the martians! However we need to have a base on Callisto in order to " +
+                                "examine the wrecked fleet carrier in detail.");
+
+                            ProbeCallistoScan.SetActive(true);
+                            Scientist.SetActive(true);
+                            ProbeVisitedCallisto = true;
+                        }
+
 
                     }
                     if (HangarManager.Instance().ShipsInService[i].AutoMineRunComet)
@@ -486,7 +514,7 @@ public class ShipManager : MonoBehaviour {
  
                 if (HangarManager.Instance().ShipsInService[i].DaysOnAutomineComet < 10 && HangarManager.Instance().ShipsInService[i].DaysOnAutomineComet > 0) // above zero as if it is below zero it is tranporting ore found to the moonbase (remmeber mesage for this!)
                 {
-                    AutomineChance = 10; // 10 is lowest chance of finding minable ore on comet
+                    AutomineChance = 5; // 10 is lowest chance of finding minable ore on comet
                     AutomineAccident = 20;
                     CometOreFindFrequency = Random.Range(0, 100);
                     AccidentFrequency = Random.Range(0, 100);
@@ -496,8 +524,8 @@ public class ShipManager : MonoBehaviour {
                 }
                 if (HangarManager.Instance().ShipsInService[i].DaysOnAutomineComet >= 10)
                 {
-                    AutomineChance = 20; // 
-                    AutomineAccident = 40;
+                    AutomineChance = 10; // 
+                    AutomineAccident = 30;
                     CometOreFindFrequency = Random.Range(0, 100);
                     AccidentFrequency = Random.Range(0, 100);
                     CometOreFindFrequency += AutomineChance;
@@ -576,6 +604,8 @@ public class ShipManager : MonoBehaviour {
                     ResourceManager.instance.SilverOnBase += HangarManager.Instance().ShipsInService[i].SilverCarried;
                     ResourceManager.instance.PlatinumOnBase += HangarManager.Instance().ShipsInService[i].PlatinumCarried;
                     ResourceManager.instance.UraniumOnBase += HangarManager.Instance().ShipsInService[i].UraniumCarried;
+
+                    MessageManager.Instance().UpdateMessagePanel("Turn: " + NextTurn.Instance().TurnCounter + ". Spacecraft: " + HangarManager.Instance().ShipsInService[i].ShipName + "\n"+"", "  arrived at Moonbase with resources. Returning to Comet to mine! (Automining) \n");
 
                     HangarManager.Instance().ShipsInService[i].WaterCarried = 0; //After offloading resources Reset it!!
                     HangarManager.Instance().ShipsInService[i].TitanCarried = 0;
@@ -680,6 +710,9 @@ public class ShipManager : MonoBehaviour {
                     ResourceManager.instance.SilverOnBase += HangarManager.Instance().ShipsInService[i].SilverCarried;
                     ResourceManager.instance.PlatinumOnBase += HangarManager.Instance().ShipsInService[i].PlatinumCarried;
                     ResourceManager.instance.UraniumOnBase += HangarManager.Instance().ShipsInService[i].UraniumCarried;
+
+                    MessageManager.Instance().UpdateMessagePanel("Turn: " + NextTurn.Instance().TurnCounter + ". Spacecraft: " + HangarManager.Instance().ShipsInService[i].ShipName + "\n" + "", "  arrived at Moonbase with resources. Returning to asteroid belt to mine! (Automining) \n");
+
 
                     HangarManager.Instance().ShipsInService[i].WaterCarried = 0;
                     HangarManager.Instance().ShipsInService[i].TitanCarried = 0;
