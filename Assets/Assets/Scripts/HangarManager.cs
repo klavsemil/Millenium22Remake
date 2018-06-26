@@ -538,12 +538,6 @@ public class HangarManager : MonoBehaviour {
 
             }
 
-
-
-
-
-
-
         }
         else
         {
@@ -552,7 +546,22 @@ public class HangarManager : MonoBehaviour {
             Bays[BayNumber].panel.transform.GetChild(6).gameObject.GetComponent<Text>().text = "XXX";
             Bays[BayNumber].panel.transform.GetChild(8).gameObject.GetComponent<Text>().text = "XXX";
             Bays[BayNumber].panel.transform.GetChild(11).gameObject.GetComponent<Text>().text = "XXX";
-
+            if(BayNumber == 0)
+                LaunchButton.SetActive(false);
+            if(BayNumber == 1)
+                LaunchButton2.SetActive(false);
+            if(BayNumber == 2)
+                LaunchButton3.SetActive(false);
+            if(BayNumber == 3)
+                LaunchButton4.SetActive(false);
+            if(BayNumber == 4)
+                LaunchButton5.SetActive(false);
+            if(BayNumber == 5)
+                LaunchButton6.SetActive(false);
+            if(BayNumber == 6)
+                LaunchButton7.SetActive(false);
+            if(BayNumber == 7)
+                LaunchButton8.SetActive(false);
         }
 
     }

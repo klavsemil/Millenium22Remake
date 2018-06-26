@@ -231,7 +231,6 @@ public class ShipManager : MonoBehaviour {
                 //HangarManager.Instance().ShipsInService[ActiveShipNumber].InAsteroidField = false;
             }
 
-
         }
         
         //destination moon set
@@ -535,7 +534,7 @@ public class ShipManager : MonoBehaviour {
                 Debug.Log(" accident frequency = " + AccidentFrequency);
 
 
-                if (AccidentFrequency > 100)
+                if (AccidentFrequency > 105)
                 {
                     MessageManager.Instance().UpdateMessagePanel("Turn: " + NextTurn.Instance().TurnCounter + ". Spacecraft: " + HangarManager.Instance().ShipsInService[i].ShipName + "\n", " A Geyser on the comet errupted right under the ship, and it together with its crew was lost" + "\n"); // here more accident narrative options should be possible
                     CometOreFindFrequency = 0; // Not sure this sis NEccessary.... as we destroy the ship
@@ -656,7 +655,7 @@ public class ShipManager : MonoBehaviour {
                 }
 
 
-                if (AsteroidOreFindFrequency > 90) // this has to be balanced out using probability math.
+                if (AsteroidOreFindFrequency > 95) // this has to be balanced out using probability math.
                 {
                     // Ore is found
                     HangarManager.Instance().ShipsInService[i].DaysOnAutoMineAsteroids = -34; // as it takes 24 day to travel one way between the moon and asteroids, we need to set this back to -34 to make it make this run and not collecting more ore meanwhile (!)  
@@ -758,14 +757,6 @@ public class ShipManager : MonoBehaviour {
 
 
     }
-
-
-
-
-
-
-
-
 
 
     public static ShipManager Instance() // THIS IS NOT HTE ONLY SINGLETON SO MIGHT BE BAD... (SINGLETON ALSO IN HANGARMANAGER!!!)

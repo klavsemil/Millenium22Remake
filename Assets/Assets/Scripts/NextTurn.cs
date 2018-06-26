@@ -282,7 +282,7 @@ public class NextTurn : MonoBehaviour {
         //If There has been a warning from the Martian commander the player would be informed by his security advisor after 1 round
         if(TurnsPassedUntillMartianWarning+1 == TurnCounter && MartianWarningPassed == true)
         {
-            MessageManager.Instance().UpdateEncounterMessagePanel("I might have some information! ", "One of your medical officers adresses you at your command station:\n" +
+            MessageManager.Instance().UpdateEncounterMessagePanel("I might have usable information! ", "Your medical officer adresses you at your command station:\n" +
                 " 'Sirs, 4 years back, I worked on a secret project for Musk Space Incorporated, involving genetically enhancing humans into Homo Martianis,a human mutant which would be able to breathe on Mars without the need for spacesuits." +
                 "I do not know if they succeded, but I can see that the Martian threat message uses the proprietary message protocol of Musk Incorporated and thus the threat message might originate from them.\n\n" +
                 "I remember from the Musk Genetic alteration program, that they had severe problems with controling the temprement of the test subjects, who often exploded in anger over the smallest of issues." +
@@ -318,7 +318,7 @@ public class NextTurn : MonoBehaviour {
             if(MartianAttackSet == false)
             {
                 //Random rnd = new Random();
-                int MartianAttackFrequency = Random.Range(20, 40);
+                int MartianAttackFrequency = Random.Range(25, 50);
 
                 TurnsUntillMartianAttack = MartianAttackFrequency; // This Calculus wont work:TurnsPassedUntillMartianWarning + MartianAttackFrequency;
                 MartianAttackNumber++; // we keep track on what attacknumber it is that the martians are conducting in order to set how many Martian fighter bombers attack
